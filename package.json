@@ -3,7 +3,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Digital Silk Components built for the WordPress Block Editor.",
     "main": "./dist/index.js",
     "source": "index.js",
