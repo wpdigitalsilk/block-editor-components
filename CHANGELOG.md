@@ -1,5 +1,23 @@
 # @digitalsilk/block-components
 
+## 0.4.0
+
+### Minor Changes
+
+- update
+
+## 0.3.1
+
+### Patch Changes
+
+- Update version
+
+## 0.3.0
+
+### Minor Changes
+
+- bump
+
 ## 0.2.0
 
 ### Minor Changes
