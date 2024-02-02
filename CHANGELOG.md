@@ -1,5 +1,17 @@
 # @digitalsilk/block-components
 
+## 0.5.0
+
+### Minor Changes
+
+- Dep versions
+
+## 0.4.1
+
+### Patch Changes
+
+- Dependency versions
+
 ## 0.4.0
 
 ### Minor Changes
