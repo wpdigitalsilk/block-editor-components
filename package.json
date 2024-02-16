@@ -3,7 +3,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Digital Silk block editor components library.",
     "main": "./dist/index.js",
     "source": "index.js",
@@ -11,7 +11,6 @@
         "lint": "digitalsilk-toolkit lint-js",
         "build": "digitalsilk-toolkit build",
         "start": "digitalsilk-toolkit start",
-        "prepublishOnly": "npm run build",
         "publish:packages": "npm run build && changeset && changeset version && changeset publish",
         "publish:prepare": "npm run build && changeset && changeset version"
     },
@@ -24,13 +23,13 @@
     "homepage": "https://github.com/wpdigitalsilk/block-editor-components.git#readme",
     "dependencies": {
         "@emotion/styled": "^11.11.0",
-        "@wordpress/icons": "^9.14.0",
+        "@wordpress/icons": "^9.42.0",
         "prop-types": "^15.8.1"
     },
     "devDependencies": {
         "@changesets/cli": "^2.27.1",
-        "@wordpress/dependency-extraction-webpack-plugin": "^4.6.0",
-        "classnames": "^2.3.2",
+        "@wordpress/dependency-extraction-webpack-plugin": "^5.2.0",
+        "classnames": "^2.5.1",
         "digitalsilk-toolkit": "^0.9.3"
     }
 }
