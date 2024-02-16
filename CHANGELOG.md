@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.0.6
+
+### Patch Changes
+
+- Remove dist
+
 ## 0.0.5
 
 ### Patch Changes
