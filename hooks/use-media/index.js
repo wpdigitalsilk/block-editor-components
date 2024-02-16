@@ -14,6 +14,6 @@ export function useMedia(id) {
 				hasResolvedMedia: hasFinishedResolution('getMedia', mediaParameters),
 			};
 		},
-		[id]
+		[id],
 	);
 }

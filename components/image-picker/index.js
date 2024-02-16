@@ -1,36 +1,15 @@
 import { __ } from '@wordpress/i18n';
-import {
-	MediaPlaceholder,
-	InspectorControls,
-	MediaReplaceFlow,
-	MediaUpload,
-	MediaUploadCheck,
-	__experimentalImageSizeControl as ImageSizeControl,
-} from '@wordpress/block-editor';
-import { Spinner, FocalPointPicker, PanelBody, Button } from '@wordpress/components';
+import { MediaPlaceholder, InspectorControls, MediaUploadCheck, __experimentalImageSizeControl as ImageSizeControl } from '@wordpress/block-editor';
+import { Spinner, FocalPointPicker, PanelBody } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 
-import { MediaToolbar, Image } from '../index';
-
 import PropTypes from 'prop-types';
+import { MediaToolbar, Image } from '../index';
 
 import { useMedia, useEditorSettings } from '../../hooks';
 
 export const ImagePicker = (props) => {
-	const {
-		id,
-		focalPoint,
-		size,
-		onSelect,
-		onRemove,
-		onChangeFocalPoint,
-		onSizeChange,
-		labels = {},
-		allowedTypes = ['image'],
-		panelLabel,
-		mode,
-		...rest
-	} = props;
+	const { id, focalPoint, size, onSelect, onRemove, onChangeFocalPoint, onSizeChange, labels = {}, allowedTypes = ['image'], panelLabel, mode, ...rest } = props;
 
 	const { imageSizes } = useEditorSettings();
 	const { media, isResolvingMedia } = useMedia(id);
@@ -52,13 +31,7 @@ export const ImagePicker = (props) => {
 			<InspectorControls>
 				<PanelBody title={panelLabel}>
 					<MediaUploadCheck>
-						<MediaPlaceholder
-							labels={labels}
-							onSelect={onSelect}
-							accept="image"
-							multiple={false}
-							allowedTypes={allowedTypes}
-						/>
+						<MediaPlaceholder labels={labels} onSelect={onSelect} accept="image" multiple={false} allowedTypes={allowedTypes} />
 					</MediaUploadCheck>
 				</PanelBody>
 			</InspectorControls>
@@ -78,22 +51,8 @@ export const ImagePicker = (props) => {
 					<PanelBody title={panelLabel}>
 						<MediaToolbar id={id} onSelect={onSelect} onRemove={onRemove} />
 
-						{shouldDisplayFocalPointPicker && (
-							<FocalPointPicker
-								label={__('Focal Point Picker')}
-								url={imageUrl}
-								value={focalPoint}
-								onChange={onChangeFocalPoint}
-							/>
-						)}
-						{shouldDisplaySizePicker && (
-							<ImageSizeControl
-								isResizable={false}
-								onChangeImage={onSizeChange}
-								slug={size}
-								imageSizeOptions={availableImageSizes}
-							/>
-						)}
+						{shouldDisplayFocalPointPicker && <FocalPointPicker label={__('Focal Point Picker')} url={imageUrl} value={focalPoint} onChange={onChangeFocalPoint} />}
+						{shouldDisplaySizePicker && <ImageSizeControl isResizable={false} onChangeImage={onSizeChange} slug={size} imageSizeOptions={availableImageSizes} />}
 					</PanelBody>
 				</InspectorControls>
 			)}

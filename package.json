@@ -3,14 +3,17 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Digital Silk block editor components library.",
     "main": "./dist/index.js",
     "source": "index.js",
+    "types": "./dist/index.d.ts",
     "scripts": {
-        "lint": "digitalsilk-toolkit lint-js",
-        "build": "digitalsilk-toolkit build",
         "start": "digitalsilk-toolkit start",
+        "build": "digitalsilk-toolkit build",
+        "format-js": "digitalsilk-toolkit format-js",
+        "lint-js": "digitalsilk-toolkit lint-js",
+        "lint-style": "digitalsilk-toolkit lint-style",
         "publish:packages": "npm run build && changeset && changeset version && changeset publish",
         "publish:prepare": "npm run build && changeset && changeset version"
     },

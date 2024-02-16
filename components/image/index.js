@@ -1,4 +1,3 @@
-import { __ } from '@wordpress/i18n';
 import { Spinner, Placeholder } from '@wordpress/components';
 import PropTypes from 'prop-types';
 import { useMedia } from '../../hooks/use-media';
@@ -24,29 +23,7 @@ export const Image = (props) => {
 		};
 	}
 
-	return (
-		<>
-			{isBackground ? (
-				<div className="ds-media is-background">
-					{!hasImage ? (
-						<Placeholder className="ds-media__image ds-media-placeholder" withIllustration />
-					) : (
-						<img src={imageUrl} className="ds-media__image" alt={altText} {...rest} />
-					)}
-				</div>
-			) : (
-				<>
-					{!hasImage ? (
-						<Placeholder className="ds-media__image ds-media-placeholder" withIllustration />
-					) : isResolvingMedia ? (
-						<Spinner />
-					) : (
-						<img src={imageUrl} className="ds-media__image" alt={altText} />
-					)}
-				</>
-			)}
-		</>
-	);
+	return <>{isBackground ? <div className="ds-media is-background">{!hasImage ? <Placeholder className="ds-media__image ds-media-placeholder" withIllustration /> : <img src={imageUrl} className="ds-media__image" alt={altText} {...rest} />}</div> : <>{!hasImage ? <Placeholder className="ds-media__image ds-media-placeholder" withIllustration /> : isResolvingMedia ? <Spinner /> : <img src={imageUrl} className="ds-media__image" alt={altText} />}</>}</>;
 };
 
 Image.defaultProps = {
