@@ -4,4 +4,4 @@
 
 ### Patch Changes
 
-- Initial components
+- Initial components release
