@@ -1,0 +1,15 @@
+{
+    "extends": ["@digitalsilk/eslint-config/react"],
+    "rules": {
+        "import/no-unresolved": 0,
+        "import/no-extraneous-dependencies": 0,
+        "react/jsx-props-no-spreading": 0,
+        "jsdoc/check-tag-names": 0,
+		"import/extensions": 0,
+        "import/no-cycle" : 0,
+        "no-nested-ternary" : 0,
+        "react/jsx-no-useless-fragment": 0,
+        "jsx-a11y/no-noninteractive-element-interactions" : 0,
+        "jsx-a11y/click-events-have-key-events": 0
+    }
+}

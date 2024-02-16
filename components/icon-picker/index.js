@@ -43,7 +43,8 @@ const IconPicker = (props) => {
 				setSpriteUrl(response?.sprite || '');
 				setIcons(response?.icons || []);
 			} catch (error) {
-				console.warn('Error fetching icons:', error);
+				console.log('Error fetching icons');
+				console.warn(error);
 			}
 		};
 
@@ -60,8 +61,8 @@ const IconPicker = (props) => {
 			<InspectorControls>
 				<PanelBody title={__('Icon Picker')}>
 					<IconList>
-						{icons.map((icon, index) => (
-							<li key={index} onClick={() => handleIconClick(icon)} className={selectedIcon?.name === icon.name ? 'selected' : ''}>
+						{icons.map((icon) => (
+							<li key={icon.name} onClick={() => handleIconClick(icon)} className={selectedIcon?.name === icon.name ? 'selected' : ''}>
 								<img src={icon.url} alt={icon.name} />
 							</li>
 						))}
@@ -79,11 +80,14 @@ const IconPicker = (props) => {
 IconPicker.defaultProps = {
 	width: 44,
 	height: 44,
+	icon: {},
 };
 
 IconPicker.propTypes = {
 	width: PropTypes.number,
 	height: PropTypes.number,
+	onSelectIcon: PropTypes.func.isRequired,
+	icon: PropTypes.object,
 };
 
 export { IconPicker };
