@@ -9,7 +9,7 @@ import { MediaToolbar, Image } from '../index';
 import { useMedia, useEditorSettings } from '../../hooks';
 
 export const ImagePicker = (props) => {
-	const { id, focalPoint, size, onSelect, onRemove, onChangeFocalPoint, onSizeChange, labels = {}, allowedTypes = ['image'], panelLabel, mode, ...rest } = props;
+	const { id, focalPoint, size, onSelect, onRemove, onChangeFocalPoint, onSizeChange, labels = {}, allowedTypes = ['image'], panelLabel, mode } = props;
 
 	const { imageSizes } = useEditorSettings();
 	const { media, isResolvingMedia } = useMedia(id);
@@ -57,7 +57,7 @@ export const ImagePicker = (props) => {
 				</InspectorControls>
 			)}
 
-			{mode == 'preview' && <Image id={id} size={size} focalPoint={focalPoint} />}
+			{mode === 'preview' && <Image id={id} size={size} focalPoint={focalPoint} />}
 		</>
 	);
 };

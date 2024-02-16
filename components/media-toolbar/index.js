@@ -26,13 +26,10 @@ export const MediaToolbar = (props) => {
 	);
 };
 
-MediaToolbar.defaultProps = {
-	isOptional: false,
-};
+MediaToolbar.defaultProps = {};
 
 MediaToolbar.propTypes = {
 	id: PropTypes.number.isRequired,
 	onSelect: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,
-	isOptional: PropTypes.bool,
 };

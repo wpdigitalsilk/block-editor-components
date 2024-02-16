@@ -40,7 +40,7 @@ export const BackgroundOverlay = (props) => {
 
 	let css_class_name = '';
 
-	if (overlayType == 'color' && overlayColor) {
+	if (overlayType === 'color' && overlayColor) {
 		const colorSlug = overlayColor?.slug ? overlayColor.slug : '';
 
 		if (colorSlug) {
@@ -48,7 +48,7 @@ export const BackgroundOverlay = (props) => {
 		}
 	}
 
-	if (overlayType == 'gradient' && overlayGradient) {
+	if (overlayType === 'gradient' && overlayGradient) {
 		const gradientSlug = overlayGradient?.slug ? overlayGradient.slug : '';
 
 		if (gradientSlug) {
@@ -67,9 +67,9 @@ export const BackgroundOverlay = (props) => {
 						<ToggleGroupControlOption value="gradient" label={__('Gradient')} />
 					</ToggleGroupControl>
 
-					{overlayType == 'color' && <ColorPalette colors={colors} value={overlayColor?.color} onChange={(color) => handleColorSelect(color)} disableCustomColors />}
+					{overlayType === 'color' && <ColorPalette colors={colors} value={overlayColor?.color} onChange={(color) => handleColorSelect(color)} disableCustomColors />}
 
-					{overlayType == 'gradient' && <GradientPicker __nextHasNoMargin value={overlayGradient?.gradient ? overlayGradient.gradient : ''} gradients={gradients} onChange={(currentGradient) => handleGradientSelect(currentGradient)} disableCustomGradients asButtons />}
+					{overlayType === 'gradient' && <GradientPicker __nextHasNoMargin value={overlayGradient?.gradient ? overlayGradient.gradient : ''} gradients={gradients} onChange={(currentGradient) => handleGradientSelect(currentGradient)} disableCustomGradients asButtons />}
 				</PanelBody>
 			</InspectorControls>
 
@@ -79,14 +79,19 @@ export const BackgroundOverlay = (props) => {
 };
 
 BackgroundOverlay.defaultProps = {
-	overlayColor: '',
-	overlayOpacity: 0.25,
+	overlayType: '',
+	overlayColor: {},
+	overlayGradient: {},
+	overlayOpacity: 25,
 };
 
 BackgroundOverlay.propTypes = {
+	overlayType: PropTypes.string,
 	overlayColor: PropTypes.object,
+	overlayGradient: PropTypes.object,
 	overlayOpacity: PropTypes.number,
-	onSetOverlayColor: PropTypes.func,
-	onSetOverlayGradient: PropTypes.func,
-	onSetOverlayOpacity: PropTypes.func,
+	onSetOverlayType: PropTypes.func.isRequired,
+	onSetOverlayColor: PropTypes.func.isRequired,
+	onSetOverlayGradient: PropTypes.func.isRequired,
+	onSetOverlayOpacity: PropTypes.func.isRequired,
 };
