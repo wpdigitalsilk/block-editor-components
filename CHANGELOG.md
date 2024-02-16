@@ -1,5 +1,11 @@
 # @digitalsilk/block-components
 
+## 0.5.2
+
+### Patch Changes
+
+- Initial structure
+
 ## 0.5.1
 
 ### Patch Changes
