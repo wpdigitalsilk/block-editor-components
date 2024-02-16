@@ -1,7 +1,2 @@
-const hooks = require('./hooks');
-const components = require('./components');
-
-module.exports = {
-  ...hooks,
-  ...components,
-};
+export * from './hooks';
+export * from './components';

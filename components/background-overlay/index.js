@@ -1,28 +1,11 @@
 import { __ } from '@wordpress/i18n';
-import { InspectorControls, BlockControls } from '@wordpress/block-editor';
-import {
-	ColorPalette,
-	GradientPicker,
-	PanelBody,
-	RangeControl,
-	__experimentalToggleGroupControl as ToggleGroupControl,
-	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
-} from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import { ColorPalette, GradientPicker, PanelBody, RangeControl, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption } from '@wordpress/components';
 import PropTypes from 'prop-types';
-import { useEditorSettings } from '../../hooks/';
+import { useEditorSettings } from '../../hooks';
 
 export const BackgroundOverlay = (props) => {
-	const {
-		overlayType,
-		overlayColor,
-		overlayGradient,
-		overlayOpacity,
-		onSetOverlayType,
-		onSetOverlayColor,
-		onSetOverlayGradient,
-		onSetOverlayOpacity,
-		...rest
-	} = props;
+	const { overlayType, overlayColor, overlayGradient, overlayOpacity, onSetOverlayType, onSetOverlayColor, onSetOverlayGradient, onSetOverlayOpacity, ...rest } = props;
 
 	const { colors, gradients } = useEditorSettings();
 
@@ -58,7 +41,7 @@ export const BackgroundOverlay = (props) => {
 	let css_class_name = '';
 
 	if (overlayType == 'color' && overlayColor) {
-		let colorSlug = overlayColor?.slug ? overlayColor.slug : '';
+		const colorSlug = overlayColor?.slug ? overlayColor.slug : '';
 
 		if (colorSlug) {
 			css_class_name = `has-${colorSlug}-background-color`;
@@ -66,7 +49,7 @@ export const BackgroundOverlay = (props) => {
 	}
 
 	if (overlayType == 'gradient' && overlayGradient) {
-		let gradientSlug = overlayGradient?.slug ? overlayGradient.slug : '';
+		const gradientSlug = overlayGradient?.slug ? overlayGradient.slug : '';
 
 		if (gradientSlug) {
 			css_class_name = `has-${gradientSlug}-gradient-background`;
@@ -77,44 +60,16 @@ export const BackgroundOverlay = (props) => {
 		<>
 			<InspectorControls>
 				<PanelBody title={__('Overlay Settings')}>
-					<RangeControl
-						__nextHasNoMargin
-						label={__('Overlay Opacity')}
-						value={overlayOpacity}
-						onChange={(opacity) => onSetOverlayOpacity(opacity)}
-						min={0}
-						max={100}
-					/>
+					<RangeControl __nextHasNoMargin label={__('Overlay Opacity')} value={overlayOpacity} onChange={(opacity) => onSetOverlayOpacity(opacity)} min={0} max={100} />
 
-					<ToggleGroupControl
-						label={__('Overlay Type')}
-						value={overlayType}
-						isBlock
-						onChange={(value) => onSetOverlayType(value)}
-					>
+					<ToggleGroupControl label={__('Overlay Type')} value={overlayType} isBlock onChange={(value) => onSetOverlayType(value)}>
 						<ToggleGroupControlOption value="color" label={__('Color')} />
 						<ToggleGroupControlOption value="gradient" label={__('Gradient')} />
 					</ToggleGroupControl>
 
-					{overlayType == 'color' && (
-						<ColorPalette
-							colors={colors}
-							value={overlayColor?.color}
-							onChange={(color) => handleColorSelect(color)}
-							disableCustomColors
-						/>
-					)}
+					{overlayType == 'color' && <ColorPalette colors={colors} value={overlayColor?.color} onChange={(color) => handleColorSelect(color)} disableCustomColors />}
 
-					{overlayType == 'gradient' && (
-						<GradientPicker
-							__nextHasNoMargin
-							value={overlayGradient?.gradient ? overlayGradient.gradient : ''}
-							gradients={gradients}
-							onChange={(currentGradient) => handleGradientSelect(currentGradient)}
-							disableCustomGradients
-							asButtons
-						/>
-					)}
+					{overlayType == 'gradient' && <GradientPicker __nextHasNoMargin value={overlayGradient?.gradient ? overlayGradient.gradient : ''} gradients={gradients} onChange={(currentGradient) => handleGradientSelect(currentGradient)} disableCustomGradients asButtons />}
 				</PanelBody>
 			</InspectorControls>
 

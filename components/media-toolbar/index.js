@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useMedia } from '../../hooks/use-media';
 
 export const MediaToolbar = (props) => {
-	const { onSelect, onRemove, isOptional, id } = props;
+	const { onSelect, onRemove, id } = props;
 
 	const hasImage = !!id;
 	const { media } = useMedia(id);
@@ -19,10 +19,7 @@ export const MediaToolbar = (props) => {
 				</>
 			) : (
 				<MediaUploadCheck>
-					<MediaUpload
-						onSelect={onSelect}
-						render={({ open }) => <ToolbarButton onClick={open}>{__('Add Image')}</ToolbarButton>}
-					/>
+					<MediaUpload onSelect={onSelect} render={({ open }) => <ToolbarButton onClick={open}>{__('Add Image')}</ToolbarButton>} />
 				</MediaUploadCheck>
 			)}
 		</ToolbarGroup>

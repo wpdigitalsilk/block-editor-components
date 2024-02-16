@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
@@ -44,7 +43,7 @@ const IconPicker = (props) => {
 				setSpriteUrl(response?.sprite || '');
 				setIcons(response?.icons || []);
 			} catch (error) {
-				console.error('Error fetching icons:', error);
+				console.warn('Error fetching icons:', error);
 			}
 		};
 
@@ -62,28 +61,16 @@ const IconPicker = (props) => {
 				<PanelBody title={__('Icon Picker')}>
 					<IconList>
 						{icons.map((icon, index) => (
-							<li
-								key={index}
-								onClick={() => handleIconClick(icon)}
-								className={selectedIcon?.name === icon.name ? 'selected' : ''}
-							>
+							<li key={index} onClick={() => handleIconClick(icon)} className={selectedIcon?.name === icon.name ? 'selected' : ''}>
 								<img src={icon.url} alt={icon.name} />
 							</li>
 						))}
 					</IconList>
 				</PanelBody>
 			</InspectorControls>
-			{/* 
-			<div>
-				{selectedIcon && (
-					<div>
-						<SpriteIcon width={width} height={height} icon={selectedIcon.name} />
-					</div>
-				)}
-			</div> */}
 
 			<svg className={`icon icon-${icon}`} aria-hidden="true" width={width} height={height} role="img">
-				<use href={`${spriteUrl}#${icon}`}></use>
+				<use href={`${spriteUrl}#${icon}`} />
 			</svg>
 		</>
 	);
