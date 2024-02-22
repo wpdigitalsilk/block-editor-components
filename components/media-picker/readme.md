@@ -1,0 +1,94 @@
+# Media Picker Component
+
+## Description
+
+The `MediaPicker` component is a WordPress Gutenberg block editor component designed for handling media selection and configuration. It provides an interface for choosing and configuring images and videos within the block editor.
+
+## Usage
+
+```js
+import { MediaPicker } from '@digitalsilk/block-editor-components';
+
+const YourComponent = () => {
+  const handleMediaSelect = (selectedMedia) => {
+    // Handle the selected media data
+    console.log(selectedMedia);
+  };
+
+  return (
+    <MediaPicker
+      onSelect={handleMediaSelect}
+      media={initialMediaData}
+      // other props...
+    />
+  );
+};
+```
+
+## Props
+
+`onSelect` (required)
+A function that will be called when a media item is selected. It receives the selected media data.
+
+`media` (required)
+An object representing the initial media data. It should have the following structure:
+
+```js
+{
+  id: 0,
+  mediaType: 'image',
+  lazyLoad: true,
+  imageSize: 'full',
+  videoSource: 'internal',
+  videoUrl: '',
+  focalPoint: {
+    x: 0.5,
+    y: 0.5,
+  },
+  videoControls: {
+    autoplay: false,
+    isMuted: true,
+    showControls: true,
+    posterId: 0,
+    posterSize: 'full',
+  },
+}
+```
+
+`displayFocalPicker`
+A boolean indicating whether to display the focal point picker. Defaults to `true`.
+
+`allowMediaTypeSwitch`
+A boolean indicating whether to allow switching between image and video types. Defaults to `false`.
+
+`controlPanelLabel`
+A string representing the label for the control panel. Defaults to 'Media Settings'.
+
+`multiple`
+A boolean indicating whether to allow selecting multiple media items. Defaults to `false`.
+
+`isControl`
+A boolean indicating whether the component is used as a control. Defaults to `true`.
+
+`showBlockControls`
+A boolean indicating whether to show block controls. Defaults to `true`.
+
+`isBackground`
+A boolean indicating whether the media is used as a background. Defaults to `false`.
+
+
+## Example
+
+```js
+<MediaPicker
+  onSelect={handleMediaSelect}
+  media={initialMediaData}
+  displayFocalPicker={true}
+  allowMediaTypeSwitch={false}
+  controlPanelLabel="Custom Settings"
+  multiple={true}
+  isControl={false}
+  showBlockControls={true}
+  isBackground={false}
+/>
+```
