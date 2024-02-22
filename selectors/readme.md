@@ -4,6 +4,6 @@ The library includes selectors that leverage the power of the `useSelect` hook f
 
 ## Available Selectors
 
-- [getMedia](selectors/get-media/readme.md)
-- [getPoster](selectors/get-poster/readme.md)
-- [getEditorSettings](selectors/get-editor-settings/readme.md)
+- [getMedia](get-media/readme.md)
+- [getPoster](get-poster/readme.md)
+- [getEditorSettings](get-editor-settings/readme.md)
