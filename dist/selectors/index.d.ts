@@ -1,4 +1,4 @@
-export { useMedia } from "./use-media";
-export { useEditorSettings } from "./use-editor-settings";
-export { usePoster } from "./use-poster";
+export { getMedia } from "./get-media";
+export { getEditorSettings } from "./get-editor-settings";
+export { getPoster } from "./get-poster";
 //# sourceMappingURL=index.d.ts.map

@@ -1,7 +1,7 @@
 import { Spinner, Placeholder } from '@wordpress/components';
 import PropTypes from 'prop-types';
 import { useSelect } from '@wordpress/data';
-import { useMedia, usePoster } from '../../selectors';
+import { getMedia, getPoster } from '../../selectors';
 
 export const Video = (props) => {
 	const { id, videoSource, videoUrl, videoControls, isBackground, isPreview } = props;
@@ -9,8 +9,8 @@ export const Video = (props) => {
 	// const [posterUrl, setPosterUrl] = useState('');
 
 	let hasMedia = !!id;
-	const { mediaDetails, isResolvingMedia } = useMedia(id);
-	const { posterUrl } = usePoster(posterId, posterSize);
+	const { mediaDetails, isResolvingMedia } = getMedia(id);
+	const { posterUrl } = getPoster(posterId, posterSize);
 
 	const { embedPreview } = useSelect(
 		(select) => {

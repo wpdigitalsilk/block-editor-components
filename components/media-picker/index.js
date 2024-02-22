@@ -25,7 +25,7 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
 import { MediaToolbar, Image, Video } from '../index';
-import { useMedia, useEditorSettings } from '../../selectors';
+import { getMedia, getEditorSettings } from '../../selectors';
 
 const EmbedPreview = styled.div`
 	label {
@@ -90,8 +90,8 @@ export const MediaPanelContent = (props) => {
 
 	const { autoplay, isMuted, showControls, posterId, posterSize } = videoControls;
 
-	const { imageSizes } = useEditorSettings();
-	const { mediaDetails, isResolvingMedia } = useMedia(id);
+	const { imageSizes } = getEditorSettings();
+	const { mediaDetails, isResolvingMedia } = getMedia(id);
 	const [availableImageSizes, setAvailableImageSizes] = useState([]);
 
 	const hasMedia = !!id;

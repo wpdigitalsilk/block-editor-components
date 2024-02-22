@@ -1,12 +1,12 @@
 import { Spinner, Placeholder } from '@wordpress/components';
 import PropTypes from 'prop-types';
-import { useMedia } from '../../selectors';
+import { getMedia } from '../../selectors';
 
 export const Image = (props) => {
 	const { id, imageSize, focalPoint, isBackground, ...rest } = props;
 
 	const hasImage = !!id;
-	const { mediaDetails, isResolvingMedia } = useMedia(id);
+	const { mediaDetails, isResolvingMedia } = getMedia(id);
 
 	const imageUrl = mediaDetails?.media_details?.sizes?.[imageSize]?.source_url ?? mediaDetails?.source_url;
 	const altText = mediaDetails?.alt_text;

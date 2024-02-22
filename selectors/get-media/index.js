@@ -1,12 +1,12 @@
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 
-export function useMedia(id) {
+export function getMedia(attachmentId) {
 	return useSelect(
 		(select) => {
 			const { getMedia, isResolving, hasFinishedResolution } = select(coreStore);
 
-			const mediaParameters = [id, { context: 'view' }];
+			const mediaParameters = [attachmentId, { context: 'view' }];
 
 			return {
 				mediaDetails: getMedia(...mediaParameters),
@@ -14,6 +14,6 @@ export function useMedia(id) {
 				hasResolvedMedia: hasFinishedResolution('getMedia', mediaParameters),
 			};
 		},
-		[id]
+		[attachmentId]
 	);
 }

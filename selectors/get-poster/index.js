@@ -1,12 +1,12 @@
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 
-export function usePoster(id, size) {
+export function getPoster(attachmentId, size) {
 	return useSelect(
 		(select) => {
 			const { getMedia, isResolving, hasFinishedResolution } = select(coreStore);
 
-			const mediaParameters = [id, { context: 'view' }];
+			const mediaParameters = [attachmentId, { context: 'view' }];
 
 			const media = getMedia(...mediaParameters);
 
@@ -18,6 +18,6 @@ export function usePoster(id, size) {
 				hasResolvedPoster: hasFinishedResolution('getMedia', mediaParameters),
 			};
 		},
-		[id, size]
+		[attachmentId, size]
 	);
 }

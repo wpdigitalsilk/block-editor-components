@@ -10,12 +10,12 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 import PropTypes from 'prop-types';
-import { useEditorSettings } from '../../selectors';
+import { getEditorSettings } from '../../selectors';
 
 const OverlayPanelContent = (props) => {
 	const { overlay, onSelect } = props;
 	const { hasOverlay, overlayType, overlayColor, overlayGradient, overlayOpacity } = overlay;
-	const { colors, gradients } = useEditorSettings();
+	const { colors, gradients } = getEditorSettings();
 
 	const handleOverlayChange = (value) => {
 		const newOverlayData = { ...overlay, ...value };
