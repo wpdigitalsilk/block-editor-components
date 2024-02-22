@@ -11,14 +11,14 @@ import { Image } from '@digitalsilk/block-editor-components';
 
 const YourComponent = (props) => {
     const { attributes, setAttributes } = props;
-    const { imageId, imageSize, focalPoint, isBackground} = attributes;
+    const { imageId, imageSize, focalPoint} = attributes;
 
     return (
         <Image
             id={imageId}
             imageSize={imageSize}
             focalPoint={focalPoint}
-            isBackground={isBackground}
+            isBackground={false}
         />
     );
 };
@@ -80,10 +80,6 @@ A boolean indicating whether the image is used as a background. Defaults to `fal
             "x": 0.5,
             "y": 0.5
         }
-    },
-    "isBackground": {
-       "type": "boolean"
-        "default": false
-    },
+    }
 }
 ```
