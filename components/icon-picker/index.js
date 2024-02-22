@@ -28,9 +28,8 @@ const IconList = styled.ul`
 	}
 `;
 
-const IconPicker = (props) => {
-	const { onSelectIcon, icon, width, height } = props; // New prop to handle icon selection
-	const [spriteUrl, setSpriteUrl] = useState('');
+const IconPanelContent = (props) => {
+	const { onSelect, icon, width, height } = props; // New prop to handle icon selection
 	const [icons, setIcons] = useState([]);
 	const [selectedIcon, setSelectedIcon] = useState(icon);
 
@@ -51,43 +50,57 @@ const IconPicker = (props) => {
 		fetchIcons();
 	}, []);
 
-	const handleIconClick = (selectedIcon) => {
+	const handleIconSelect = (selectedIcon) => {
 		setSelectedIcon(selectedIcon);
-		onSelectIcon(selectedIcon); // Pass the selected icon to the parent component
+		onSelect(selectedIcon);
 	};
 
 	return (
 		<>
-			<InspectorControls>
-				<PanelBody title={__('Icon Picker')}>
-					<IconList>
-						{icons.map((icon) => (
-							<li key={icon.name} onClick={() => handleIconClick(icon)} className={selectedIcon?.name === icon.name ? 'selected' : ''}>
-								<img src={icon.url} alt={icon.name} />
-							</li>
-						))}
-					</IconList>
-				</PanelBody>
-			</InspectorControls>
+			<PanelBody title={__('Icon Picker')}>
+				<IconList>
+					{icons.map((icon) => (
+						<li
+							key={icon.name}
+							onClick={() => handleIconSelect(icon)}
+							className={selectedIcon?.name === icon.name ? 'selected' : ''}
+						>
+							<img src={icon.url} alt={icon.name} width={width} height={height} />
+						</li>
+					))}
+				</IconList>
+			</PanelBody>
+		</>
+	);
+};
 
-			<svg className={`icon icon-${icon}`} aria-hidden="true" width={width} height={height} role="img">
-				<use href={`${spriteUrl}#${icon}`} />
-			</svg>
+export const IconPicker = (props) => {
+	const { isControl } = props;
+
+	return (
+		<>
+			{isControl ? (
+				<IconPanelContent {...props} />
+			) : (
+				<InspectorControls>
+					<IconPanelContent {...props} />
+				</InspectorControls>
+			)}
 		</>
 	);
 };
 
 IconPicker.defaultProps = {
-	width: 44,
-	height: 44,
 	icon: {},
+	width: 40,
+	height: 40,
+	isControl: true,
 };
 
 IconPicker.propTypes = {
+	icon: PropTypes.object,
 	width: PropTypes.number,
 	height: PropTypes.number,
-	onSelectIcon: PropTypes.func.isRequired,
-	icon: PropTypes.object,
+	onSelect: PropTypes.func.isRequired,
+	isControl: PropTypes.bool,
 };
-
-export { IconPicker };
