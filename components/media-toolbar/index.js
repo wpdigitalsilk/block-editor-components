@@ -2,12 +2,12 @@ import { __ } from '@wordpress/i18n';
 import { MediaReplaceFlow, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import PropTypes from 'prop-types';
-import { useMedia } from '../../selectors';
+import { getMedia } from '../../selectors';
 
 export const MediaToolbar = (props) => {
 	const { onSelect, onRemove, id, mediaType, multiple } = props;
 	const hasMedia = !!id;
-	const { mediaDetails } = useMedia(id);
+	const { mediaDetails } = getMedia(id);
 
 	return (
 		<ToolbarGroup label={__('Media')}>

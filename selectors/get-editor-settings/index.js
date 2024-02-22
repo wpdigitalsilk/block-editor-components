@@ -1,7 +1,7 @@
 import { useSelect } from '@wordpress/data';
 import { store as blockEditorStore } from '@wordpress/block-editor';
 
-export function useEditorSettings() {
+export function getEditorSettings() {
 	return useSelect((select) => {
 		const { getSettings } = select(blockEditorStore);
 
