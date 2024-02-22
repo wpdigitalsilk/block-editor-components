@@ -2,8 +2,11 @@
  * Components
  */
 
-export { Image } from './image';
-export { IconPicker } from './icon-picker';
-export { ImagePicker } from './image-picker';
 export { MediaToolbar } from './media-toolbar';
-export { BackgroundOverlay } from './background-overlay';
+export { MediaPicker } from './media-picker';
+export { Image } from './image';
+export { Video } from './video';
+export { MediaDisplay } from './media-display';
+export { IconPicker } from './icon-picker';
+export { OverlayDisplay } from './overlay-display';
+export { OverlayPicker } from './overlay-picker';

@@ -9,11 +9,11 @@ export function useMedia(id) {
 			const mediaParameters = [id, { context: 'view' }];
 
 			return {
-				media: getMedia(...mediaParameters),
+				mediaDetails: getMedia(...mediaParameters),
 				isResolvingMedia: isResolving('getMedia', mediaParameters),
 				hasResolvedMedia: hasFinishedResolution('getMedia', mediaParameters),
 			};
 		},
-		[id],
+		[id]
 	);
 }

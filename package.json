@@ -3,7 +3,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "0.0.9",
+    "version": "0.1.0",
     "description": "Digital Silk block editor components library.",
     "main": "./dist/index.js",
     "source": "index.js",
@@ -31,8 +31,7 @@
     },
     "devDependencies": {
         "@changesets/cli": "^2.27.1",
-        "@wordpress/data": "^9.21.0",
-        "@wordpress/dependency-extraction-webpack-plugin": "^5.2.0",
+        "@wordpress/data": "^9.22.0",
         "classnames": "^2.5.1",
         "digitalsilk-toolkit": "^0.9.3"
     }

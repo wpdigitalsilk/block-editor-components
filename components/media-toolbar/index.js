@@ -2,34 +2,47 @@ import { __ } from '@wordpress/i18n';
 import { MediaReplaceFlow, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import PropTypes from 'prop-types';
-import { useMedia } from '../../hooks/use-media';
+import { useMedia } from '../../selectors';
 
 export const MediaToolbar = (props) => {
-	const { onSelect, onRemove, id } = props;
-
-	const hasImage = !!id;
-	const { media } = useMedia(id);
+	const { onSelect, onRemove, id, mediaType, multiple } = props;
+	const hasMedia = !!id;
+	const { mediaDetails } = useMedia(id);
 
 	return (
 		<ToolbarGroup label={__('Media')}>
-			{hasImage ? (
+			{hasMedia ? (
 				<>
-					<MediaReplaceFlow mediaUrl={media?.source_url} onSelect={onSelect} name={__('Replace Image')} />
-					<ToolbarButton onClick={onRemove}>{__('Remove Image')}</ToolbarButton>
+					<MediaReplaceFlow
+						mediaUrl={mediaDetails?.source_url ? mediaDetails.source_url : ''}
+						onSelect={onSelect}
+						name={`Replace ${mediaType}`}
+					/>
+					<ToolbarButton onClick={onRemove}>{`Remove ${mediaType}`}</ToolbarButton>
 				</>
 			) : (
 				<MediaUploadCheck>
-					<MediaUpload onSelect={onSelect} render={({ open }) => <ToolbarButton onClick={open}>{__('Add Image')}</ToolbarButton>} />
+					<MediaUpload
+						onSelect={onSelect}
+						allowedTypes={[mediaType]} // there is a bug here, this doesn't work when changed, only on load
+						render={({ open }) => <ToolbarButton onClick={open}>{`Add ${mediaType}`}</ToolbarButton>}
+						multiple={multiple}
+					/>
 				</MediaUploadCheck>
 			)}
 		</ToolbarGroup>
 	);
 };
 
-MediaToolbar.defaultProps = {};
+MediaToolbar.defaultProps = {
+	mediaType: 'image',
+	multiple: false,
+};
 
 MediaToolbar.propTypes = {
 	id: PropTypes.number.isRequired,
 	onSelect: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,
+	mediaType: PropTypes.string,
+	multiple: PropTypes.bool,
 };
