@@ -27,11 +27,11 @@ const YourComponent = () => {
 
 ## Props
 
-`onSelect` (required)
+### `onSelect` (required)
 
 A function that will be called when a media item is selected. It receives the selected media data.
 
-`media` (required)
+### `media` (required)
 
 An object representing the initial media data. It should have the following structure:
 
@@ -57,31 +57,31 @@ An object representing the initial media data. It should have the following stru
 }
 ```
 
-`displayFocalPicker`
+### `displayFocalPicker`
 
 A boolean indicating whether to display the focal point picker. Defaults to `true`.
 
-`allowMediaTypeSwitch`
+### `allowMediaTypeSwitch`
 
 A boolean indicating whether to allow switching between image and video types. Defaults to `false`.
 
-`controlPanelLabel`
+### `controlPanelLabel`
 
 A string representing the label for the control panel. Defaults to 'Media Settings'.
 
-`multiple`
+### `multiple`
 
 A boolean indicating whether to allow selecting multiple media items. Defaults to `false`.
 
-`isControl`
+### `isControl`
 
 A boolean indicating whether the component is used as a control in `<InspectorControls/>`. Defaults to `true`.
 
-`showBlockControls`
+### `showBlockControls`
 
 A boolean indicating whether to show block controls. Defaults to `true`.
 
-`isBackground`
+### `isBackground`
 
 A boolean indicating whether the media is used as a background. Defaults to `false`.
 
