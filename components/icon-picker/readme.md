@@ -49,11 +49,11 @@ The icon url
 
 ### `width`
 
-The width of each icon in the grid.
+The width of each icon in the grid. Defaults to `40`.
 
 ### `height`
 
-The height of each icon in the grid.
+The height of each icon in the grid. Defaults to `40`.
 
 ### `onSelect` (required)
 
@@ -62,8 +62,6 @@ A function to handle the icon selection.
 ### `isControl`
 
 A boolean indicating whether the component is used as a control in `<InspectorControls/>`. Defaults to `true`.
-
-An object representing the overlay data. It should have the following structure:
 
 ## Example
 
