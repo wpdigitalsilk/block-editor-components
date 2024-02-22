@@ -9,16 +9,19 @@ The `MediaPicker` component is a WordPress Gutenberg block editor component desi
 ```js
 import { MediaPicker } from '@digitalsilk/block-editor-components';
 
-const YourComponent = () => {
+const YourComponent = (props) => {
+  const { attributes, setAttributes } = props;
+	const { mediaData } = attributes;
+
   const handleMediaSelect = (selectedMedia) => {
     // Handle the selected media data
-    console.log(selectedMedia);
+    setAttributes({ mediaData: selectedMedia });
   };
 
   return (
     <MediaPicker
       onSelect={handleMediaSelect}
-      media={initialMediaData}
+      media={mediaData}
       // other props...
     />
   );
@@ -91,7 +94,7 @@ A boolean indicating whether the media is used as a background. Defaults to `fal
 ```js
 <MediaPicker
   onSelect={handleMediaSelect}
-  media={initialMediaData}
+  media={mediaData}
   displayFocalPicker={true}
   allowMediaTypeSwitch={false}
   controlPanelLabel="Custom Settings"
@@ -100,4 +103,34 @@ A boolean indicating whether the media is used as a background. Defaults to `fal
   showBlockControls={true}
   isBackground={false}
 />
+```
+
+## Block.json default attributes
+
+```js
+"attributes": {
+  "mediaData": {
+    "type": "object",
+    "default": {
+      "id": 0,
+      "mediaType": "image",
+      "lazyLoad": true,
+      "srcset": true,
+      "imageSize": "full",
+      "videoSource": "internal",
+      "videoUrl": "",
+      "videoControls": {
+        "autoplay": false,
+        "isMuted": true,
+        "showControls": true,
+        "posterId": 0,
+        "posterSize": "full"
+      },
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+}
 ```
