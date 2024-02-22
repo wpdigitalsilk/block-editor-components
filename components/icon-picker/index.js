@@ -31,6 +31,7 @@ const IconList = styled.ul`
 const IconPanelContent = (props) => {
 	const { onSelect, icon, width, height } = props; // New prop to handle icon selection
 	const [icons, setIcons] = useState([]);
+	// const [spriteUrl, setSpriteUrl] = useState([]);
 	const [selectedIcon, setSelectedIcon] = useState(icon);
 
 	useEffect(() => {
@@ -39,7 +40,7 @@ const IconPanelContent = (props) => {
 				const response = await apiFetch({
 					path: '/ds/v1/icons/',
 				});
-				setSpriteUrl(response?.sprite || '');
+				// setSpriteUrl(response?.sprite || '');
 				setIcons(response?.icons || []);
 			} catch (error) {
 				console.log('Error fetching icons');
