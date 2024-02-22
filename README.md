@@ -23,7 +23,7 @@ yarn add @digitalsilk/block-editor-components
 Import the desired component(s) into your theme or plugin block editor code. For example:
 
 ```js
-import { Image, Video, MediaPicker } from '@digitalsilk/block-editor-components';
+import { Image, Video, MediaPicker, getMedia } from '@digitalsilk/block-editor-components';
 ```
 
 ## Components
@@ -33,8 +33,14 @@ The library provides a set of React components designed for seamless integration
 #### Available Components
 
 - [MediaPicker](components/media-picker/readme.md)
-- Image
-- Video
+- [MediaDisplay](components/media-display/readme.md)
+- [MediaToolbar](components/media-toolbar/readme.md)
+- [IconPicker](components/icon-picker/readme.md)
+- [ThemeIcon](components/theme-icon/readme.md)
+- [Image](components/image/readme.md)
+- [Video](components/video/readme.md)
+- [OverlayPicker](components/overlay-picker/readme.md)
+- [OverlayDisplay](components/overlay-display/readme.md)
 
 ## Selectors
 
@@ -42,4 +48,6 @@ The library includes selectors that leverage the power of the `useSelect` hook f
 
 #### Available Selectors
 
-
+- [getMedia](selectors/get-media/readme.md)
+- [getPoster](selectors/get-poster/readme.md)
+- [getEditorSettings](selectors/get-editor-settings/readme.md)
