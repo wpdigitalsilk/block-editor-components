@@ -25,7 +25,6 @@ const YourComponent = ({ attachmentId }) => {
         // Your component JSX
     );
 };
-=
 ```
 
 ## Parameters

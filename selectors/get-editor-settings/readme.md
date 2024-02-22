@@ -25,7 +25,6 @@ const YourComponent = () => {
         // Your component JSX
     );
 };
-=
 ```
 
 ## Example

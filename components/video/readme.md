@@ -54,7 +54,6 @@ An object with properties for controlling video playback. It should have the fol
     posterId: 0,
     posterSize: 'full',
 }
-
 ```
 
 #### `autoplay` 
