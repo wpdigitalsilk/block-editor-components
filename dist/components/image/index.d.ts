@@ -1,7 +1,7 @@
 export function Image(props: any): import("react").JSX.Element;
 export namespace Image {
     namespace defaultProps {
-        let size: string;
+        let imageSize: string;
         namespace focalPoint {
             let x: number;
             let y: number;
@@ -10,8 +10,8 @@ export namespace Image {
     }
     namespace propTypes {
         export let id: PropTypes.Validator<number>;
-        let size_1: PropTypes.Requireable<string>;
-        export { size_1 as size };
+        let imageSize_1: PropTypes.Requireable<string>;
+        export { imageSize_1 as imageSize };
         let focalPoint_1: PropTypes.Requireable<PropTypes.InferProps<{
             x: PropTypes.Requireable<number>;
             y: PropTypes.Requireable<number>;
