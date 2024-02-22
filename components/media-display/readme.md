@@ -72,4 +72,32 @@ A boolean indicating whether the media is used as a background. Defaults to `fal
 
 ## Block.json default attributes
 
-See [`<MediaPicker />`](../media-picker/readme.md) component for more details.
+See [`<MediaPicker />`](../media-picker/readme.md) component for more details, this component uses the same data structure.
+
+```js
+"attributes": {
+  "mediaData": {
+    "type": "object",
+    "default": {
+      "id": 0,
+      "mediaType": "image",
+      "lazyLoad": true,
+      "srcset": true,
+      "imageSize": "full",
+      "videoSource": "internal",
+      "videoUrl": "",
+      "videoControls": {
+        "autoplay": false,
+        "isMuted": true,
+        "showControls": true,
+        "posterId": 0,
+        "posterSize": "full"
+      },
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+}
+```
