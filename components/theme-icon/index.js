@@ -6,9 +6,9 @@ export const ThemeIcon = (props) => {
 
 	return (
 		<>
-			{icon && icon?.name && (
-				<svg className={`icon icon-${icon.name}`} aria-hidden="true" width={width} height={height} role="img">
-					<use href={`#sprite-${icon.name}`} />
+			{icon && (
+				<svg className={`icon icon-${icon}`} aria-hidden="true" width={width} height={height} role="img">
+					<use href={`#sprite-${icon}`} />
 				</svg>
 			)}
 		</>
@@ -16,13 +16,12 @@ export const ThemeIcon = (props) => {
 };
 
 ThemeIcon.defaultProps = {
-	icon: {},
 	width: 40,
 	height: 40,
 };
 
 ThemeIcon.propTypes = {
-	icon: PropTypes.object.isRequired,
+	icon: PropTypes.string.isRequired,
 	width: PropTypes.number,
 	height: PropTypes.number,
 };
