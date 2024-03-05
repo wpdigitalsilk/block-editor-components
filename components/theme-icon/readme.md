@@ -21,27 +21,7 @@ const YourComponent = (props) => {
 
 ### `icon` (required)
 
-The icon object. It should have the following structure:
-
-```js
-{
-    filename: "",
-    name: "",
-    url: "",
-}
-```
-
-#### `filename`
-
-The icon filename
-
-#### `name`
-
-The icon name/slug
-
-#### `url`
-
-The icon url
+The icon name. The name should match the file name excluding `.svg` from `assets/icons` folder:
 
 ### `width`
 
@@ -54,7 +34,7 @@ The height of the displayed icon. Defaults to `40`.
 ## Example
 
 ```js
-<ThemeIcon icon={{ name: "your-icon-name" }} width={20} height={20} />
+<ThemeIcon icon="your-icon-name" width={20} height={20} />
 ```
 
 ## Block.json default attributes
@@ -62,12 +42,8 @@ The height of the displayed icon. Defaults to `40`.
 ```js
 "attributes": {
     "icon": {
-        "type": "object",
-        "default": {
-            "filename": "",
-            "name": "",
-            "url": ""
-        }
+        "type": "string",
+        "default": ""
     }
 }
 ```
