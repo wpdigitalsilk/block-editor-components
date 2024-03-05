@@ -6,6 +6,7 @@ export namespace IconPicker {
         let height: number;
         let isControl: boolean;
         let panelTitle: string;
+        let isExpanded: boolean;
     }
     namespace propTypes {
         let icon_1: PropTypes.Requireable<string>;
@@ -19,6 +20,8 @@ export namespace IconPicker {
         export { isControl_1 as isControl };
         let panelTitle_1: PropTypes.Requireable<string>;
         export { panelTitle_1 as panelTitle };
+        let isExpanded_1: PropTypes.Requireable<boolean>;
+        export { isExpanded_1 as isExpanded };
     }
 }
 import PropTypes from 'prop-types';

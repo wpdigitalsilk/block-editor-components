@@ -30,7 +30,7 @@ const IconList = styled.ul`
 `;
 
 const IconPanelContent = (props) => {
-	const { onSelect, icon, width, height, panelTitle } = props; // New prop to handle icon selection
+	const { onSelect, icon, width, height, panelTitle, isExpanded } = props; // New prop to handle icon selection
 	const [icons, setIcons] = useState([]);
 	const [selectedIcon, setSelectedIcon] = useState(icon);
 
@@ -57,7 +57,7 @@ const IconPanelContent = (props) => {
 
 	return (
 		<>
-			<PanelBody title={panelTitle}>
+			<PanelBody title={panelTitle} initialOpen={isExpanded}>
 				<IconList>
 					{icons.map((icon) => (
 						<li
@@ -96,6 +96,7 @@ IconPicker.defaultProps = {
 	height: 40,
 	isControl: true,
 	panelTitle: __('Icon Picker'),
+	isExpanded: true,
 };
 
 IconPicker.propTypes = {
@@ -105,4 +106,5 @@ IconPicker.propTypes = {
 	onSelect: PropTypes.func.isRequired,
 	isControl: PropTypes.bool,
 	panelTitle: PropTypes.string,
+	isExpanded: PropTypes.bool,
 };
