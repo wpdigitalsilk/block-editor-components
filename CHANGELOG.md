@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.1.7
+
+### Patch Changes
+
+- update icon picker docs
+
 ## 0.1.6
 
 ### Patch Changes

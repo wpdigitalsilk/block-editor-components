@@ -2,7 +2,7 @@
 
 ## Description
 
-The `IconPicker` component is a React component designed for selecting icons from a predefined list. It provides an interface with an icon grid, allowing users to visually choose an icon. The icons are coming from the theme and they are exposed at `'/ds/v1/icons/'` REST endpoint
+The `IconPicker` component is a React component designed for selecting icons from a predefined list. It provides an interface with an icon grid, allowing users to visually choose an icon. The icons are coming from the theme and they are exposed at `'/ds/v1/icons/'` REST endpoint.
 
 ## Usage
 
@@ -25,27 +25,7 @@ const YourComponent = (props) => {
 
 ### `icon`
 
-The selected icon object. It should have the following structure:
-
-```js
-{
-    filename: "",
-    name: "",
-    url: "",
-}
-```
-
-#### `filename`
-
-The icon filename
-
-#### `name`
-
-The icon name/slug
-
-#### `url`
-
-The icon url
+The selected icon name. The name should match the file name excluding `.svg` from `assets/icons` folder:
 
 ### `width`
 
@@ -63,6 +43,14 @@ A function to handle the icon selection.
 
 A boolean indicating whether the component is used as a control in `<InspectorControls/>`. Defaults to `true`.
 
+### `isExpanded`
+
+A boolean setting the `<PanelBody />` prop `initialOpen`. Defaults to `true`.
+
+### `panelTitle`
+
+The `<PanelBody />` title prop. Defaults to `Icon Picker`.
+
 ## Example
 
 ```js
@@ -75,6 +63,8 @@ A boolean indicating whether the component is used as a control in `<InspectorCo
 		console.log(selectedIcon);
 	}}
 	isControl={isControl}
+	panelTitle={__("Different Panel Title")}
+	isExpanded
 />
 ```
 
@@ -83,12 +73,8 @@ A boolean indicating whether the component is used as a control in `<InspectorCo
 ```js
 "attributes": {
     "icon": {
-        "type": "object",
-        "default": {
-            "filename": "",
-            "name": "",
-            "url": ""
-        }
+        "type": "string",
+        "default": "cart-1"
     }
 }
 ```
