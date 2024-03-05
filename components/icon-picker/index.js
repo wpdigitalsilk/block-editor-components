@@ -5,6 +5,7 @@ import { PanelBody } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import styled from '@emotion/styled';
+import { ThemeIcon } from '../theme-icon';
 
 const IconList = styled.ul`
 	list-style: none;
@@ -29,9 +30,8 @@ const IconList = styled.ul`
 `;
 
 const IconPanelContent = (props) => {
-	const { onSelect, icon, width, height } = props; // New prop to handle icon selection
+	const { onSelect, icon, width, height, panelTitle } = props; // New prop to handle icon selection
 	const [icons, setIcons] = useState([]);
-	// const [spriteUrl, setSpriteUrl] = useState([]);
 	const [selectedIcon, setSelectedIcon] = useState(icon);
 
 	useEffect(() => {
@@ -40,7 +40,6 @@ const IconPanelContent = (props) => {
 				const response = await apiFetch({
 					path: '/ds/v1/icons/',
 				});
-				// setSpriteUrl(response?.sprite || '');
 				setIcons(response?.icons || []);
 			} catch (error) {
 				console.log('Error fetching icons');
@@ -58,15 +57,15 @@ const IconPanelContent = (props) => {
 
 	return (
 		<>
-			<PanelBody title={__('Icon Picker')}>
+			<PanelBody title={panelTitle}>
 				<IconList>
 					{icons.map((icon) => (
 						<li
-							key={icon.name}
+							key={icon}
 							onClick={() => handleIconSelect(icon)}
-							className={selectedIcon?.name === icon.name ? 'selected' : ''}
+							className={selectedIcon === icon ? 'selected' : ''}
 						>
-							<img src={icon.url} alt={icon.name} width={width} height={height} />
+							<ThemeIcon icon={icon} width={width} height={height} />
 						</li>
 					))}
 				</IconList>
@@ -96,12 +95,14 @@ IconPicker.defaultProps = {
 	width: 40,
 	height: 40,
 	isControl: true,
+	panelTitle: __('Icon Picker'),
 };
 
 IconPicker.propTypes = {
-	icon: PropTypes.object,
+	icon: PropTypes.string,
 	width: PropTypes.number,
 	height: PropTypes.number,
 	onSelect: PropTypes.func.isRequired,
 	isControl: PropTypes.bool,
+	panelTitle: PropTypes.string,
 };
