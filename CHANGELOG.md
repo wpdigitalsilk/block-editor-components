@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.1.8
+
+### Patch Changes
+
+- add repeater
+
 ## 0.1.7
 
 ### Patch Changes

@@ -3,7 +3,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "0.1.7",
+    "version": "0.1.8",
     "description": "Digital Silk block editor components library.",
     "main": "./dist/index.js",
     "source": "index.js",
@@ -28,7 +28,8 @@
     "dependencies": {
         "@emotion/styled": "^11.11.0",
         "@wordpress/icons": "^9.42.0",
-        "prop-types": "^15.8.1"
+        "prop-types": "^15.8.1",
+        "uuid": "^9.0.1"
     },
     "devDependencies": {
         "@changesets/cli": "^2.27.1",

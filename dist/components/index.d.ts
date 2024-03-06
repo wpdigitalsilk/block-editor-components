@@ -7,4 +7,5 @@ export { IconPicker } from "./icon-picker";
 export { ThemeIcon } from "./theme-icon";
 export { OverlayDisplay } from "./overlay-display";
 export { OverlayPicker } from "./overlay-picker";
+export { Repeater } from "./repeater";
 //# sourceMappingURL=index.d.ts.map

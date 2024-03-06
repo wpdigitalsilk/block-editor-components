@@ -4,12 +4,13 @@ The library provides a set of React components designed for seamless integration
 
 ## Available Components
 
-- [MediaPicker](media-picker/readme.md)
-- [MediaDisplay](media-display/readme.md)
-- [MediaToolbar](media-toolbar/readme.md)
-- [IconPicker](icon-picker/readme.md)
-- [ThemeIcon](theme-icon/readme.md)
-- [Image](image/readme.md)
-- [Video](video/readme.md)
-- [OverlayPicker](overlay-picker/readme.md)
-- [OverlayDisplay](overlay-display/readme.md)
+-   [MediaPicker](media-picker/readme.md)
+-   [MediaDisplay](media-display/readme.md)
+-   [MediaToolbar](media-toolbar/readme.md)
+-   [IconPicker](icon-picker/readme.md)
+-   [ThemeIcon](theme-icon/readme.md)
+-   [Image](image/readme.md)
+-   [Video](video/readme.md)
+-   [OverlayPicker](overlay-picker/readme.md)
+-   [OverlayDisplay](overlay-display/readme.md)
+-   [Repeater](repeater/readme.md)
