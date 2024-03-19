@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.1.9
+
+### Patch Changes
+
+- Add dependency
+
 ## 0.1.8
 
 ### Patch Changes

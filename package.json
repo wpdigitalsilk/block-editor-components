@@ -3,7 +3,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "Digital Silk block editor components library.",
     "main": "./dist/index.js",
     "source": "index.js",
@@ -26,6 +26,7 @@
     "license": "GPL-2.0-or-later",
     "homepage": "https://github.com/wpdigitalsilk/block-editor-components.git#readme",
     "dependencies": {
+        "@emotion/react": "^11.11.4",
         "@emotion/styled": "^11.11.0",
         "@wordpress/icons": "^9.42.0",
         "prop-types": "^15.8.1",
