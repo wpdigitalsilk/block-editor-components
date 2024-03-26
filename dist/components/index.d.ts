@@ -8,4 +8,5 @@ export { ThemeIcon } from "./theme-icon";
 export { OverlayDisplay } from "./overlay-display";
 export { OverlayPicker } from "./overlay-picker";
 export { Repeater } from "./repeater";
+export { Link } from "./link";
 //# sourceMappingURL=index.d.ts.map
