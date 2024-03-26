@@ -86,7 +86,17 @@ export const MediaPanelContent = (props) => {
 		showBlockControls,
 		isBackground,
 	} = props;
-	const { id, mediaType, imageSize, lazyLoad, srcset, videoSource, videoUrl, focalPoint, videoControls } = media;
+	const {
+		id,
+		mediaType,
+		imageSize,
+		lazyLoad,
+		srcset,
+		videoSource,
+		videoUrl,
+		focalPoint = {},
+		videoControls = {},
+	} = media;
 
 	const { autoplay, isMuted, showControls, posterId, posterSize } = videoControls;
 
