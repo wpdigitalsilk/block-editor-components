@@ -92,13 +92,13 @@ export const MediaPanelContent = (props) => {
 		imageSize,
 		lazyLoad,
 		srcset,
-		videoSource,
-		videoUrl,
+		videoSource = 'internal',
+		videoUrl = '',
 		focalPoint = {},
 		videoControls = {},
 	} = media;
 
-	const { autoplay, isMuted, showControls, posterId, posterSize } = videoControls;
+	const { autoplay = false, isMuted = true, showControls = true, posterId = 0, posterSize = 'full' } = videoControls;
 
 	const { imageSizes } = getEditorSettings();
 	const { mediaDetails, isResolvingMedia } = getMedia(id);
