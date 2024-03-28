@@ -18,7 +18,7 @@
  *
  * @returns {*} The rendered component.
  */
-export function Link({ value, type, opensInNewTab, url, onLinkChange, onTextChange, onLinkRemove, kind, placeholder, className, ...rest }: object[]): any;
+export function Link({ value, type, opensInNewTab, url, onLinkChange, onTextChange, onLinkRemove, kind, placeholder, className, isControl, controlLabel, ...rest }: object[]): any;
 export namespace Link {
     namespace defaultProps {
         let value: string;
@@ -28,6 +28,8 @@ export namespace Link {
         let type: string;
         let kind: string;
         let placeholder: string;
+        let isControl: boolean;
+        let controlLabel: string;
     }
     namespace propTypes {
         let value_1: PropTypes.Requireable<string>;
@@ -47,6 +49,10 @@ export namespace Link {
         export { className_1 as className };
         let placeholder_1: PropTypes.Requireable<string>;
         export { placeholder_1 as placeholder };
+        let isControl_1: PropTypes.Requireable<boolean>;
+        export { isControl_1 as isControl };
+        let controlLabel_1: PropTypes.Requireable<string>;
+        export { controlLabel_1 as controlLabel };
     }
 }
 import PropTypes from 'prop-types';

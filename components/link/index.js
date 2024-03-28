@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
  */
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useRef } from '@wordpress/element';
-import { Popover, Icon, Tooltip } from '@wordpress/components';
+import { Popover, Icon, Tooltip, TextControl } from '@wordpress/components';
 import { __experimentalLinkControl as LinkControl, RichText } from '@wordpress/block-editor';
 
 /**
@@ -113,6 +113,8 @@ const Link = ({
 	kind,
 	placeholder,
 	className,
+	isControl,
+	controlLabel,
 	...rest
 }) => {
 	const [isPopoverVisible, setIsPopoverVisible] = useState(false);
@@ -140,9 +142,10 @@ const Link = ({
 
 	return (
 		<StyledComponentContext cacheKey="ds-link-component">
+			{isControl && <p className="ds-link__label-desc">{controlLabel}</p>}
 			<StylesRichTextLink
 				tagName="a"
-				className={`ds-link__label ${className}`}
+				className={`ds-link__label ${className} ${isControl ? 'contol-label' : ''}`}
 				value={value}
 				onChange={onTextChange}
 				placeholder={placeholder}
@@ -193,6 +196,8 @@ Link.defaultProps = {
 	type: '',
 	kind: '',
 	placeholder: __('Link text...'),
+	isControl: false,
+	controlLabel: __('Link Text'),
 };
 
 Link.propTypes = {
@@ -206,6 +211,8 @@ Link.propTypes = {
 	kind: PropTypes.string,
 	className: PropTypes.string,
 	placeholder: PropTypes.string,
+	isControl: PropTypes.bool,
+	controlLabel: PropTypes.string,
 };
 
 export { Link };
