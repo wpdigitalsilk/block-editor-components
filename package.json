@@ -1,43 +1,43 @@
 {
-    "name": "@digitalsilk/block-editor-components",
-    "publishConfig": {
-        "access": "public"
-    },
-    "version": "0.2.2",
-    "description": "Digital Silk block editor components library.",
-    "main": "./dist/index.js",
-    "source": "index.js",
-    "types": "./dist/index.d.ts",
-    "scripts": {
-        "start": "digitalsilk-toolkit start",
-        "build": "digitalsilk-toolkit build",
-        "format-js": "digitalsilk-toolkit format-js",
-        "lint-js": "digitalsilk-toolkit lint-js",
-        "lint-style": "digitalsilk-toolkit lint-style",
-        "publish:packages": "npm run build && changeset && changeset version && changeset publish",
-        "publish:prepare": "npm run build && changeset && changeset version",
-        "test": "digitalsilk-toolkit test-unit-jest --passWithNoTests"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/wpdigitalsilk/block-editor-components.git"
-    },
-    "author": "Digital Silk",
-    "license": "GPL-2.0-or-later",
-    "homepage": "https://github.com/wpdigitalsilk/block-editor-components.git#readme",
-    "dependencies": {
-        "@emotion/react": "^11.11.4",
-        "@emotion/styled": "^11.11.0",
-        "@wordpress/icons": "^9.42.0",
-        "prop-types": "^15.8.1",
-        "uuid": "^9.0.1"
-    },
-    "devDependencies": {
-        "@changesets/cli": "^2.27.1",
-        "@testing-library/jest-dom": "^6.4.2",
-        "@testing-library/react": "^14.2.1",
-        "@wordpress/data": "^9.22.0",
-        "classnames": "^2.5.1",
-        "digitalsilk-toolkit": "^0.9.3"
-    }
+	"name": "@digitalsilk/block-editor-components",
+	"publishConfig": {
+		"access": "public"
+	},
+	"version": "0.2.3",
+	"description": "Digital Silk block editor components library.",
+	"main": "./dist/index.js",
+	"source": "index.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"start": "digitalsilk-toolkit start",
+		"build": "digitalsilk-toolkit build",
+		"format-js": "digitalsilk-toolkit format-js",
+		"lint-js": "digitalsilk-toolkit lint-js",
+		"lint-style": "digitalsilk-toolkit lint-style",
+		"publish:packages": "npm run build && changeset && changeset version && changeset publish",
+		"publish:prepare": "npm run build && changeset && changeset version",
+		"test": "digitalsilk-toolkit test-unit-jest --passWithNoTests"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wpdigitalsilk/block-editor-components.git"
+	},
+	"author": "Digital Silk",
+	"license": "GPL-2.0-or-later",
+	"homepage": "https://github.com/wpdigitalsilk/block-editor-components.git#readme",
+	"dependencies": {
+		"@emotion/react": "^11.11.4",
+		"@emotion/styled": "^11.11.0",
+		"@wordpress/icons": "^9.42.0",
+		"prop-types": "^15.8.1",
+		"uuid": "^9.0.1"
+	},
+	"devDependencies": {
+		"@changesets/cli": "^2.27.1",
+		"@testing-library/jest-dom": "^6.4.2",
+		"@testing-library/react": "^14.2.1",
+		"@wordpress/data": "^9.22.0",
+		"classnames": "^2.5.1",
+		"digitalsilk-toolkit": "^1.0.1"
+	}
 }

@@ -19,6 +19,9 @@ const YourComponent = (props) => {
             defaultValue={defaultValue}
             addButtonLabel={addButtonLabel}
             removeButtonLabel={removeButtonLabel}
+            initialItems={2}
+            minItems={1}
+            maxItems={5}
         >
             {(item, removeComponent, setItem, removeItem, itemId, key) => (
                 // Your child component content
@@ -50,6 +53,18 @@ A string representing the label for the "Add Item" button. Defaults to `'Add Ite
 
 A string representing the label for the "Remove Item" button. Defaults to `'Remove Item'`.
 
+### `initialItems`
+
+Number of initial items to show. Defaults to `1`
+
+### `minItems`
+
+A Number of minimum items allowed. Defaults to `1`
+
+### `maxItems`
+
+A Number of maximum items allowed.
+
 ## Child Component Props
 
 When using the `Repeater` component, your child component receives the following props:
@@ -70,6 +85,8 @@ When using the `Repeater` component, your child component receives the following
     defaultValue={[]}
     addButtonLabel="Add New Item"
     removeButtonLabel="Remove This Item"
+    initialItems={2}
+    maxItems={5}
 >
     {(item, removeComponent, setItem, removeItem, itemId, key) => (
         // Your child component content

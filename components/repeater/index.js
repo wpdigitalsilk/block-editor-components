@@ -1,77 +1,65 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
 import { BlockControls } from '@wordpress/block-editor';
 import { Button, ToolbarButton } from '@wordpress/components';
 import { plusCircle, close } from '@wordpress/icons';
-import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { v4 as uuid } from 'uuid';
 
-const ActionsWrapper = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	margin-top: 20px;
-	background-color: rgb(30 30 30);
-	border-radius: 5px;
-	font-size: 14px;
-	color: var(--wp--preset--color--white, #fff);
-	position: absolute;
-	top: 100%;
-	left: 0;
-	.components-button {
-		margin: 0 auto;
-		color: var(--wp--preset--color--white, #fff);
-		height: 100%;
-		text-decoration: none;
-		width: 100%;
-		border-radius: 0;
-		&.has-icon {
-			padding: 8px 15px;
-			justify-content: center;
-		}
-	}
-`;
+export const Repeater = ({
+	children,
+	onChange,
+	value,
+	defaultValue = [],
+	addButtonLabel,
+	removeButtonLabel,
+	minItems,
+	maxItems,
+	initialItems,
+}) => {
+	/**
+	 * Add Initial Items
+	 */
+	function addInitialItems(count) {
+		const defaultValueCopy = Array.isArray(defaultValue) ? [...defaultValue] : [];
 
-const RemoveWrapper = styled.div`
-	position: absolute;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background-color: rgb(30 30 30);
-	border-radius: 5px;
-	font-size: 14px;
-	border: 1px solid #fff;
-	color: #fff;
-	top: 0;
-	left: 100%;
-	height: 100%;
-	width: 36px;
-	margin-left: 20px;
-	.components-button {
-		margin: 0 auto;
-		color: #fff;
-		height: 100%;
-		&.has-icon {
-			min-width: 26px;
-			padding: 5px;
+		for (let i = 1; i < count; i++) {
+			const newItem = { ...defaultValueCopy[0], id: uuid() };
+			defaultValueCopy.push(newItem);
 		}
-	}
-`;
 
-export const Repeater = ({ children, onChange, value, defaultValue, addButtonLabel, removeButtonLabel }) => {
+		onChange(defaultValueCopy);
+	}
+
+	useEffect(() => {
+		if (initialItems && initialItems > 0 && value.length === 0) {
+			let numberofItemsToAdd = initialItems;
+			if (maxItems && initialItems > maxItems) {
+				numberofItemsToAdd = maxItems;
+			}
+
+			addInitialItems(numberofItemsToAdd);
+		}
+	}, [initialItems]);
+
 	/**
 	 * Add Item
 	 */
 	function addItem() {
-		const defaultValueCopy = JSON.parse(JSON.stringify(defaultValue));
+		if (maxItems && value.length >= maxItems) return; // Check if maxItems limit is reached
+
+		// Check if the default value is an array of objects
+		const defaultValueCopy =
+			Array.isArray(defaultValue) && defaultValue.length > 0
+				? [defaultValue[0]] // Take only the first object if it's an array
+				: [];
 
 		if (!defaultValue.length) {
 			defaultValueCopy.push([]);
 		}
 
-		defaultValueCopy[0].id = uuid();
+		defaultValueCopy[0].id = uuid(); // Generate id for the default item
 
 		onChange([...value, ...defaultValueCopy]);
 	}
@@ -105,30 +93,37 @@ export const Repeater = ({ children, onChange, value, defaultValue, addButtonLab
 				<ToolbarButton label={addButtonLabel} icon={plusCircle} onClick={() => addItem()} />
 			</BlockControls>
 
-			{value.map((item, key) => {
-				const removeComponent = (
-					<RemoveWrapper>
-						<Button icon={close} label={removeButtonLabel} onClick={() => removeItem(key)} />
-					</RemoveWrapper>
-				);
-				return (
-					<React.Fragment key={key}>
-						{children(
-							item,
-							removeComponent,
-							(val) => setItem(val, key),
-							() => removeItem(key),
-							item.id,
-							key
-						)}
-					</React.Fragment>
-				);
-			})}
-			<ActionsWrapper>
-				<Button variant="link" onClick={() => addItem()} icon={plusCircle} iconPosition="right">
-					{addButtonLabel}
-				</Button>
-			</ActionsWrapper>
+			{value &&
+				value.length &&
+				value.map((item, key) => {
+					const removeComponent =
+						minItems !== value.length ? (
+							<div className="ds-repeater-remove-item">
+								<Button icon={close} label={removeButtonLabel} onClick={() => removeItem(key)} />
+							</div>
+						) : null;
+
+					return (
+						<React.Fragment key={key}>
+							{children(
+								item,
+								removeComponent,
+								(val) => setItem(val, key),
+								() => removeItem(key),
+								item.id,
+								key
+							)}
+						</React.Fragment>
+					);
+				})}
+
+			{(!maxItems || value.length < maxItems) && (
+				<div className="ds-repeater-add-item">
+					<Button variant="link" onClick={() => addItem()} icon={plusCircle} iconPosition="right">
+						{addButtonLabel}
+					</Button>
+				</div>
+			)}
 		</>
 	);
 };
@@ -138,10 +133,15 @@ Repeater.propTypes = {
 	defaultValue: PropTypes.array,
 	addButtonLabel: PropTypes.string,
 	removeButtonLabel: PropTypes.string,
+	minItems: PropTypes.number,
+	maxItems: PropTypes.number,
+	initialItems: PropTypes.number,
 };
 
 Repeater.defaultProps = {
 	defaultValue: [],
 	addButtonLabel: __('Add Item'),
 	removeButtonLabel: __('Remove Item'),
+	minItems: 1,
+	initialItems: 1,
 };
