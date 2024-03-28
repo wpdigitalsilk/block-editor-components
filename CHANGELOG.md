@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.2.4
+
+### Patch Changes
+
+- update link component
+
 ## 0.2.3
 
 ### Patch Changes
