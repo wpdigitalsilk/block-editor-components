@@ -1,10 +1,13 @@
-export function Repeater({ children, onChange, value, defaultValue, addButtonLabel, removeButtonLabel }: {
+export function Repeater({ children, onChange, value, defaultValue, addButtonLabel, removeButtonLabel, minItems, maxItems, initialItems, }: {
     children: any;
     onChange: any;
     value: any;
-    defaultValue: any;
+    defaultValue?: any[] | undefined;
     addButtonLabel: any;
     removeButtonLabel: any;
+    minItems: any;
+    maxItems: any;
+    initialItems: any;
 }): React.JSX.Element;
 export namespace Repeater {
     namespace propTypes {
@@ -12,6 +15,9 @@ export namespace Repeater {
         let defaultValue: PropTypes.Requireable<any[]>;
         let addButtonLabel: PropTypes.Requireable<string>;
         let removeButtonLabel: PropTypes.Requireable<string>;
+        let minItems: PropTypes.Requireable<number>;
+        let maxItems: PropTypes.Requireable<number>;
+        let initialItems: PropTypes.Requireable<number>;
     }
     namespace defaultProps {
         let defaultValue_1: never[];
@@ -20,6 +26,10 @@ export namespace Repeater {
         export { addButtonLabel_1 as addButtonLabel };
         let removeButtonLabel_1: string;
         export { removeButtonLabel_1 as removeButtonLabel };
+        let minItems_1: number;
+        export { minItems_1 as minItems };
+        let initialItems_1: number;
+        export { initialItems_1 as initialItems };
     }
 }
 import React from 'react';
