@@ -65,6 +65,10 @@ A Number of minimum items allowed. Defaults to `1`
 
 A Number of maximum items allowed.
 
+### `removeLayout`
+
+String. vertical or horizontal. Defaults to vertical
+
 ## Child Component Props
 
 When using the `Repeater` component, your child component receives the following props:

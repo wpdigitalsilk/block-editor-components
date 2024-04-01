@@ -17,6 +17,7 @@ export const Repeater = ({
 	minItems,
 	maxItems,
 	initialItems,
+	removeLayout,
 }) => {
 	/**
 	 * Add Initial Items
@@ -98,7 +99,7 @@ export const Repeater = ({
 				value.map((item, key) => {
 					const removeComponent =
 						minItems !== value.length ? (
-							<div className="ds-repeater-remove-item">
+							<div className={`ds-repeater-remove-item ${removeLayout}`}>
 								<Button icon={close} label={removeButtonLabel} onClick={() => removeItem(key)} />
 							</div>
 						) : null;
@@ -136,6 +137,7 @@ Repeater.propTypes = {
 	minItems: PropTypes.number,
 	maxItems: PropTypes.number,
 	initialItems: PropTypes.number,
+	removeLayout: PropTypes.string,
 };
 
 Repeater.defaultProps = {
@@ -144,4 +146,5 @@ Repeater.defaultProps = {
 	removeButtonLabel: __('Remove Item'),
 	minItems: 1,
 	initialItems: 1,
+	removeLayout: 'vertical',
 };
