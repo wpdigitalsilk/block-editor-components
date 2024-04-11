@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.2.6
+
+### Patch Changes
+
+- Add link wrap
+
 ## 0.2.5
 
 ### Patch Changes

@@ -9,4 +9,5 @@ export { OverlayDisplay } from "./overlay-display";
 export { OverlayPicker } from "./overlay-picker";
 export { Repeater } from "./repeater";
 export { Link } from "./link";
+export { LinkWrap } from "./link-wrap";
 //# sourceMappingURL=index.d.ts.map
