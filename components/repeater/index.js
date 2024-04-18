@@ -41,7 +41,9 @@ export const Repeater = ({
 				numberofItemsToAdd = maxItems;
 			}
 
-			addInitialItems(numberofItemsToAdd);
+			if (minItems !== 0) {
+				addInitialItems(numberofItemsToAdd);
+			}
 		}
 	}, [initialItems]);
 
@@ -97,28 +99,29 @@ export const Repeater = ({
 				</BlockControls>
 			)}
 
-			{value &&
-				value.length &&
-				value.map((item, key) => {
-					const removeComponent = minItems !== value.length && (
-						<div className={`ds-repeater-remove-item ${removeLayout}`}>
-							<Button icon={close} label={removeButtonLabel} onClick={() => removeItem(key)} />
-						</div>
-					);
+			{value && value.length
+				? value.map((item, key) => {
+						const removeComponent =
+							minItems !== value.length ? (
+								<div className={`ds-repeater-remove-item ${removeLayout}`}>
+									<Button icon={close} label={removeButtonLabel} onClick={() => removeItem(key)} />
+								</div>
+							) : null;
 
-					return (
-						<React.Fragment key={key}>
-							{children(
-								item,
-								removeComponent,
-								(val) => setItem(val, key),
-								() => removeItem(key),
-								item.id,
-								key
-							)}
-						</React.Fragment>
-					);
-				})}
+						return (
+							<React.Fragment key={key}>
+								{children(
+									item,
+									removeComponent,
+									(val) => setItem(val, key),
+									() => removeItem(key),
+									item.id,
+									key
+								)}
+							</React.Fragment>
+						);
+				  })
+				: null}
 
 			{(!maxItems || value.length < maxItems) && (
 				<div className="ds-repeater-add-item">
