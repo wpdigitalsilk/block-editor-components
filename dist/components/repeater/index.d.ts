@@ -1,4 +1,4 @@
-export function Repeater({ children, onChange, value, defaultValue, addButtonLabel, removeButtonLabel, minItems, maxItems, initialItems, removeLayout, }: {
+export function Repeater({ children, onChange, value, defaultValue, addButtonLabel, removeButtonLabel, minItems, maxItems, initialItems, removeLayout, showBlockControls, }: {
     children: any;
     onChange: any;
     value: any;
@@ -9,6 +9,7 @@ export function Repeater({ children, onChange, value, defaultValue, addButtonLab
     maxItems: any;
     initialItems: any;
     removeLayout: any;
+    showBlockControls: any;
 }): React.JSX.Element;
 export namespace Repeater {
     namespace propTypes {
@@ -20,6 +21,7 @@ export namespace Repeater {
         let maxItems: PropTypes.Requireable<number>;
         let initialItems: PropTypes.Requireable<number>;
         let removeLayout: PropTypes.Requireable<string>;
+        let showBlockControls: PropTypes.Requireable<boolean>;
     }
     namespace defaultProps {
         let defaultValue_1: never[];
@@ -34,6 +36,8 @@ export namespace Repeater {
         export { initialItems_1 as initialItems };
         let removeLayout_1: string;
         export { removeLayout_1 as removeLayout };
+        let showBlockControls_1: boolean;
+        export { showBlockControls_1 as showBlockControls };
     }
 }
 import React from 'react';

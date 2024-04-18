@@ -18,6 +18,7 @@ export const Repeater = ({
 	maxItems,
 	initialItems,
 	removeLayout,
+	showBlockControls,
 }) => {
 	/**
 	 * Add Initial Items
@@ -90,19 +91,20 @@ export const Repeater = ({
 
 	return (
 		<>
-			<BlockControls group="block">
-				<ToolbarButton label={addButtonLabel} icon={plusCircle} onClick={() => addItem()} />
-			</BlockControls>
+			{showBlockControls && (
+				<BlockControls group="block">
+					<ToolbarButton label={addButtonLabel} icon={plusCircle} onClick={() => addItem()} />
+				</BlockControls>
+			)}
 
 			{value &&
 				value.length &&
 				value.map((item, key) => {
-					const removeComponent =
-						minItems !== value.length ? (
-							<div className={`ds-repeater-remove-item ${removeLayout}`}>
-								<Button icon={close} label={removeButtonLabel} onClick={() => removeItem(key)} />
-							</div>
-						) : null;
+					const removeComponent = minItems !== value.length && (
+						<div className={`ds-repeater-remove-item ${removeLayout}`}>
+							<Button icon={close} label={removeButtonLabel} onClick={() => removeItem(key)} />
+						</div>
+					);
 
 					return (
 						<React.Fragment key={key}>
@@ -138,6 +140,7 @@ Repeater.propTypes = {
 	maxItems: PropTypes.number,
 	initialItems: PropTypes.number,
 	removeLayout: PropTypes.string,
+	showBlockControls: PropTypes.bool,
 };
 
 Repeater.defaultProps = {
@@ -147,4 +150,5 @@ Repeater.defaultProps = {
 	minItems: 1,
 	initialItems: 1,
 	removeLayout: 'vertical',
+	showBlockControls: true,
 };
