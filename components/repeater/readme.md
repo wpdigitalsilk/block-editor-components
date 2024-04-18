@@ -69,6 +69,10 @@ A Number of maximum items allowed.
 
 String. vertical or horizontal. Defaults to vertical
 
+### `showBlockControls`
+
+Bool. Control should `BlockControls` be used or not
+
 ## Child Component Props
 
 When using the `Repeater` component, your child component receives the following props:
