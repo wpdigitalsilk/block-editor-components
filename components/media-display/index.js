@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import { Image, Video } from '../index';
 
 export const MediaDisplay = (props) => {
-	const { media, isBackground } = props;
+	const { media, isBackground, ...rest } = props;
 	const { id, mediaType, imageSize, videoSource, videoUrl, focalPoint, videoControls } = media;
 
 	return (
 		<>
 			{mediaType === 'image' && (
-				<Image id={id} imageSize={imageSize} focalPoint={focalPoint} isBackground={isBackground} />
+				<Image id={id} imageSize={imageSize} focalPoint={focalPoint} isBackground={isBackground} {...rest} />
 			)}
 
 			{mediaType === 'video' && (
@@ -18,6 +18,7 @@ export const MediaDisplay = (props) => {
 					videoUrl={videoUrl}
 					videoControls={videoControls}
 					isBackground={isBackground}
+					{...rest}
 				/>
 			)}
 		</>
