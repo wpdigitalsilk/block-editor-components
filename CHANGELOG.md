@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.3.0
+
+### Minor Changes
+
+- update img component
+
 ## 0.2.10
 
 ### Patch Changes
