@@ -1,9 +1,10 @@
 import { Spinner, Placeholder } from '@wordpress/components';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { getMedia } from '../../selectors';
 
 export const Image = (props) => {
-	const { id, imageSize, focalPoint, isBackground, ...rest } = props;
+	const { id, imageSize, focalPoint, isBackground, className, ...rest } = props;
 
 	const hasImage = !!id;
 	const { mediaDetails, isResolvingMedia } = getMedia(id);
@@ -28,19 +29,30 @@ export const Image = (props) => {
 			{isBackground ? (
 				<div className="ds-media is-background">
 					{!hasImage ? (
-						<Placeholder className="ds-media__image ds-media-placeholder" withIllustration />
+						<Placeholder
+							className={classnames(className, 'ds-media__image', 'ds-media-placeholder')}
+							withIllustration
+						/>
 					) : (
-						<img src={imageUrl} className="ds-media__image" alt={altText} {...rest} />
+						<img
+							src={imageUrl}
+							className={classnames(className, 'ds-media__image')}
+							alt={altText}
+							{...rest}
+						/>
 					)}
 				</div>
 			) : (
 				<>
 					{!hasImage ? (
-						<Placeholder className="ds-media__image ds-media-placeholder" withIllustration />
+						<Placeholder
+							className={classnames(className, 'ds-media__image', 'ds-media-placeholder')}
+							withIllustration
+						/>
 					) : isResolvingMedia ? (
 						<Spinner />
 					) : (
-						<img src={imageUrl} className="ds-media__image" alt={altText} />
+						<img src={imageUrl} className={classnames(className, 'ds-media__image')} alt={altText} />
 					)}
 				</>
 			)}
