@@ -37,8 +37,6 @@ const SearchItem = ({ suggestion, onClick, searchTerm, isSelected, mode }) => {
 							</Truncate>
 						</span>
 					)}
-
-					{type}
 				</Button>
 			</Tooltip>
 		</>
