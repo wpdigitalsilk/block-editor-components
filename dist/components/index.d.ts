@@ -10,4 +10,6 @@ export { OverlayPicker } from "./overlay-picker";
 export { Repeater } from "./repeater";
 export { Link } from "./link";
 export { LinkWrap } from "./link-wrap";
+export { ContentPicker } from "./content-picker";
+export { ContentSearch } from "./content-search";
 //# sourceMappingURL=index.d.ts.map

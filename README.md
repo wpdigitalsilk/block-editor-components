@@ -42,6 +42,10 @@ The library provides a set of React components designed for seamless integration
 -   [OverlayPicker](components/overlay-picker/readme.md)
 -   [OverlayDisplay](components/overlay-display/readme.md)
 -   [Repeater](components/repeater/readme.md)
+-   [ContentPicker](components/content-picker/readme.md)
+-   [ContentSearch](components/content-search/readme.md)
+-   [Link](components/link/readme.md)
+-   [LinkWrap](components/link-wrap/readme.md)
 
 ## Selectors
 
@@ -52,3 +56,6 @@ The library includes selectors that leverage the power of the `useSelect` hook f
 -   [getMedia](selectors/get-media/readme.md)
 -   [getPoster](selectors/get-poster/readme.md)
 -   [getEditorSettings](selectors/get-editor-settings/readme.md)
+-   [getPosts](selectors/get-posts/readme.md)
+-   [getPost](selectors/get-posts/readme.md)
+-   [getSiteSettings](selectors/get-site-settings/readme.md)

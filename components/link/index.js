@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
  */
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useRef } from '@wordpress/element';
-import { Popover, Icon, Tooltip, TextControl } from '@wordpress/components';
+import { Popover, Icon, Tooltip } from '@wordpress/components';
 import { __experimentalLinkControl as LinkControl, RichText } from '@wordpress/block-editor';
 
 /**
