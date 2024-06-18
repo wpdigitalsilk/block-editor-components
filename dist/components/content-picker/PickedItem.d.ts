@@ -1,9 +1,10 @@
 export default PickedItem;
-declare function PickedItem({ item, isOrderable, handleItemDelete, id, displayComponent: DisplayComponent, displayComponentProps, }: {
+declare function PickedItem({ item, isOrderable, handleItemDelete, id, index, displayComponent: DisplayComponent, displayComponentProps, }: {
     item: any;
     isOrderable: any;
     handleItemDelete: any;
     id: any;
+    index: any;
     displayComponent: any;
     displayComponentProps: any;
 }): import("react").JSX.Element | null;

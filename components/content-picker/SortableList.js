@@ -42,13 +42,14 @@ const SortableList = ({
 					sortOriantation === 'horizontal' ? horizontalListSortingStrategy : verticalListSortingStrategy
 				}
 			>
-				{posts.map((post) => (
+				{posts.map((post, loopIndex) => (
 					<PickedItem
 						key={post.uuid}
 						item={post}
 						isOrderable={hasMultiplePosts && isOrderable}
 						handleItemDelete={handleItemDelete}
 						id={post.uuid}
+						index={loopIndex}
 						displayComponent={displayComponent}
 						displayComponentProps={displayComponentProps}
 						displayItemStyle={displayItemStyle}
