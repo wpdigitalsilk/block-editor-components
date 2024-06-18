@@ -27,6 +27,7 @@ const PickedItem = ({
 	isOrderable,
 	handleItemDelete,
 	id,
+	index,
 	displayComponent: DisplayComponent,
 	displayComponentProps,
 }) => {
@@ -72,7 +73,7 @@ const PickedItem = ({
 			</div>
 
 			{DisplayComponent ? (
-				<DisplayComponent item={item} {...displayComponentProps} />
+				<DisplayComponent item={item} index={index} {...displayComponentProps} />
 			) : (
 				<span className="ds-content-picker__item-default">
 					<span className="item-title">{decodeEntities(title?.rendered || '')}</span>
