@@ -16,6 +16,8 @@ export const ContentPicker = ({
 	maxContentItems,
 	wrapperClass,
 	wrapperElement,
+	childElement,
+	childClass,
 	sortOriantation,
 	displayComponent,
 	displayComponentProps,
@@ -74,6 +76,8 @@ export const ContentPicker = ({
 							displayComponent={displayComponent}
 							displayComponentProps={displayComponentProps}
 							sortOriantation={sortOriantation}
+							childElement={childElement}
+							childClass={childClass}
 						/>
 					</TagName>
 				) : (
@@ -105,6 +109,8 @@ ContentPicker.defaultProps = {
 	maxContentItems: 99,
 	wrapperClass: '',
 	wrapperElement: 'div',
+	childClass: '',
+	childElement: 'div',
 	sortOriantation: 'vertical',
 };
 
@@ -120,5 +126,7 @@ ContentPicker.propTypes = {
 	maxContentItems: PropTypes.number,
 	wrapperClass: PropTypes.string,
 	wrapperElement: PropTypes.string,
+	childElement: PropTypes.string,
+	childClass: PropTypes.string,
 	sortOriantation: PropTypes.string,
 };

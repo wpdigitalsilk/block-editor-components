@@ -1,4 +1,4 @@
-export function ContentPicker({ items, onPickChange, postType, searchLabel, searchPlaceholder, searchMode, searchPerPage, isOrderable, maxContentItems, wrapperClass, wrapperElement, sortOriantation, displayComponent, displayComponentProps, }: {
+export function ContentPicker({ items, onPickChange, postType, searchLabel, searchPlaceholder, searchMode, searchPerPage, isOrderable, maxContentItems, wrapperClass, wrapperElement, childElement, childClass, sortOriantation, displayComponent, displayComponentProps, }: {
     items: any;
     onPickChange: any;
     postType: any;
@@ -10,6 +10,8 @@ export function ContentPicker({ items, onPickChange, postType, searchLabel, sear
     maxContentItems: any;
     wrapperClass: any;
     wrapperElement: any;
+    childElement: any;
+    childClass: any;
     sortOriantation: any;
     displayComponent: any;
     displayComponentProps: any;
@@ -26,6 +28,8 @@ export namespace ContentPicker {
         let maxContentItems: number;
         let wrapperClass: string;
         let wrapperElement: string;
+        let childClass: string;
+        let childElement: string;
         let sortOriantation: string;
     }
     namespace propTypes {
@@ -50,6 +54,10 @@ export namespace ContentPicker {
         export { wrapperClass_1 as wrapperClass };
         let wrapperElement_1: PropTypes.Requireable<string>;
         export { wrapperElement_1 as wrapperElement };
+        let childElement_1: PropTypes.Requireable<string>;
+        export { childElement_1 as childElement };
+        let childClass_1: PropTypes.Requireable<string>;
+        export { childClass_1 as childClass };
         let sortOriantation_1: PropTypes.Requireable<string>;
         export { sortOriantation_1 as sortOriantation };
     }

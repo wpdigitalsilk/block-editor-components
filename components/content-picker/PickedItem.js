@@ -30,6 +30,8 @@ const PickedItem = ({
 	index,
 	displayComponent: DisplayComponent,
 	displayComponentProps,
+	childElement,
+	childClass,
 }) => {
 	const { title, link } = item;
 	const { attributes, isDragging, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -42,9 +44,11 @@ const PickedItem = ({
 		return null;
 	}
 
+	const TagName = `${childElement}`;
+
 	return (
-		<div
-			className={`ds-content-picker__item ${isDragging ? 'is-dragging' : ''} ${
+		<TagName
+			className={`ds-content-picker__item ${childClass} ${isDragging ? 'is-dragging' : ''} ${
 				DisplayComponent ? 'has-display-component' : ''
 			}`}
 			ref={setNodeRef}
@@ -80,12 +84,14 @@ const PickedItem = ({
 					<span className="item-info">{filterURLForDisplay(safeDecodeURI(link)) || ''}</span>
 				</span>
 			)}
-		</div>
+		</TagName>
 	);
 };
 
 PickedItem.defaultProps = {
 	isOrderable: false,
+	childElement: 'div',
+	childClass: '',
 };
 
 PickedItem.propTypes = {
@@ -94,6 +100,8 @@ PickedItem.propTypes = {
 	handleItemDelete: PropTypes.func.isRequired,
 	id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 	displayComponent: PropTypes.func,
+	childElement: PropTypes.string,
+	childClass: PropTypes.string,
 };
 
 export default PickedItem;
