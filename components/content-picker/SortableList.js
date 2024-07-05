@@ -17,6 +17,8 @@ const SortableList = ({
 	displayComponent,
 	displayComponentProps,
 	displayItemStyle,
+	childElement,
+	childClass,
 }) => {
 	const hasMultiplePosts = posts.length > 1;
 
@@ -53,6 +55,8 @@ const SortableList = ({
 						displayComponent={displayComponent}
 						displayComponentProps={displayComponentProps}
 						displayItemStyle={displayItemStyle}
+						childElement={childElement}
+						childClass={childClass}
 					/>
 				))}
 			</SortableContext>
@@ -63,6 +67,8 @@ const SortableList = ({
 SortableList.defaultProps = {
 	isOrderable: false,
 	sortOriantation: 'vertical',
+	childElement: 'div',
+	childClass: '',
 };
 
 SortableList.propTypes = {
@@ -72,6 +78,8 @@ SortableList.propTypes = {
 	setPosts: PropTypes.func.isRequired,
 	displayComponent: PropTypes.func,
 	sortOriantation: PropTypes.string,
+	childElement: PropTypes.string,
+	childClass: PropTypes.string,
 };
 
 export default SortableList;

@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.3.4
+
+### Patch Changes
+
+- Update content picker to include clild element tag control and added class
+
 ## 0.3.3
 
 ### Patch Changes

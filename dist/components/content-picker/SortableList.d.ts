@@ -1,5 +1,5 @@
 export default SortableList;
-declare function SortableList({ posts, isOrderable, handleItemDelete, sortOriantation, setPosts, displayComponent, displayComponentProps, displayItemStyle, }: {
+declare function SortableList({ posts, isOrderable, handleItemDelete, sortOriantation, setPosts, displayComponent, displayComponentProps, displayItemStyle, childElement, childClass, }: {
     posts: any;
     isOrderable: any;
     handleItemDelete: any;
@@ -8,11 +8,15 @@ declare function SortableList({ posts, isOrderable, handleItemDelete, sortOriant
     displayComponent: any;
     displayComponentProps: any;
     displayItemStyle: any;
+    childElement: any;
+    childClass: any;
 }): import("react").JSX.Element;
 declare namespace SortableList {
     namespace defaultProps {
         let isOrderable: boolean;
         let sortOriantation: string;
+        let childElement: string;
+        let childClass: string;
     }
     namespace propTypes {
         export let posts: PropTypes.Validator<any[]>;
@@ -23,6 +27,10 @@ declare namespace SortableList {
         export let displayComponent: PropTypes.Requireable<(...args: any[]) => any>;
         let sortOriantation_1: PropTypes.Requireable<string>;
         export { sortOriantation_1 as sortOriantation };
+        let childElement_1: PropTypes.Requireable<string>;
+        export { childElement_1 as childElement };
+        let childClass_1: PropTypes.Requireable<string>;
+        export { childClass_1 as childClass };
     }
 }
 import PropTypes from 'prop-types';
