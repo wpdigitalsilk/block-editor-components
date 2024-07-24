@@ -93,16 +93,18 @@ export const Video = (props) => {
 					) : (
 						<>
 							{videoSource == 'internal' && (
-								<video
-									// autoPlay={autoplay}
-									muted={isMuted}
-									controls={isPreview ? true : showControls}
-									disablePictureInPicture
-									className="ds-media__video-element"
-									{...additionalAtts}
-								>
-									<source src={mediaUrl} type={mime_type} />
-								</video>
+								<div className="ds-media__video">
+									<video
+										// autoPlay={autoplay}
+										muted={isMuted}
+										controls={isPreview ? true : showControls}
+										disablePictureInPicture
+										className="ds-media__video-element"
+										{...additionalAtts}
+									>
+										<source src={mediaUrl} type={mime_type} />
+									</video>
+								</div>
 							)}
 
 							{videoSource == 'external' && (

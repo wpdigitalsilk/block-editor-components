@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.3.5
+
+### Patch Changes
+
+- Update video component
+
 ## 0.3.4
 
 ### Patch Changes
