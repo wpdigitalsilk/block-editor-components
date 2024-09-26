@@ -1,4 +1,17 @@
-export function Video(props: any): import("react").JSX.Element;
+export function Video(props: {
+    id: string;
+    videoSource: string;
+    videoUrl: string;
+    videoControls: {
+        autoplay: boolean;
+        isMuted: boolean;
+        showControls: boolean;
+        posterId: string;
+        posterSize: string;
+    };
+    isBackground: boolean;
+    isPreview: boolean;
+}): JSX.Element;
 export namespace Video {
     namespace defaultProps {
         let id: number;

@@ -51,6 +51,10 @@ It should have the following structure:
 
 A boolean indicating whether the image is used as a background. Defaults to `false`.
 
+### `className`
+
+A string to pass the additional class name. Defaults to an empty string.
+
 ## Example
 
 ```js

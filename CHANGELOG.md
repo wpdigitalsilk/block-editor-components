@@ -1,229 +1,235 @@
 # @digitalsilk/block-editor-components
 
+## 0.3.6
+
+### Patch Changes
+
+-   Add selectors and notices, update dependencies
+
 ## 0.3.5
 
 ### Patch Changes
 
-- Update video component
+-   Update video component
 
 ## 0.3.4
 
 ### Patch Changes
 
-- Update content picker to include clild element tag control and added class
+-   Update content picker to include clild element tag control and added class
 
 ## 0.3.3
 
 ### Patch Changes
 
-- Add index to post props
+-   Add index to post props
 
 ## 0.3.2
 
 ### Patch Changes
 
-- Update
+-   Update
 
 ## 0.3.1
 
 ### Patch Changes
 
-- Add new components
+-   Add new components
 
 ## 0.3.0
 
 ### Minor Changes
 
-- update img component
+-   update img component
 
 ## 0.2.10
 
 ### Patch Changes
 
-- update image component
+-   update image component
 
 ## 0.2.9
 
 ### Patch Changes
 
-- update media display
+-   update media display
 
 ## 0.2.8
 
 ### Patch Changes
 
-- update repeater
+-   update repeater
 
 ## 0.2.7
 
 ### Patch Changes
 
-- update repeater
+-   update repeater
 
 ## 0.2.6
 
 ### Patch Changes
 
-- Add link wrap
+-   Add link wrap
 
 ## 0.2.5
 
 ### Patch Changes
 
-- Add remove layout
+-   Add remove layout
 
 ## 0.2.4
 
 ### Patch Changes
 
-- update link component
+-   update link component
 
 ## 0.2.3
 
 ### Patch Changes
 
-- Update repeater
+-   Update repeater
 
 ## 0.2.2
 
 ### Patch Changes
 
-- update
+-   update
 
 ## 0.2.1
 
 ### Patch Changes
 
-- update
+-   update
 
 ## 0.2.0
 
 ### Minor Changes
 
-- update version
+-   update version
 
 ## 0.1.10
 
 ### Patch Changes
 
-- Add Link component
+-   Add Link component
 
 ## 0.1.9
 
 ### Patch Changes
 
-- Add dependency
+-   Add dependency
 
 ## 0.1.8
 
 ### Patch Changes
 
-- add repeater
+-   add repeater
 
 ## 0.1.7
 
 ### Patch Changes
 
-- update icon picker docs
+-   update icon picker docs
 
 ## 0.1.6
 
 ### Patch Changes
 
-- update iconpicker
+-   update iconpicker
 
 ## 0.1.5
 
 ### Patch Changes
 
-- update
+-   update
 
 ## 0.1.4
 
 ### Patch Changes
 
-- update doc
+-   update doc
 
 ## 0.1.3
 
 ### Patch Changes
 
-- Add theme icon
+-   Add theme icon
 
 ## 0.1.2
 
 ### Patch Changes
 
-- Update doc
+-   Update doc
 
 ## 0.1.1
 
 ### Patch Changes
 
-- adding documentation
+-   adding documentation
 
 ## 0.1.0
 
 ### Minor Changes
 
-- Additional components
+-   Additional components
 
 ## 0.0.10
 
 ### Patch Changes
 
-- Additional components
+-   Additional components
 
 ## 0.0.9
 
 ### Patch Changes
 
-- CI update
+-   CI update
 
 ## 0.0.8
 
 ### Patch Changes
 
-- add dist
+-   add dist
 
 ## 0.0.7
 
 ### Patch Changes
 
-- Bump
+-   Bump
 
 ## 0.0.6
 
 ### Patch Changes
 
-- Remove dist
+-   Remove dist
 
 ## 0.0.5
 
 ### Patch Changes
 
-- update
+-   update
 
 ## 0.0.4
 
 ### Patch Changes
 
-- Update
+-   Update
 
 ## 0.0.3
 
 ### Patch Changes
 
-- Test
+-   Test
 
 ## 0.0.2
 
 ### Patch Changes
 
-- Update
+-   Update
 
 ## 0.0.1
 
 ### Patch Changes
 
-- Initial components release
+-   Initial components release

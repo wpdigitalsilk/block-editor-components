@@ -53,9 +53,21 @@ The library includes selectors that leverage the power of the `useSelect` hook f
 
 #### Available Selectors
 
--   [getMedia](selectors/get-media/readme.md)
--   [getPoster](selectors/get-poster/readme.md)
--   [getEditorSettings](selectors/get-editor-settings/readme.md)
--   [getPosts](selectors/get-posts/readme.md)
--   [getPost](selectors/get-posts/readme.md)
--   [getSiteSettings](selectors/get-site-settings/readme.md)
+- [getAuthor](selectors/get-author/readme.md)
+- [getEditorSettings](selectors/get-editor-settings/readme.md)
+- [getMedia](selectors/get-media/readme.md)
+- [getOutsideClickRef](selectors/get-outside-click-ref/readme.md)
+- [getPoster](selectors/get-poster/readme.md)
+- [getPosts, getPost](selectors/get-posts/readme.md)
+- [getSiteSettings](selectors/get-site-settings/readme.md)
+- [getTerms, getPostTerms](selectors/get-terms/readme.md)
+
+
+## Notices
+
+The library includes selectors that leverage the power of the `useSelect` hook from the `@wordpress/data` package. These selectors, such as getMedia, provide utilities for efficiently retrieving media details and resolution status from the WordPress core data store. Seamlessly integrate these selectors into your components to enhance data retrieval and state management within the block editor.
+
+#### Available Notices
+
+- [onClickNotice](on-click-notice/readme.md)
+

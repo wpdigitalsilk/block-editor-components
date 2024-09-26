@@ -5,6 +5,8 @@
         "import/no-extraneous-dependencies": 0,
         "react/jsx-props-no-spreading": 0,
         "jsdoc/check-tag-names": 0,
+		"jsdoc/no-undefined-types": 0,
+		"jsdoc/check-tag-names": 0,
 		"import/extensions": 0,
         "import/no-cycle" : 0,
         "no-nested-ternary" : 0,
@@ -12,6 +14,8 @@
         "jsx-a11y/no-noninteractive-element-interactions" : 0,
         "jsx-a11y/click-events-have-key-events": 0,
         "jsx-a11y/media-has-caption": 0,
-        "eqeqeq": 0
+        "eqeqeq": 0,
+		"jsdoc/require-returns": 0,
+		"react/require-default-props": 0
     }
 }
