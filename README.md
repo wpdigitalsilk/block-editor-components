@@ -53,9 +53,11 @@ The library includes selectors that leverage the power of the `useSelect` hook f
 
 #### Available Selectors
 
--   [getMedia](selectors/get-media/readme.md)
--   [getPoster](selectors/get-poster/readme.md)
--   [getEditorSettings](selectors/get-editor-settings/readme.md)
--   [getPosts](selectors/get-posts/readme.md)
--   [getPost](selectors/get-posts/readme.md)
--   [getSiteSettings](selectors/get-site-settings/readme.md)
+- [getAuthor](selectors/get-author/readme.md)
+- [getEditorSettings](selectors/get-editor-settings/readme.md)
+- [getMedia](selectors/get-media/readme.md)
+- [getOutsideClickRef](selectors/get-outside-click-ref/readme.md)
+- [getPoster](selectors/get-poster/readme.md)
+- [getPosts, getPost](selectors/get-posts/readme.md)
+- [getSiteSettings](selectors/get-site-settings/readme.md)
+- [getTerms, getPostTerms](selectors/get-terms/readme.md)

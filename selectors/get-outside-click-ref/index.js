@@ -8,6 +8,7 @@ import { useEffect, useRef } from '@wordpress/element';
  */
 export function getOutsideClickRef(onClickOutside) {
 	const ref = useRef();
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
 		const listener = (event) => {
 			// Do nothing if clicking ref's element or descendent elements
