@@ -19,7 +19,7 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 indent_style = tab
 indent_size = 4
-jsxSingleQuote = true
+
 max_line_length = 120
 
 [*.{css,scss}]
@@ -28,12 +28,15 @@ end_of_line = crlf
 indent_style = tab
 indent_size = 4
 
-[*.{js,json}]
+[*.{json}]
 indent_style = tab
 indent_size = 4
 
 [*.{js,jsx}]
 quote_type = single
+jsxSingleQuote = true
+indent_style = tab
+indent_size = 4
 
 [*.yml]
 indent_style = space

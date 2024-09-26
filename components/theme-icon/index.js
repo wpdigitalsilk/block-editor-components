@@ -1,9 +1,15 @@
 import PropTypes from 'prop-types';
-import { __ } from '@wordpress/i18n';
 
-export const ThemeIcon = (props) => {
-	const { icon, width, height } = props;
-
+/**
+ * Represents an icon component that renders an SVG icon.
+ *
+ * @param {object} props - The properties object.
+ * @param {string} props.icon - The name of the icon to be rendered.
+ * @param {number} [props.width=24] - The width of the icon in pixels.
+ * @param {number} [props.height=24] - The height of the icon in pixels.
+ * @returns {JSX.Element|null} The rendered SVG icon or null if no icon name is provided.
+ */
+export const ThemeIcon = ({ icon, width = 24, height = 24 }) => {
 	return (
 		<>
 			{icon && (
@@ -13,11 +19,6 @@ export const ThemeIcon = (props) => {
 			)}
 		</>
 	);
-};
-
-ThemeIcon.defaultProps = {
-	width: 40,
-	height: 40,
 };
 
 ThemeIcon.propTypes = {
