@@ -6,6 +6,7 @@ The `MediaPicker` component is a WordPress Gutenberg block editor component desi
 
 ## Usage
 
+
 ```js
 import { MediaPicker } from '@digitalsilk/block-editor-components';
 
