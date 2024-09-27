@@ -1,27 +1,21 @@
-export function IconPicker(props: any): import("react").JSX.Element;
+export function IconPicker({ icon, width, height, panelTitle, isExpanded, isControl, onSelect, }: {
+    icon?: string | undefined;
+    width?: number | undefined;
+    height?: number | undefined;
+    isControl?: boolean | undefined;
+    panelTitle?: string | undefined;
+    isExpanded?: boolean | undefined;
+    onSelect: Function;
+}): JSX.Element;
 export namespace IconPicker {
-    namespace defaultProps {
-        let icon: {};
-        let width: number;
-        let height: number;
-        let isControl: boolean;
-        let panelTitle: string;
-        let isExpanded: boolean;
-    }
     namespace propTypes {
-        let icon_1: PropTypes.Requireable<string>;
-        export { icon_1 as icon };
-        let width_1: PropTypes.Requireable<number>;
-        export { width_1 as width };
-        let height_1: PropTypes.Requireable<number>;
-        export { height_1 as height };
-        export let onSelect: PropTypes.Validator<(...args: any[]) => any>;
-        let isControl_1: PropTypes.Requireable<boolean>;
-        export { isControl_1 as isControl };
-        let panelTitle_1: PropTypes.Requireable<string>;
-        export { panelTitle_1 as panelTitle };
-        let isExpanded_1: PropTypes.Requireable<boolean>;
-        export { isExpanded_1 as isExpanded };
+        let icon: PropTypes.Requireable<string>;
+        let width: PropTypes.Requireable<number>;
+        let height: PropTypes.Requireable<number>;
+        let panelTitle: PropTypes.Requireable<string>;
+        let isControl: PropTypes.Requireable<boolean>;
+        let isExpanded: PropTypes.Requireable<boolean>;
+        let onSelect: PropTypes.Validator<(...args: any[]) => any>;
     }
 }
 import PropTypes from 'prop-types';

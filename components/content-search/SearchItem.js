@@ -4,15 +4,35 @@ import { decodeEntities } from '@wordpress/html-entities';
 import { Button, TextHighlight, Tooltip, __experimentalTruncate as Truncate } from '@wordpress/components';
 import { getTextContent, create } from '@wordpress/rich-text';
 
-// Search Item
-const SearchItem = ({ suggestion, onClick, searchTerm, isSelected, mode }) => {
-	const { id, title, link, name, type } = suggestion;
+/**
+ * SearchItem component
+ *
+ * @typedef {object} Suggestion
+ * @property {number} id - The unique identifier of the suggestion item.
+ * @property {object} title - The title object of the suggestion item.
+ * @property {string} [title.rendered] - The rendered title string for postType items.
+ * @property {string} name - The name of the taxonomy item.
+ * @property {string} link - The URL link associated with the suggestion item.
+ * @property {number} parent - The parent identifier of the taxonomy item.
+ * @param {object} props - The props object for the SearchItem component.
+ * @param {Suggestion} props.suggestion - The suggestion data for the search item.
+ * @param {string} props.searchTerm - The current search term used for highlighting.
+ * @param {boolean} props.isSelected - Indicates if the search item is selected.
+ * @param {string} props.pickerType - The type of picker, determines title rendering ('postType' or 'taxonomy').
+ * @param {Function} props.onClick - Callback function to handle click event.
+ *
+ * @returns {JSX.Element} Search item component with highlighted search term and clickable link.
+ */
+const SearchItem = ({ suggestion = {}, searchTerm = '', isSelected = false, pickerType = 'postType', onClick }) => {
+	const { id, title = {}, name = '', link = '', parent = 0 } = suggestion;
 	let displayTitle = '';
 
-	if (mode === 'term') {
-		displayTitle = name || '';
-	} else {
+	if (pickerType === 'postType') {
 		displayTitle = title?.rendered || '';
+	}
+
+	if (pickerType === 'taxonomy') {
+		displayTitle = name;
 	}
 
 	const richTextContent = create({ html: displayTitle });
@@ -28,6 +48,7 @@ const SearchItem = ({ suggestion, onClick, searchTerm, isSelected, mode }) => {
 					className={`ds-component-content-search__list-item-button ${isSelected && 'is-selected'}`}
 				>
 					<span className="item-title">
+						{parent > 0 && <span>- </span>}
 						<TextHighlight text={titleContent} highlight={searchTerm} />
 					</span>
 					{link && (
@@ -43,18 +64,12 @@ const SearchItem = ({ suggestion, onClick, searchTerm, isSelected, mode }) => {
 	);
 };
 
-SearchItem.defaultProps = {
-	searchTerm: '',
-	isSelected: false,
-	mode: 'post',
-};
-
 SearchItem.propTypes = {
-	searchTerm: PropTypes.string,
 	suggestion: PropTypes.object.isRequired,
-	onClick: PropTypes.func.isRequired,
+	searchTerm: PropTypes.string,
 	isSelected: PropTypes.bool,
-	mode: PropTypes.string,
+	pickerType: PropTypes.string,
+	onClick: PropTypes.func.isRequired,
 };
 
 export default SearchItem;

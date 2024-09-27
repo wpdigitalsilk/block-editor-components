@@ -4,7 +4,6 @@
         "import/no-unresolved": 0,
         "import/no-extraneous-dependencies": 0,
         "react/jsx-props-no-spreading": 0,
-        "jsdoc/check-tag-names": 0,
 		"jsdoc/no-undefined-types": 0,
 		"jsdoc/check-tag-names": 0,
 		"import/extensions": 0,
@@ -16,6 +15,9 @@
         "jsx-a11y/media-has-caption": 0,
         "eqeqeq": 0,
 		"jsdoc/require-returns": 0,
-		"react/require-default-props": 0
+		"react/require-default-props": 0,
+		"react/no-danger": 0,
+		"react/prop-types": 0,
+		"no-prototype-builtins": 0
     }
 }

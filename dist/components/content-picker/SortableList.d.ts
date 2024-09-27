@@ -1,36 +1,41 @@
 export default SortableList;
-declare function SortableList({ posts, isOrderable, handleItemDelete, sortOriantation, setPosts, displayComponent, displayComponentProps, displayItemStyle, childElement, childClass, }: {
-    posts: any;
-    isOrderable: any;
-    handleItemDelete: any;
-    sortOriantation: any;
-    setPosts: any;
-    displayComponent: any;
-    displayComponentProps: any;
-    displayItemStyle: any;
-    childElement: any;
-    childClass: any;
-}): import("react").JSX.Element;
+/**
+ * SortableList is a component that provides functionality to display and reorder a list of posts.
+ *
+ * @param {object} props - The component props.
+ * @param {object[]} props.posts - An array of post objects to display and sort.
+ * @param {boolean} props.isOrderable - Flag to enable or disable the ordering functionality.
+ * @param {string} props.sortOrientation - The orientation for sorting the list ('vertical' or 'horizontal').
+ * @param {string} props.childElement - The HTML element type to wrap each post item.
+ * @param {string} props.childClass - CSS class names to apply to the child elements.
+ * @param {React.Component} props.displayComponent - A React component to display each post item.
+ * @param {object} props.displayComponentProps- Props to pass to the display component.
+ * @param {Function} props.handleItemDelete - Callback function to handle the deletion of a post item.
+ * @param {Function} props.setPosts - Function to update the posts array after reordering.
+ * @returns {JSX.Element} The rendered sortable list component.
+ */
+declare function SortableList({ posts, isOrderable, sortOrientation, childElement, childClass, displayComponent, displayComponentProps, handleItemDelete, setPosts, }: {
+    posts: object[];
+    isOrderable: boolean;
+    sortOrientation: string;
+    childElement: string;
+    childClass: string;
+    displayComponent: React.Component;
+    displayComponentProps: object;
+    handleItemDelete: Function;
+    setPosts: Function;
+}): JSX.Element;
 declare namespace SortableList {
-    namespace defaultProps {
-        let isOrderable: boolean;
-        let sortOriantation: string;
-        let childElement: string;
-        let childClass: string;
-    }
     namespace propTypes {
-        export let posts: PropTypes.Validator<any[]>;
-        let isOrderable_1: PropTypes.Requireable<boolean>;
-        export { isOrderable_1 as isOrderable };
-        export let handleItemDelete: PropTypes.Validator<(...args: any[]) => any>;
-        export let setPosts: PropTypes.Validator<(...args: any[]) => any>;
-        export let displayComponent: PropTypes.Requireable<(...args: any[]) => any>;
-        let sortOriantation_1: PropTypes.Requireable<string>;
-        export { sortOriantation_1 as sortOriantation };
-        let childElement_1: PropTypes.Requireable<string>;
-        export { childElement_1 as childElement };
-        let childClass_1: PropTypes.Requireable<string>;
-        export { childClass_1 as childClass };
+        let posts: PropTypes.Validator<any[]>;
+        let isOrderable: PropTypes.Requireable<boolean>;
+        let sortOrientation: PropTypes.Requireable<string>;
+        let displayComponent: PropTypes.Requireable<PropTypes.ReactComponentLike>;
+        let displayComponentProps: PropTypes.Requireable<object>;
+        let childElement: PropTypes.Requireable<string>;
+        let childClass: PropTypes.Requireable<string>;
+        let handleItemDelete: PropTypes.Validator<(...args: any[]) => any>;
+        let setPosts: PropTypes.Validator<(...args: any[]) => any>;
     }
 }
 import PropTypes from 'prop-types';

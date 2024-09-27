@@ -1,4 +1,4 @@
-import { __ } from '@wordpress/i18n';
+import PropTypes from 'prop-types';
 import { InspectorControls } from '@wordpress/block-editor';
 import {
 	ColorPalette,
@@ -9,12 +9,22 @@ import {
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 	ToggleControl,
 } from '@wordpress/components';
-import PropTypes from 'prop-types';
 import { getEditorSettings } from '../../selectors';
 
-const OverlayPanelContent = (props) => {
-	const { overlay, onSelect } = props;
+/**
+ * OverlayPanelContent component is responsible for rendering and managing the
+ * overlay settings panel within a UI, allowing users to configure overlay properties
+ * such as enabling/disabling the overlay, setting overlay opacity, choosing between
+ * color and gradient overlay types, and selecting specific colors or gradients.
+ *
+ * @param {object} props - The properties object.
+ * @param {object} props.overlay - The overlay configuration object.
+ * @param {Function} props.onSelect - Callback function to handle overlay changes.
+ */
+const OverlayPanelContent = ({ overlay, onSelect }) => {
+	// @ts-ignore
 	const { hasOverlay, overlayType, overlayColor, overlayGradient, overlayOpacity } = overlay;
+	// @ts-ignore
 	const { colors, gradients } = getEditorSettings();
 
 	const handleOverlayChange = (value) => {
@@ -33,7 +43,7 @@ const OverlayPanelContent = (props) => {
 	};
 
 	const handleGradientSelect = (gradient) => {
-		const matchingItem = gradients.find((item) => item.gradient === gradient);
+		const matchingItem = gradients.find((item) => item?.gradient === gradient);
 
 		if (matchingItem) {
 			handleOverlayChange({ overlayGradient: matchingItem });
@@ -44,20 +54,20 @@ const OverlayPanelContent = (props) => {
 
 	return (
 		<>
-			<PanelBody title={__('Background Overlay')}>
+			<PanelBody title="Background Overlay">
 				<ToggleControl
 					__nextHasNoMarginBottom
-					label={__('Has Overlay')}
+					label="Has Overlay"
 					onChange={() => handleOverlayChange({ hasOverlay: !hasOverlay })}
 					checked={hasOverlay}
 				/>
 			</PanelBody>
 
 			{hasOverlay && (
-				<PanelBody title={__('Overlay Settings')}>
+				<PanelBody title="Overlay Settings">
 					<RangeControl
 						__nextHasNoMargin
-						label={__('Overlay Opacity')}
+						label="Overlay Opacity"
 						value={overlayOpacity}
 						onChange={(opacity) => handleOverlayChange({ overlayOpacity: opacity })}
 						min={0}
@@ -65,13 +75,13 @@ const OverlayPanelContent = (props) => {
 					/>
 
 					<ToggleGroupControl
-						label={__('Overlay Type')}
+						label="Overlay Type"
 						value={overlayType}
 						isBlock
 						onChange={(value) => handleOverlayChange({ overlayType: value })}
 					>
-						<ToggleGroupControlOption value="color" label={__('Color')} />
-						<ToggleGroupControlOption value="gradient" label={__('Gradient')} />
+						<ToggleGroupControlOption value="color" label="Color" />
+						<ToggleGroupControlOption value="gradient" label="Gradient" />
 					</ToggleGroupControl>
 
 					{overlayType === 'color' && (
@@ -99,31 +109,44 @@ const OverlayPanelContent = (props) => {
 	);
 };
 
-export const OverlayPicker = (props) => {
-	const { isControl } = props;
+// Set overlay defaults
+const defaultOverlay = {
+	hasOverlay: false,
+	overlayColor: {},
+	overlayGradient: {},
+	overlayOpacity: 25,
+	overlayType: 'color',
+};
 
+/**
+ * OverlayPicker Component
+ *
+ * This component renders an overlay selection panel. Depending on the value
+ * of the `isControl` prop, it either wraps the content in an
+ * `InspectorControls` component or not.
+ *
+ * @param {object} props - The properties object.
+ * @param {object} [props.overlay={}] - Custom overlay configuration.
+ * @param {boolean} [props.isControl=true] - Determines if the content should be
+ * wrapped in an `InspectorControls` component.
+ * @param {Function} props.onSelect - Callback function invoked when an overlay item is selected.
+ */
+export const OverlayPicker = ({ overlay = {}, isControl = true, onSelect }) => {
+	const mergedOverlay = {
+		...defaultOverlay,
+		...overlay,
+	};
 	return (
 		<>
 			{isControl ? (
-				<OverlayPanelContent {...props} />
+				<OverlayPanelContent overlay={mergedOverlay} onSelect={onSelect} />
 			) : (
 				<InspectorControls>
-					<OverlayPanelContent {...props} />
+					<OverlayPanelContent overlay={mergedOverlay} onSelect={onSelect} />
 				</InspectorControls>
 			)}
 		</>
 	);
-};
-
-OverlayPicker.defaultProps = {
-	overlay: {
-		hasOverlay: false,
-		overlayColor: {},
-		overlayGradient: {},
-		overlayOpacity: 25,
-		overlayType: 'color',
-	},
-	isControl: true,
 };
 
 OverlayPicker.propTypes = {

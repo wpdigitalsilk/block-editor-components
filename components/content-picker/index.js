@@ -3,32 +3,56 @@ import { v4 as uuidv4 } from 'uuid';
 import SortableList from './SortableList';
 import { ContentSearch } from '../content-search';
 
-// Content Picker
+/**
+ * ContentPicker component for selecting and ordering content items.
+ *
+ * @param {object} props - The properties object.
+ * @param {object[]} [props.items=[]] - Array of selected content items.
+ * @param {string} [props.searchLabel=''] - Label for the search input.
+ * @param {string} [props.searchPlaceholder='Search'] - Placeholder for the search input.
+ * @param {number} [props.searchPerPage=20] - Number of results to display per page in the search.
+ * @param {string[]} [props.searchColumns=['post_title', 'post_content']] - Columns to search within content.
+ * @param {boolean} [props.isOrderable=true] - Whether the selected items can be reordered.
+ * @param {number} [props.maxContentItems=99] - Maximum number of items that can be selected.
+ * @param {string} [props.wrapperClass=''] - CSS class for the wrapper element.
+ * @param {string} [props.wrapperElement='div'] - HTML element type for the wrapper.
+ * @param {string} [props.childElement='div'] - HTML element type for each child item.
+ * @param {string} [props.childClass=''] - CSS class for each child item.
+ * @param {string} [props.sortOrientation='vertical'] - Orientation of the sortable list ('vertical' or 'horizontal').
+ * @param {string} [props.pickerType='postType'] - Type of items being picked.
+ * @param {string} [props.entityType='post'] - Entity type of the content items.
+ * @param {string[]} [props.storeKeys=[]] - Keys to identify store for fetching content.
+ * @param {React.Component|null} [props.displayComponent=null] - Custom component for displaying content items.
+ * @param {object} [props.displayComponentProps={}] - Props to pass to the custom display component.
+ * @param {Function} props.onPickChange - Callback function called when the selected items change.
+ */
 export const ContentPicker = ({
-	items,
+	items = [],
+	searchLabel = '',
+	searchPlaceholder = 'Search',
+	searchPerPage = 20,
+	searchColumns = ['post_title', 'post_content'],
+	isOrderable = true,
+	maxContentItems = 99,
+	wrapperClass = '',
+	wrapperElement = 'div',
+	childElement = 'div',
+	childClass = '',
+	sortOrientation = 'vertical',
+	pickerType = 'postType',
+	entityType = 'post',
+	storeKeys = [],
+	displayComponent = null,
+	displayComponentProps = {},
 	onPickChange,
-	postType,
-	searchLabel,
-	searchPlaceholder,
-	searchMode,
-	searchPerPage,
-	isOrderable,
-	maxContentItems,
-	wrapperClass,
-	wrapperElement,
-	childElement,
-	childClass,
-	sortOriantation,
-	displayComponent,
-	displayComponentProps,
 }) => {
 	const handleSelect = (item) => {
 		const newItems = [
+			...items,
 			{
 				uuid: uuidv4(),
 				...item,
 			},
-			...items,
 		];
 		onPickChange(newItems);
 	};
@@ -55,17 +79,19 @@ export const ContentPicker = ({
 							placeholder={searchPlaceholder}
 							label={searchLabel}
 							onSelectItem={handleSelect}
-							perPage={searchPerPage}
-							postType={postType}
 							selectedItems={items}
-							mode={searchMode}
+							perPage={searchPerPage}
+							searchColumns={searchColumns}
+							pickerType={pickerType}
+							entityType={entityType}
+							storeKeys={storeKeys}
 						/>
 					</>
 				) : (
 					''
 				)}
 
-				{Boolean(items?.length) ? (
+				{items?.length ? (
 					// this is render
 					<TagName className={`ds-content-picker__items ${wrapperClass}`}>
 						<SortableList
@@ -75,9 +101,10 @@ export const ContentPicker = ({
 							setPosts={onPickChange}
 							displayComponent={displayComponent}
 							displayComponentProps={displayComponentProps}
-							sortOriantation={sortOriantation}
+							sortOrientation={sortOrientation}
 							childElement={childElement}
 							childClass={childClass}
+							pickerType={pickerType}
 						/>
 					</TagName>
 				) : (
@@ -98,35 +125,23 @@ export const ContentPicker = ({
 	);
 };
 
-ContentPicker.defaultProps = {
-	items: [],
-	postType: 'post',
-	searchLabel: '',
-	searchPlaceholder: 'Search',
-	searchMode: 'post',
-	searchPerPage: 20,
-	isOrderable: true,
-	maxContentItems: 99,
-	wrapperClass: '',
-	wrapperElement: 'div',
-	childClass: '',
-	childElement: 'div',
-	sortOriantation: 'vertical',
-};
-
 ContentPicker.propTypes = {
 	items: PropTypes.array,
-	onPickChange: PropTypes.func.isRequired,
-	postType: PropTypes.string,
 	searchLabel: PropTypes.string,
 	searchPlaceholder: PropTypes.string,
-	searchMode: PropTypes.string,
 	searchPerPage: PropTypes.number,
+	searchColumns: PropTypes.array,
 	isOrderable: PropTypes.bool,
 	maxContentItems: PropTypes.number,
 	wrapperClass: PropTypes.string,
 	wrapperElement: PropTypes.string,
 	childElement: PropTypes.string,
 	childClass: PropTypes.string,
-	sortOriantation: PropTypes.string,
+	sortOrientation: PropTypes.string,
+	pickerType: PropTypes.string,
+	entityType: PropTypes.string,
+	storeKeys: PropTypes.array,
+	displayComponent: PropTypes.elementType,
+	displayComponentProps: PropTypes.object,
+	onPickChange: PropTypes.func.isRequired,
 };

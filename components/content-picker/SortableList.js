@@ -8,23 +8,46 @@ import {
 import PropTypes from 'prop-types';
 import PickedItem from './PickedItem';
 
+/**
+ * SortableList is a component that provides functionality to display and reorder a list of posts.
+ *
+ * @param {object} props - The component props.
+ * @param {object[]} props.posts - An array of post objects to display and sort.
+ * @param {boolean} props.isOrderable - Flag to enable or disable the ordering functionality.
+ * @param {string} props.sortOrientation - The orientation for sorting the list ('vertical' or 'horizontal').
+ * @param {string} props.childElement - The HTML element type to wrap each post item.
+ * @param {string} props.childClass - CSS class names to apply to the child elements.
+ * @param {React.Component} props.displayComponent - A React component to display each post item.
+ * @param {object} props.displayComponentProps- Props to pass to the display component.
+ * @param {Function} props.handleItemDelete - Callback function to handle the deletion of a post item.
+ * @param {Function} props.setPosts - Function to update the posts array after reordering.
+ * @returns {JSX.Element} The rendered sortable list component.
+ */
 const SortableList = ({
-	posts,
-	isOrderable,
+	posts = [],
+	isOrderable = false,
+	sortOrientation = 'vertical',
+	childElement = 'div',
+	childClass = '',
+	displayComponent = null,
+	displayComponentProps = {},
 	handleItemDelete,
-	sortOriantation,
 	setPosts,
-	displayComponent,
-	displayComponentProps,
-	displayItemStyle,
-	childElement,
-	childClass,
 }) => {
-	const hasMultiplePosts = posts.length > 1;
+	const hasMultiplePosts = posts && posts.length > 1;
 
 	const items = posts.map((item) => item.uuid);
 	const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
+	/**
+	 * Handles the drag end event for reordering posts.
+	 *
+	 * This function is invoked when a drag-and-drop action is completed. It updates
+	 * the order of posts by moving the dragged post to its new position.
+	 *
+	 * @param {object} event - The drag end event object.
+	 * @param {string} event.over.id - The unique identifier of the item over which the active item is dropped.
+	 */
 	const handleDragEnd = (event) => {
 		const { active, over } = event;
 
@@ -41,7 +64,7 @@ const SortableList = ({
 			<SortableContext
 				items={items}
 				strategy={
-					sortOriantation === 'horizontal' ? horizontalListSortingStrategy : verticalListSortingStrategy
+					sortOrientation === 'horizontal' ? horizontalListSortingStrategy : verticalListSortingStrategy
 				}
 			>
 				{posts.map((post, loopIndex) => (
@@ -50,11 +73,9 @@ const SortableList = ({
 						item={post}
 						isOrderable={hasMultiplePosts && isOrderable}
 						handleItemDelete={handleItemDelete}
-						id={post.uuid}
 						index={loopIndex}
 						displayComponent={displayComponent}
 						displayComponentProps={displayComponentProps}
-						displayItemStyle={displayItemStyle}
 						childElement={childElement}
 						childClass={childClass}
 					/>
@@ -64,22 +85,16 @@ const SortableList = ({
 	);
 };
 
-SortableList.defaultProps = {
-	isOrderable: false,
-	sortOriantation: 'vertical',
-	childElement: 'div',
-	childClass: '',
-};
-
 SortableList.propTypes = {
 	posts: PropTypes.array.isRequired,
 	isOrderable: PropTypes.bool,
-	handleItemDelete: PropTypes.func.isRequired,
-	setPosts: PropTypes.func.isRequired,
-	displayComponent: PropTypes.func,
-	sortOriantation: PropTypes.string,
+	sortOrientation: PropTypes.string,
+	displayComponent: PropTypes.elementType,
+	displayComponentProps: PropTypes.object,
 	childElement: PropTypes.string,
 	childClass: PropTypes.string,
+	handleItemDelete: PropTypes.func.isRequired,
+	setPosts: PropTypes.func.isRequired,
 };
 
 export default SortableList;

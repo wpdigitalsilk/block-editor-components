@@ -1,8 +1,28 @@
 import PropTypes from 'prop-types';
 
-export const OverlayDisplay = (props) => {
-	const { overlay } = props;
-	const { hasOverlay, overlayType, overlayColor, overlayGradient, overlayOpacity } = overlay;
+// Set Defaults
+const defaultOverlay = {
+	hasOverlay: false,
+	overlayColor: {},
+	overlayGradient: {},
+	overlayOpacity: 25,
+	overlayType: 'color',
+};
+
+/**
+ * OverlayDisplay is a React functional component that renders a background overlay
+ * with customizable properties such as type, color, gradient, and opacity.
+ *
+ * @param {object} props - The properties object to configure the overlay display.
+ * @param {object} [props.overlay={}] - The overlay configuration object.
+ * @returns {JSX.Element} - A JSX element representing the background overlay.
+ */
+export const OverlayDisplay = ({ overlay = {} }) => {
+	const mergedOverlay = {
+		...defaultOverlay,
+		...overlay,
+	};
+	const { hasOverlay, overlayType, overlayColor, overlayGradient, overlayOpacity } = mergedOverlay;
 
 	const divStyle = {
 		opacity: overlayOpacity / 100,
@@ -31,16 +51,6 @@ export const OverlayDisplay = (props) => {
 	}
 
 	return <> {hasOverlay && <div className={`background-overlay ${css_class_name}`} {...styles} />}</>;
-};
-
-OverlayDisplay.defaultProps = {
-	overlay: {
-		hasOverlay: false,
-		overlayColor: {},
-		overlayGradient: {},
-		overlayOpacity: 25,
-		overlayType: 'color',
-	},
 };
 
 OverlayDisplay.propTypes = {
