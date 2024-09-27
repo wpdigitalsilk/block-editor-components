@@ -1,4 +1,4 @@
-import { __ } from '@wordpress/i18n';
+import PropTypes from 'prop-types';
 import {
 	MediaPlaceholder,
 	InspectorControls,
@@ -6,7 +6,6 @@ import {
 	__experimentalImageSizeControl as ImageSizeControl,
 	BlockControls,
 } from '@wordpress/block-editor';
-
 import {
 	Spinner,
 	FocalPointPicker,
@@ -18,83 +17,67 @@ import {
 	ToolbarButton,
 	ToolbarGroup,
 } from '@wordpress/components';
-
 import { useSelect } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
-import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
-
 import { MediaToolbar, Image, Video } from '../index';
 import { getMedia, getEditorSettings } from '../../selectors';
 
-const EmbedPreview = styled.div`
-	label {
-		font-size: 11px;
-		font-weight: 500;
-		line-height: 1.4;
-		text-transform: uppercase;
-		display: inline-block;
-		margin-bottom: 8px;
-		padding: 0px;
-	}
-
-	.preview-wrap {
-		position: relative;
-		padding-bottom: 56.25%;
-		height: 0;
-		overflow: hidden;
-		iframe,
-		video {
-			max-width: 100%;
-			vertical-align: top;
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			border: 0;
-		}
-	}
-`;
-
-const PosterPreview = styled.div`
-	> label {
-		font-size: 11px;
-		font-weight: 500;
-		line-height: 1.4;
-		text-transform: uppercase;
-		display: inline-block;
-		margin-bottom: 8px;
-		padding: 0px;
-	}
-
-	.ds-media__image,
-	.ds-media__video-element,
-	.ds-media__video {
-		margin-bottom: 20px;
-	}
-`;
-
+/**
+ * MediaPanelContent is a functional component that provides a user interface
+ * for managing media settings including images and videos within a control panel.
+ *
+ * This variable destructures various props to customize the media settings:
+ *
+ * @param {object} props - The component props.
+ * @param {object} [props.media={}] - An object containing media details.
+ * @param {boolean} [props.displayFocalPicker=false] - Flag to enable focal point picker for images.
+ * @param {boolean} [props.allowMediaTypeSwitch=false] - Flag to allow switching between media types (image/video).
+ * @param {string} [props.controlPanelLabel='Media Settings'] - Label for the control panel.
+ * @param {boolean} [props.multiple=false] - Flag indicating if multiple media items are allowed.
+ * @param {boolean} [props.showBlockControls=true] - Flag to show/hide block controls.
+ * @param {boolean} [props.isBackground=false] - Flag indicating if the media is used as a background.
+ * @param {Function} [props.onSelect] - Callback function to handle media selection.
+ *
+ * @property {number} [media.id=0] - The media ID.
+ * @property {string} [media.mediaType='image'] - The type of media (image/video).
+ * @property {string} [media.imageSize='full'] - The size of the image.
+ * @property {boolean} [media.lazyLoad=true] - Flag to enable/disable lazy loading for images.
+ * @property {boolean} [media.srcset=true] - Flag to enable/disable responsive images support (srcset).
+ * @property {string} [media.videoSource='internal'] - The video source type (internal/external).
+ * @property {string} [media.videoUrl=''] - The URL of the external video.
+ * @property {object} [media.focalPoint={x: 0.5, y: 0.5}] - Focal point coordinates for images.
+ * @property {object} [media.videoControls={}] - Settings for controlling video playback.
+ *
+ * @property {boolean} [media.videoControls.autoplay=false] - Flag to enable/disable video autoplay.
+ * @property {boolean} [media.videoControls.isMuted=true] - Flag to enable/disable video mute.
+ * @property {boolean} [media.videoControls.showControls=true] - Flag to show/hide video controls.
+ * @property {number} [media.videoControls.posterId=0] - The ID of the video poster image.
+ * @property {string} [media.videoControls.posterSize='full'] - The size of the video poster image.
+ *
+ */
 export const MediaPanelContent = (props) => {
 	const {
-		media,
+		media = {},
+		displayFocalPicker = false,
+		allowMediaTypeSwitch = false,
+		controlPanelLabel = 'Media Settings',
+		multiple = false,
+		showBlockControls = true,
+		isBackground = false,
 		onSelect,
-		displayFocalPicker,
-		allowMediaTypeSwitch,
-		controlPanelLabel,
-		multiple,
-		showBlockControls,
-		isBackground,
 	} = props;
 	const {
-		id,
-		mediaType,
-		imageSize,
-		lazyLoad,
-		srcset,
+		id = 0,
+		mediaType = 'image',
+		imageSize = 'full',
+		lazyLoad = true,
+		srcset = true,
 		videoSource = 'internal',
 		videoUrl = '',
-		focalPoint = {},
+		focalPoint = {
+			x: 0.5,
+			y: 0.5,
+		},
 		videoControls = {},
 	} = media;
 
@@ -156,24 +139,24 @@ export const MediaPanelContent = (props) => {
 				{allowMediaTypeSwitch && (
 					<>
 						<ToggleGroupControl
-							label={__('Media Type')}
+							label="Media Type"
 							value={mediaType}
 							isBlock
 							onChange={(newType) => handleMediaTypeChange({ mediaType: newType })}
 						>
-							<ToggleGroupControlOption value="image" label={__('Image')} />
-							<ToggleGroupControlOption value="video" label={__('Video')} />
+							<ToggleGroupControlOption value="image" label="Image" />
+							<ToggleGroupControlOption value="video" label="Video" />
 						</ToggleGroupControl>
 
-						{mediaType == 'video' && (
+						{mediaType === 'video' && (
 							<ToggleGroupControl
-								label={__('Video Source')}
+								label="Video Source"
 								value={videoSource}
 								isBlock
 								onChange={(value) => handleMediaChange({ videoSource: value })}
 							>
-								<ToggleGroupControlOption value="internal" label={__('Internal')} />
-								<ToggleGroupControlOption value="external" label={__('External')} />
+								<ToggleGroupControlOption value="internal" label="Internal" />
+								<ToggleGroupControlOption value="external" label="External" />
 							</ToggleGroupControl>
 						)}
 					</>
@@ -194,7 +177,7 @@ export const MediaPanelContent = (props) => {
 								/>
 								{displayFocalPicker && (
 									<FocalPointPicker
-										label={__('Focal Point Picker')}
+										label="Focal Point Picker"
 										url={imageUrl}
 										value={focalPoint}
 										onChange={(newValues) => handleMediaChange({ focalPoint: newValues })}
@@ -203,7 +186,7 @@ export const MediaPanelContent = (props) => {
 
 								<ToggleControl
 									__nextHasNoMarginBottom
-									label={__('Lazy Load')}
+									label="Lazy Load"
 									onChange={() => handleMediaChange({ lazyLoad: !lazyLoad })}
 									checked={lazyLoad}
 									help="Disable this option if your image is in the first fold."
@@ -211,7 +194,7 @@ export const MediaPanelContent = (props) => {
 
 								<ToggleControl
 									__nextHasNoMarginBottom
-									label={__('Enable Responsive Images (srcset)')}
+									label="Enable Responsive Images (srcset)"
 									onChange={() => handleMediaChange({ srcset: !srcset })}
 									checked={srcset}
 									help="Srcset is an HTML image attribute that specifies the list of images to use in different browser situations."
@@ -239,54 +222,54 @@ export const MediaPanelContent = (props) => {
 
 										<ToggleControl
 											__nextHasNoMarginBottom
-											label={__('Autoplay Video')}
+											label="Autoplay Video"
 											onChange={() => handleVideoColtrol({ autoplay: !autoplay })}
 											checked={autoplay}
 										/>
 
 										<ToggleControl
 											__nextHasNoMarginBottom
-											label={__('Mute Video')}
+											label="Mute Video"
 											onChange={() => handleVideoColtrol({ isMuted: !isMuted })}
 											checked={isMuted}
 										/>
 
 										<ToggleControl
 											__nextHasNoMarginBottom
-											label={__('Show Controls')}
+											label="Show Controls"
 											onChange={() => handleVideoColtrol({ showControls: !showControls })}
 											checked={showControls}
 										/>
 
 										{embedPreview && (
-											<EmbedPreview>
-												<label>{__('Embed Preview')}</label>
+											<div className="ds-editor-embed-preview">
+												<label>Embed Preview</label>
 												<div
 													className="preview-wrap"
 													dangerouslySetInnerHTML={{ __html: embedPreview.html }}
 												/>
-											</EmbedPreview>
+											</div>
 										)}
 									</>
 								) : (
 									<>
 										<ToggleControl
 											__nextHasNoMarginBottom
-											label={__('Autoplay Video')}
+											label="Autoplay Video"
 											onChange={() => handleVideoColtrol({ autoplay: !autoplay })}
 											checked={autoplay}
 										/>
 
 										<ToggleControl
 											__nextHasNoMarginBottom
-											label={__('Mute Video')}
+											label="Mute Video"
 											onChange={() => handleVideoColtrol({ isMuted: !isMuted })}
 											checked={isMuted}
 										/>
 
 										<ToggleControl
 											__nextHasNoMarginBottom
-											label={__('Show Controls')}
+											label="Show Controls"
 											onChange={() => handleVideoColtrol({ showControls: !showControls })}
 											checked={showControls}
 										/>
@@ -307,8 +290,8 @@ export const MediaPanelContent = (props) => {
 												/>
 											</MediaUploadCheck>
 										) : (
-											<PosterPreview>
-												<label>{__('Video Preview')}</label>
+											<div className="ds-editor-poster-preview">
+												<label>Video Preview</label>
 												<Video
 													id={id}
 													videoSource={videoSource}
@@ -326,12 +309,12 @@ export const MediaPanelContent = (props) => {
 													slug={posterSize}
 													imageSizeOptions={availableImageSizes}
 												/>
-												<ToolbarGroup label={__('Poster')}>
+												<ToolbarGroup label="Poster">
 													<ToolbarButton onClick={() => handleVideoColtrol({ posterId: 0 })}>
-														{__('Remove Poster')}
+														Remove Poster
 													</ToolbarButton>
 												</ToolbarGroup>
-											</PosterPreview>
+											</div>
 										)}
 									</>
 								)}
@@ -340,7 +323,7 @@ export const MediaPanelContent = (props) => {
 					</>
 				) : (
 					<>
-						{videoSource == 'external' && mediaType == 'video' ? (
+						{videoSource === 'external' && mediaType === 'video' ? (
 							<>
 								<TextControl
 									label="Embed URL"
@@ -351,13 +334,13 @@ export const MediaPanelContent = (props) => {
 								/>
 
 								{embedPreview && (
-									<EmbedPreview>
-										<label>{__('Embed Preview')}</label>
+									<div className="ds-editor-embed-preview">
+										<label>Embed Preview</label>
 										<div
 											className="preview-wrap"
 											dangerouslySetInnerHTML={{ __html: embedPreview.html }}
 										/>
-									</EmbedPreview>
+									</div>
 								)}
 							</>
 						) : (
@@ -396,27 +379,13 @@ export const MediaPanelContent = (props) => {
 	);
 };
 
-export const MediaPicker = (props) => {
-	const { isControl } = props;
-
-	return (
-		<>
-			{isControl ? (
-				<MediaPanelContent {...props} />
-			) : (
-				<InspectorControls>
-					<MediaPanelContent {...props} />
-				</InspectorControls>
-			)}
-		</>
-	);
-};
-
-MediaPicker.defaultProps = {
+// Set Default Props
+const defaultMediaProps = {
 	media: {
 		id: 0,
 		mediaType: 'image',
 		lazyLoad: true,
+		srcset: true,
 		imageSize: 'full',
 		videoSource: 'internal',
 		videoUrl: '',
@@ -432,17 +401,46 @@ MediaPicker.defaultProps = {
 			posterSize: 'full',
 		},
 	},
-	displayFocalPicker: true,
+	displayFocalPicker: false,
 	allowMediaTypeSwitch: false,
-	controlPanelLabel: __('Media Settings'),
+	controlPanelLabel: 'Media Settings',
 	multiple: false,
-	isControl: true,
 	showBlockControls: true,
 	isBackground: false,
+	isControl: true,
+};
+
+/**
+ * MediaPicker is a functional component that conditionally renders
+ * media panel content based on the `isControl` property in the merged props.
+ *
+ * Props are merged with default media properties and passed down to the
+ * MediaPanelContent component.
+ *
+ * If `isControl` is true, MediaPanelContent is rendered directly.
+ * If `isControl` is false, MediaPanelContent is wrapped within InspectorControls before rendering.
+ *
+ * @param {object} props - Properties passed to the component
+ * @returns {JSX.Element} The rendered MediaPicker component
+ */
+export const MediaPicker = (props) => {
+	const mergedProps = { ...defaultMediaProps, ...props };
+	const { isControl } = mergedProps;
+
+	return (
+		<>
+			{isControl ? (
+				<MediaPanelContent {...mergedProps} />
+			) : (
+				<InspectorControls>
+					<MediaPanelContent {...mergedProps} />
+				</InspectorControls>
+			)}
+		</>
+	);
 };
 
 MediaPicker.propTypes = {
-	onSelect: PropTypes.func.isRequired,
 	media: PropTypes.object,
 	displayFocalPicker: PropTypes.bool,
 	allowMediaTypeSwitch: PropTypes.bool,
@@ -451,4 +449,5 @@ MediaPicker.propTypes = {
 	isControl: PropTypes.bool,
 	showBlockControls: PropTypes.bool,
 	isBackground: PropTypes.bool,
+	onSelect: PropTypes.func.isRequired,
 };

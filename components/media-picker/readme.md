@@ -10,21 +10,27 @@ The `MediaPicker` component is a WordPress Gutenberg block editor component desi
 import { MediaPicker } from '@digitalsilk/block-editor-components';
 
 const YourComponent = (props) => {
-  const { attributes, setAttributes } = props;
+	const { attributes, setAttributes } = props;
 	const { mediaData } = attributes;
 
-  const handleMediaSelect = (selectedMedia) => {
-    // Handle the selected media data
-    setAttributes({ mediaData: selectedMedia });
-  };
+	const handleMediaSelect = (selectedMedia) => {
+		// Handle the selected media data
+		setAttributes({ mediaData: selectedMedia });
+	};
 
-  return (
-    <MediaPicker
-      onSelect={handleMediaSelect}
-      media={mediaData}
-      // other props...
-    />
-  );
+	return (
+		<MediaPicker
+			onSelect={handleMediaSelect}
+			media={mediaData}
+			displayFocalPicker={true}
+			allowMediaTypeSwitch={false}
+			controlPanelLabel="Media Settings"
+			multiple={false}
+			showBlockControls={true}
+			isBackground={false}
+			isControl={true}
+		/>
+	);
 };
 ```
 
@@ -40,29 +46,30 @@ An object representing the initial media data. It should have the following stru
 
 ```js
 {
-  id: 0,
-  mediaType: 'image',
-  lazyLoad: true,
-  imageSize: 'full',
-  videoSource: 'internal',
-  videoUrl: '',
-  focalPoint: {
-    x: 0.5,
-    y: 0.5,
-  },
-  videoControls: {
-    autoplay: false,
-    isMuted: true,
-    showControls: true,
-    posterId: 0,
-    posterSize: 'full',
-  },
+	id: 0,
+	mediaType: 'image',
+	lazyLoad: true,
+	srcset: true,
+	imageSize: 'full',
+	videoSource: 'internal',
+	videoUrl: '',
+	focalPoint: {
+		x: 0.5,
+		y: 0.5,
+	},
+	videoControls: {
+		autoplay: false,
+		isMuted: true,
+		showControls: true,
+		posterId: 0,
+		posterSize: 'full',
+	},
 }
 ```
 
 ### `displayFocalPicker`
 
-A boolean indicating whether to display the focal point picker. Defaults to `true`.
+A boolean indicating whether to display the focal point picker. Defaults to `false`.
 
 ### `allowMediaTypeSwitch`
 
@@ -70,7 +77,7 @@ A boolean indicating whether to allow switching between image and video types. D
 
 ### `controlPanelLabel`
 
-A string representing the label for the control panel. Defaults to 'Media Settings'.
+A string representing the label for the control panel. Defaults to `'Media Settings'`.
 
 ### `multiple`
 
@@ -88,20 +95,19 @@ A boolean indicating whether to show block controls. Defaults to `true`.
 
 A boolean indicating whether the media is used as a background. Defaults to `false`.
 
-
 ## Example
 
 ```js
 <MediaPicker
-  onSelect={handleMediaSelect}
-  media={mediaData}
-  displayFocalPicker={true}
-  allowMediaTypeSwitch={false}
-  controlPanelLabel="Custom Settings"
-  multiple={true}
-  isControl={false}
-  showBlockControls={true}
-  isBackground={false}
+	onSelect={handleMediaSelect}
+	media={mediaData}
+	displayFocalPicker={true}
+	allowMediaTypeSwitch={false}
+	controlPanelLabel="Custom Settings"
+	multiple={true}
+	isControl={false}
+	showBlockControls={true}
+	isBackground={false}
 />
 ```
 
@@ -109,28 +115,28 @@ A boolean indicating whether the media is used as a background. Defaults to `fal
 
 ```js
 "attributes": {
-  "mediaData": {
-    "type": "object",
-    "default": {
-      "id": 0,
-      "mediaType": "image",
-      "lazyLoad": true,
-      "srcset": true,
-      "imageSize": "full",
-      "videoSource": "internal",
-      "videoUrl": "",
-      "videoControls": {
-        "autoplay": false,
-        "isMuted": true,
-        "showControls": true,
-        "posterId": 0,
-        "posterSize": "full"
-      },
-      "focalPoint": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    }
-  },
+	"mediaData": {
+	"type": "object",
+		"default": {
+			"id": 0,
+			"mediaType": "image",
+			"lazyLoad": true,
+			"srcset": true,
+			"imageSize": "full",
+			"videoSource": "internal",
+			"videoUrl": "",
+			"videoControls": {
+				"autoplay": false,
+				"isMuted": true,
+				"showControls": true,
+				"posterId": 0,
+				"posterSize": "full"
+			},
+			"focalPoint": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		}
+	}
 }
 ```

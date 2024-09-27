@@ -1,17 +1,17 @@
-export function MediaToolbar(props: any): import("react").JSX.Element;
+export function MediaToolbar({ onSelect, onRemove, id, mediaType, multiple }: {
+    onSelect: Function;
+    onRemove: Function;
+    id?: string | undefined;
+    mediaType?: string | undefined;
+    multiple?: boolean | undefined;
+}): JSX.Element;
 export namespace MediaToolbar {
-    namespace defaultProps {
-        let mediaType: string;
-        let multiple: boolean;
-    }
     namespace propTypes {
-        export let id: PropTypes.Validator<number>;
-        export let onSelect: PropTypes.Validator<(...args: any[]) => any>;
-        export let onRemove: PropTypes.Validator<(...args: any[]) => any>;
-        let mediaType_1: PropTypes.Requireable<string>;
-        export { mediaType_1 as mediaType };
-        let multiple_1: PropTypes.Requireable<boolean>;
-        export { multiple_1 as multiple };
+        let id: PropTypes.Validator<number>;
+        let onSelect: PropTypes.Validator<(...args: any[]) => any>;
+        let onRemove: PropTypes.Validator<(...args: any[]) => any>;
+        let mediaType: PropTypes.Requireable<string>;
+        let multiple: PropTypes.Requireable<boolean>;
     }
 }
 import PropTypes from 'prop-types';
