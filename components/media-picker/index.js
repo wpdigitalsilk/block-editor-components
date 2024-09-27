@@ -121,7 +121,7 @@ export const MediaPanelContent = (props) => {
 				embedPreview: videoUrl.length ? getEmbedPreview(videoUrl) : false,
 			};
 		},
-		[videoUrl]
+		[videoUrl],
 	);
 
 	if (isResolvingMedia) {
@@ -181,7 +181,7 @@ export const MediaPanelContent = (props) => {
 
 				{hasMedia ? (
 					<>
-						{mediaType == 'image' && (
+						{mediaType === 'image' && (
 							<>
 								<MediaToolbar
 									id={id}
@@ -225,9 +225,9 @@ export const MediaPanelContent = (props) => {
 							</>
 						)}
 
-						{mediaType == 'video' && (
+						{mediaType === 'video' && (
 							<>
-								{videoSource == 'external' ? (
+								{videoSource === 'external' ? (
 									<>
 										<TextControl
 											label="Embed URL"

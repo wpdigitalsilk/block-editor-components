@@ -1,36 +1,23 @@
 import PropTypes from 'prop-types';
-import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import styled from '@emotion/styled';
 import { ThemeIcon } from '../theme-icon';
 
-const IconList = styled.ul`
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-gap: 12px;
-	li {
-		display: flex;
-		align-items: center;
-		color: #000;
-		justify-content: center;
-		margin: 0;
-		padding: 3px;
-		border: 2px solid transparent;
-	}
-
-	li.selected {
-		border-color: #000;
-	}
-`;
-
-const IconPanelContent = (props) => {
-	const { onSelect, icon, width, height, panelTitle, isExpanded } = props; // New prop to handle icon selection
+/**
+ * IconPanelContent component renders a panel containing a list of icons.
+ *
+ * @param {object} props - The properties object.
+ * @param {string} props.icon - The currently selected icon.
+ * @param {number} props.width - The width of the icons to be displayed.
+ * @param {number} props.height - The height of the icons to be displayed.
+ * @param {string} props.panelTitle - The title of the panel.
+ * @param {boolean} props.isExpanded - Whether the panel is expanded initially.
+ * @param {Function} props.onSelect - Callback function that is called when an icon is selected.
+ *
+ * @returns {JSX.Element} The  component JSX elements. */
+const IconPanelContent = ({ icon, width, height, panelTitle, isExpanded, onSelect }) => {
 	const [icons, setIcons] = useState([]);
 	const [selectedIcon, setSelectedIcon] = useState(icon);
 
@@ -50,6 +37,12 @@ const IconPanelContent = (props) => {
 		fetchIcons();
 	}, []);
 
+	/**
+	 * Handles the selection of an icon.
+	 *
+	 * @param {string} selectedIcon - The identifier or name of the icon that has been selected.
+	 *
+	 */
 	const handleIconSelect = (selectedIcon) => {
 		setSelectedIcon(selectedIcon);
 		onSelect(selectedIcon);
@@ -58,7 +51,7 @@ const IconPanelContent = (props) => {
 	return (
 		<>
 			<PanelBody title={panelTitle} initialOpen={isExpanded}>
-				<IconList>
+				<ul className="ds-editor-icon-list">
 					{icons.map((icon) => (
 						<li
 							key={icon}
@@ -68,43 +61,76 @@ const IconPanelContent = (props) => {
 							<ThemeIcon icon={icon} width={width} height={height} />
 						</li>
 					))}
-				</IconList>
+				</ul>
 			</PanelBody>
 		</>
 	);
 };
 
-export const IconPicker = (props) => {
-	const { isControl } = props;
+// Set Default Props
+const defaultIconProps = {
+	icon: '',
+	width: 24,
+	height: 24,
+	panelTitle: 'Icon Picker',
+	isExpanded: true,
+	isControl: true,
+};
+
+/**
+ * IconPicker Component
+ *
+ * A component used to render an icon picker panel. It supports both controlled and inspector control modes.
+ *
+ * @param {object} props - The properties object.
+ * @param {string} [props.icon=''] - The initial icon to be selected.
+ * @param {number} [props.width=24] - The width of the icon display.
+ * @param {number} [props.height=24] - The height of the icon display.
+ * @param {boolean} [props.isControl=true] - Determines if the component is in controlled mode.
+ * @param {string} [props.panelTitle='Icon Picker'] - The title of the icon picker panel.
+ * @param {boolean} [props.isExpanded=true] - Determines if the panel is expanded.
+ * @param {Function} props.onSelect - Callback function to handle the selection of an icon.
+ *
+ * @returns {JSX.Element} The rendered IconPicker component.
+ */
+export const IconPicker = ({
+	icon = '',
+	width = 24,
+	height = 24,
+	panelTitle = 'Icon Picker',
+	isExpanded = true,
+	isControl = true,
+	onSelect,
+}) => {
+	const mergedProps = {
+		...defaultIconProps,
+		icon,
+		width,
+		height,
+		panelTitle,
+		isExpanded,
+		isControl,
+	};
 
 	return (
 		<>
 			{isControl ? (
-				<IconPanelContent {...props} />
+				<IconPanelContent onSelect={onSelect} {...mergedProps} />
 			) : (
 				<InspectorControls>
-					<IconPanelContent {...props} />
+					<IconPanelContent onSelect={onSelect} {...mergedProps} />
 				</InspectorControls>
 			)}
 		</>
 	);
 };
 
-IconPicker.defaultProps = {
-	icon: {},
-	width: 40,
-	height: 40,
-	isControl: true,
-	panelTitle: __('Icon Picker'),
-	isExpanded: true,
-};
-
 IconPicker.propTypes = {
 	icon: PropTypes.string,
 	width: PropTypes.number,
 	height: PropTypes.number,
-	onSelect: PropTypes.func.isRequired,
-	isControl: PropTypes.bool,
 	panelTitle: PropTypes.string,
+	isControl: PropTypes.bool,
 	isExpanded: PropTypes.bool,
+	onSelect: PropTypes.func.isRequired,
 };

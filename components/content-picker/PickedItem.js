@@ -1,4 +1,3 @@
-import { __ } from '@wordpress/i18n';
 import PropTypes from 'prop-types';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -21,20 +20,33 @@ const DragHandle = () => (
 	</svg>
 );
 
-// PickedItem
+/**
+ * PickedItem Component
+ *
+ * This component renders a single item that can be ordered, displayed, and deleted.
+ *
+ * @param {object} props - The properties object.
+ * @param {object} props.item - The item to be displayed, with properties like `uuid`, `title`, and `link`.
+ * @param {boolean} props.isOrderable - Flag indicating whether the item can be reordered.
+ * @param {number} props.index - Index of the item in the list.
+ * @param {React.Component} props.displayComponent - The component used to display the item.
+ * @param {object} props.displayComponentProps - Additional props to be passed to the display component.
+ * @param {string} props.childElement - The HTML tag to be used for the item container.
+ * @param {string} props.childClass - Additional class names to be added to the item container.
+ * @param {Function} props.handleItemDelete - Callback function to handle item deletion.
+ */
 const PickedItem = ({
-	item,
-	isOrderable,
-	handleItemDelete,
-	id,
-	index,
+	item = {},
+	isOrderable = false,
+	index = 0,
 	displayComponent: DisplayComponent,
-	displayComponentProps,
-	childElement,
-	childClass,
+	displayComponentProps = {},
+	childElement = 'div',
+	childClass = '',
+	handleItemDelete,
 }) => {
-	const { title, link } = item;
-	const { attributes, isDragging, listeners, setNodeRef, transform, transition } = useSortable({ id });
+	const { uuid, title, link } = item;
+	const { attributes, isDragging, listeners, setNodeRef, transform, transition } = useSortable({ uuid });
 	const style = {
 		transform: CSS.Transform.toString(transform),
 		transition,
@@ -58,7 +70,7 @@ const PickedItem = ({
 				{isOrderable ? (
 					<span {...attributes} {...listeners}>
 						<DragHandle />
-						<span>{__('Re-Order')}</span>
+						<span>Re-Order</span>
 					</span>
 				) : (
 					''
@@ -72,7 +84,7 @@ const PickedItem = ({
 					}}
 					className="ds-remove-content-item"
 				>
-					{__('Remove')}
+					Remove
 				</Button>
 			</div>
 
@@ -88,20 +100,15 @@ const PickedItem = ({
 	);
 };
 
-PickedItem.defaultProps = {
-	isOrderable: false,
-	childElement: 'div',
-	childClass: '',
-};
-
 PickedItem.propTypes = {
 	item: PropTypes.object.isRequired,
 	isOrderable: PropTypes.bool,
-	handleItemDelete: PropTypes.func.isRequired,
-	id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-	displayComponent: PropTypes.func,
+	index: PropTypes.number,
+	displayComponent: PropTypes.elementType,
 	childElement: PropTypes.string,
 	childClass: PropTypes.string,
+
+	handleItemDelete: PropTypes.func.isRequired,
 };
 
 export default PickedItem;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { BlockControls } from '@wordpress/block-editor';
 import { Button, ToolbarButton } from '@wordpress/components';
@@ -116,7 +115,7 @@ export const Repeater = ({
 									(val) => setItem(val, key),
 									() => removeItem(key),
 									item.id,
-									key
+									key,
 								)}
 							</React.Fragment>
 						);
@@ -148,8 +147,8 @@ Repeater.propTypes = {
 
 Repeater.defaultProps = {
 	defaultValue: [],
-	addButtonLabel: __('Add Item'),
-	removeButtonLabel: __('Remove Item'),
+	addButtonLabel: 'Add Item',
+	removeButtonLabel: 'Remove Item',
 	minItems: 1,
 	initialItems: 1,
 	removeLayout: 'vertical',

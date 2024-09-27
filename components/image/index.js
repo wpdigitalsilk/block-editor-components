@@ -31,7 +31,6 @@ export const Image = ({
 
 	// @ts-ignore
 	const { mediaDetails, isResolvingMedia } = getMedia(id);
-
 	const imageUrl = mediaDetails?.media_details?.sizes?.[imageSize]?.source_url ?? mediaDetails?.source_url;
 	const altText = mediaDetails?.alt_text;
 

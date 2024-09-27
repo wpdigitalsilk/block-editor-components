@@ -1,10 +1,12 @@
-export function ContentSearch({ onSelectItem, placeholder, label, perPage, postType, selectedItems, mode, }: {
-    onSelectItem: any;
-    placeholder: any;
-    label: any;
-    perPage?: number | undefined;
-    postType: any;
-    selectedItems?: any[] | undefined;
-    mode?: string | undefined;
-}): import("react").JSX.Element;
+export function ContentSearch({ placeholder, label, perPage, selectedItems, searchColumns, pickerType, entityType, storeKeys, onSelectItem, }: {
+    placeholder: string;
+    label: string;
+    perPage: number;
+    selectedItems: Array<object>;
+    searchColumns: Array<string>;
+    pickerType: string;
+    entityType: string;
+    storeKeys: Array<string>;
+    onSelectItem: Function;
+}): JSX.Element;
 //# sourceMappingURL=index.d.ts.map
