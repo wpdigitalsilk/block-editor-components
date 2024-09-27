@@ -10,24 +10,26 @@ The `Repeater` component is a versatile React component designed for managing an
 import { Repeater } from '@digitalsilk/block-editor-components';
 
 const YourComponent = (props) => {
-    const { value, onChange, defaultValue, addButtonLabel, removeButtonLabel } = props;
+	const { value, onChange, defaultValue, addButtonLabel, removeButtonLabel } = props;
 
-    return (
-        <Repeater
-            value={value}
-            onChange={onChange}
-            defaultValue={defaultValue}
-            addButtonLabel={addButtonLabel}
-            removeButtonLabel={removeButtonLabel}
-            initialItems={2}
-            minItems={1}
-            maxItems={5}
-        >
-            {(item, removeComponent, setItem, removeItem, itemId, key) => (
-                // Your child component content
-            )}
-        </Repeater>
-    );
+	return (
+		<Repeater
+			value={value}
+			onChange={onChange}
+			defaultValue={defaultValue}
+			addButtonLabel={addButtonLabel}
+			removeButtonLabel={removeButtonLabel}
+			initialItems={2}
+			minItems={1}
+			maxItems={5}
+			removeLayout="vertical"
+			showBlockControls={true}
+		>
+			{(item, removeComponent, setItem, removeItem, itemId, key) => (
+				// Your child component content
+			)}
+		</Repeater>
+	);
 };
 ```
 
@@ -43,7 +45,7 @@ A function to handle changes to the set of items.
 
 ### `defaultValue`
 
-An array representing the default set of items.
+An array representing the default set of items. Defaults to `[]`.
 
 ### `addButtonLabel`
 
@@ -55,23 +57,23 @@ A string representing the label for the "Remove Item" button. Defaults to `'Remo
 
 ### `initialItems`
 
-Number of initial items to show. Defaults to `1`
+Number of initial items to show. Defaults to `1`.
 
 ### `minItems`
 
-A Number of minimum items allowed. Defaults to `1`
+A number representing the minimum number of items allowed. Defaults to `1`.
 
 ### `maxItems`
 
-A Number of maximum items allowed.
+A number representing the maximum number of items allowed.
 
 ### `removeLayout`
 
-String. vertical or horizontal. Defaults to vertical
+A string representing the layout of the remove button, can be either `vertical` or `horizontal`. Defaults to `vertical`.
 
 ### `showBlockControls`
 
-Bool. Control should `BlockControls` be used or not
+A boolean indicating whether `BlockControls` should be used. Defaults to `true`.
 
 ## Child Component Props
 
@@ -88,17 +90,20 @@ When using the `Repeater` component, your child component receives the following
 
 ```js
 <Repeater
-    value={[{ text: 'Item 1' }, { text: 'Item 2' }]}
-    onChange={(newValue) => console.log(newValue)}
-    defaultValue={[]}
-    addButtonLabel="Add New Item"
-    removeButtonLabel="Remove This Item"
-    initialItems={2}
-    maxItems={5}
+	value={[{ text: 'Item 1' }, { text: 'Item 2' }]}
+	onChange={(newValue) => console.log(newValue)}
+	defaultValue={[]}
+	addButtonLabel="Add New Item"
+	removeButtonLabel="Remove This Item"
+	initialItems={2}
+	minItems={1}
+	maxItems={5}
+	removeLayout="horizontal"
+	showBlockControls={true}
 >
-    {(item, removeComponent, setItem, removeItem, itemId, key) => (
-        // Your child component content
-    )}
+	{(item, removeComponent, setItem, removeItem, itemId, key) => (
+		// Your child component content
+	)}
 </Repeater>
 ```
 

@@ -1,23 +1,42 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { v4 as uuid } from 'uuid';
 import { useEffect } from '@wordpress/element';
 import { BlockControls } from '@wordpress/block-editor';
 import { Button, ToolbarButton } from '@wordpress/components';
 import { plusCircle, close } from '@wordpress/icons';
-import PropTypes from 'prop-types';
-import { v4 as uuid } from 'uuid';
 
+/**
+ * A component for rendering and managing a dynamic list of items. Each item provides controls
+ * for adding, modifying, and removing entries. The appearance and behavior of the list can be
+ * customized via props.
+ *
+ * @param {object} props - Properties for configuring the Repeater component.
+ * @param {React.ReactNode} props.children - Function to render the children components with provided callbacks for managing items.
+ * @param {Function} props.onChange - Callback function to execute when there is a change in the list of items.
+ * @param {Array} [props.value=[]] - Current list of items.
+ * @param {Array} [props.defaultValue=[]] - Default list of items to populate initially.
+ * @param {string} [props.addButtonLabel='Add Item'] - Label for the button to add new items.
+ * @param {string} [props.removeButtonLabel='Remove Item'] - Label for the button to remove items.
+ * @param {number} [props.minItems=1] - Minimum number of items allowed in the list.
+ * @param {number} [props.maxItems] - Maximum number of items allowed in the list.
+ * @param {number} [props.initialItems=1] - Number of items to initially populate the list with.
+ * @param {string} [props.removeLayout='vertical'] - Layout direction for the remove button (e.g., "vertical" or "horizontal").
+ * @param {boolean} [props.showBlockControls=true] - Flag to show or hide the block controls for managing items.
+ * @returns {JSX.Element} The Repeater component.
+ */
 export const Repeater = ({
 	children,
 	onChange,
-	value,
+	value = [],
 	defaultValue = [],
-	addButtonLabel,
-	removeButtonLabel,
-	minItems,
+	addButtonLabel = 'Add Item',
+	removeButtonLabel = 'Remove Item',
+	minItems = 1,
 	maxItems,
-	initialItems,
-	removeLayout,
-	showBlockControls,
+	initialItems = 1,
+	removeLayout = 'vertical',
+	showBlockControls = true,
 }) => {
 	/**
 	 * Add Initial Items
@@ -68,7 +87,11 @@ export const Repeater = ({
 	}
 
 	/**
-	 * Set Item
+	 * Sets a new value at the specified index in the value array and triggers the onChange callback.
+	 *
+	 * @param {object | any} newValue - The new value to be set at the specified index. Can be an object or any other type.
+	 * @param {number} index - The index at which the new value should be set.
+	 * @return {void} This function does not return a value.
 	 */
 	function setItem(newValue, index) {
 		const valueCopy = JSON.parse(JSON.stringify(value));
@@ -83,7 +106,10 @@ export const Repeater = ({
 	}
 
 	/**
-	 * Remove Item
+	 * Removes an item from a list at the specified index.
+	 *
+	 * @param {number} index - The position of the item to be removed.
+	 * @return {undefined} This method does not return a value.
 	 */
 	function removeItem(index) {
 		const valueCopy = JSON.parse(JSON.stringify(value)).filter((item, innerIndex) => index !== innerIndex);
@@ -135,6 +161,8 @@ export const Repeater = ({
 
 Repeater.propTypes = {
 	children: PropTypes.func.isRequired,
+	onChange: PropTypes.func.isRequired,
+	value: PropTypes.array.isRequired,
 	defaultValue: PropTypes.array,
 	addButtonLabel: PropTypes.string,
 	removeButtonLabel: PropTypes.string,
@@ -143,14 +171,4 @@ Repeater.propTypes = {
 	initialItems: PropTypes.number,
 	removeLayout: PropTypes.string,
 	showBlockControls: PropTypes.bool,
-};
-
-Repeater.defaultProps = {
-	defaultValue: [],
-	addButtonLabel: 'Add Item',
-	removeButtonLabel: 'Remove Item',
-	minItems: 1,
-	initialItems: 1,
-	removeLayout: 'vertical',
-	showBlockControls: true,
 };

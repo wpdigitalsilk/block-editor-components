@@ -1,16 +1,28 @@
-import { __ } from '@wordpress/i18n';
+import PropTypes from 'prop-types';
 import { MediaReplaceFlow, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
-import PropTypes from 'prop-types';
 import { getMedia } from '../../selectors';
 
-export const MediaToolbar = (props) => {
-	const { onSelect, onRemove, id, mediaType, multiple } = props;
+/**
+ * MediaToolbar is a component that provides a toolbar interface for media selection,
+ * replacement, and removal actions, tailored for a specific media type.
+ *
+ * @param {object} props                              The component properties.
+ * @param {Function} props.onSelect                   Callback function to handle media selection.
+ * @param {Function} props.onRemove                   Callback function to handle media removal.
+ * @param {string} [props.id]                         The ID of the selected media.
+ * @param {string} [props.mediaType='image']          The type of media to be handled, defaults to 'image'.
+ * @param {boolean} [props.multiple=false]            Whether multiple media items can be selected, defaults to false.
+ *
+ * @returns {JSX.Element}                             The toolbar component for media handling.
+ */
+export const MediaToolbar = ({ onSelect, onRemove, id, mediaType = 'image', multiple = false }) => {
 	const hasMedia = !!id;
+	// @ts-ignore
 	const { mediaDetails } = getMedia(id);
 
 	return (
-		<ToolbarGroup label={__('Media')}>
+		<ToolbarGroup label="Media">
 			{hasMedia ? (
 				<>
 					<MediaReplaceFlow
@@ -32,11 +44,6 @@ export const MediaToolbar = (props) => {
 			)}
 		</ToolbarGroup>
 	);
-};
-
-MediaToolbar.defaultProps = {
-	mediaType: 'image',
-	multiple: false,
 };
 
 MediaToolbar.propTypes = {
