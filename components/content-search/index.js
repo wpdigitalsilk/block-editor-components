@@ -77,7 +77,7 @@ export const ContentSearch = ({
 				]),
 			};
 		},
-		[searchString, entityType],
+		[searchString, entityType]
 	);
 
 	// Filter out already selected items
@@ -88,15 +88,21 @@ export const ContentSearch = ({
 
 	const reduceItem = (item) => {
 		let reducedItem = {};
-		if (item && storeKeys && storeKeys.length > 0) {
-			storeKeys.forEach((key) => {
-				if (item.hasOwnProperty(key)) {
-					reducedItem[key] = item[key];
-				}
-			});
-		} else {
-			reducedItem = item;
+
+		if (storeKeys && storeKeys.length === 0) {
+			return item;
 		}
+
+		// Always include 'uuid' if it exists
+		if (item.hasOwnProperty('uuid')) {
+			reducedItem['uuid'] = item['uuid'];
+		}
+
+		storeKeys.forEach((key) => {
+			if (item.hasOwnProperty(key)) {
+				reducedItem[key] = item[key];
+			}
+		});
 
 		return reducedItem;
 	};
@@ -150,29 +156,29 @@ export const ContentSearch = ({
 	const isLoading = !hasResolved;
 
 	return (
-		<div className="ds-component-content-search">
-			<NavigableMenu onNavigate={handleOnNavigate} orientation="vertical">
-				<div className="ds-component-content-search__wrap">
+		<div className='ds-component-content-search'>
+			<NavigableMenu onNavigate={handleOnNavigate} orientation='vertical'>
+				<div className='ds-component-content-search__wrap'>
 					<TextControl
 						label={label}
 						value={searchString}
 						onChange={(newSearchString) => handleSearchStringChange(newSearchString)}
 						placeholder={placeholder}
-						autoComplete="off"
+						autoComplete='off'
 					/>
 				</div>
 
 				{hasSearchString ? (
 					<>
-						<ul className="ds-component-content-search__list">
+						<ul className='ds-component-content-search__list'>
 							{isLoading && (
-								<li className="ds-component-content-search__list-spinner">
+								<li className='ds-component-content-search__list-spinner'>
 									<Spinner />
 								</li>
 							)}
 
 							{!isLoading && !hasSearchResults && (
-								<li className="ds-component-content-search__list-item nothing-found">
+								<li className='ds-component-content-search__list-item nothing-found'>
 									Nothing found for the selected query.
 								</li>
 							)}
@@ -191,7 +197,7 @@ export const ContentSearch = ({
 									}
 
 									return (
-										<li key={item.id} className="ds-component-content-search__list-item">
+										<li key={item.id} className='ds-component-content-search__list-item'>
 											<SearchItem
 												onClick={() => handleItemSelection(item)}
 												searchTerm={searchString}

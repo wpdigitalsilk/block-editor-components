@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.4.0
+
+### Minor Changes
+
+-   update contentpicker
+
 ## 0.3.9
 
 ### Patch Changes
