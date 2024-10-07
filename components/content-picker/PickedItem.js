@@ -8,15 +8,15 @@ import { close } from '@wordpress/icons';
 
 const DragHandle = () => (
 	<svg
-		width="18"
-		height="18"
-		xmlns="http://www.w3.org/2000/svg"
-		viewBox="0 0 18 18"
-		role="img"
-		aria-hidden="true"
-		focusable="false"
+		width='18'
+		height='18'
+		xmlns='http://www.w3.org/2000/svg'
+		viewBox='0 0 18 18'
+		role='img'
+		aria-hidden='true'
+		focusable='false'
 	>
-		<path d="M5 4h2V2H5v2zm6-2v2h2V2h-2zm-6 8h2V8H5v2zm6 0h2V8h-2v2zm-6 6h2v-2H5v2zm6 0h2v-2h-2v2z" />
+		<path d='M5 4h2V2H5v2zm6-2v2h2V2h-2zm-6 8h2V8H5v2zm6 0h2V8h-2v2zm-6 6h2v-2H5v2zm6 0h2v-2h-2v2z' />
 	</svg>
 );
 
@@ -46,7 +46,7 @@ const PickedItem = ({
 	handleItemDelete,
 }) => {
 	const { uuid, title, link } = item;
-	const { attributes, isDragging, listeners, setNodeRef, transform, transition } = useSortable({ uuid });
+	const { attributes, isDragging, listeners, setNodeRef, transform, transition } = useSortable({ id: uuid });
 	const style = {
 		transform: CSS.Transform.toString(transform),
 		transition,
@@ -66,7 +66,7 @@ const PickedItem = ({
 			ref={setNodeRef}
 			style={style}
 		>
-			<div className="ds-content-picker__item-actions">
+			<div className='ds-content-picker__item-actions'>
 				{isOrderable ? (
 					<span {...attributes} {...listeners}>
 						<DragHandle />
@@ -77,12 +77,12 @@ const PickedItem = ({
 				)}
 
 				<Button
-					type="button"
+					type='button'
 					icon={close}
 					onClick={() => {
 						handleItemDelete(item);
 					}}
-					className="ds-remove-content-item"
+					className='ds-remove-content-item'
 				>
 					Remove
 				</Button>
@@ -91,9 +91,9 @@ const PickedItem = ({
 			{DisplayComponent ? (
 				<DisplayComponent item={item} index={index} {...displayComponentProps} />
 			) : (
-				<span className="ds-content-picker__item-default">
-					<span className="item-title">{decodeEntities(title?.rendered || '')}</span>
-					<span className="item-info">{filterURLForDisplay(safeDecodeURI(link)) || ''}</span>
+				<span className='ds-content-picker__item-default'>
+					<span className='item-title'>{decodeEntities(title?.rendered || '')}</span>
+					<span className='item-info'>{filterURLForDisplay(safeDecodeURI(link)) || ''}</span>
 				</span>
 			)}
 		</TagName>
