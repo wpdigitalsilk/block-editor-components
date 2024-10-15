@@ -9,7 +9,7 @@ export default SortableList;
  * @param {string} props.childElement - The HTML element type to wrap each post item.
  * @param {string} props.childClass - CSS class names to apply to the child elements.
  * @param {React.Component} props.displayComponent - A React component to display each post item.
- * @param {object} props.displayComponentProps- Props to pass to the display component.
+ * @param {object} props.displayComponentProps - Props to pass to the display component.
  * @param {Function} props.handleItemDelete - Callback function to handle the deletion of a post item.
  * @param {Function} props.setPosts - Function to update the posts array after reordering.
  * @returns {JSX.Element} The rendered sortable list component.

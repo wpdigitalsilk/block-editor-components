@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.4.1
+
+### Patch Changes
+
+-   update builder deps
+
 ## 0.4.0
 
 ### Minor Changes

@@ -19,7 +19,7 @@ import {
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
-import { MediaToolbar, Image, Video } from '../index';
+import { MediaToolbar, Video } from '../index';
 import { getMedia, getEditorSettings } from '../../selectors';
 
 /**
@@ -63,7 +63,6 @@ export const MediaPanelContent = (props) => {
 		controlPanelLabel = 'Media Settings',
 		multiple = false,
 		showBlockControls = true,
-		isBackground = false,
 		onSelect,
 	} = props;
 	const {

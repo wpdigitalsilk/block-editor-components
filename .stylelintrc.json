@@ -1,0 +1,24 @@
+{
+	"rules": {
+		"selector-class-pattern": null,
+		"rule-empty-line-before": null,
+		"at-rule-empty-line-before": null,
+		"@stylistic/declaration-colon-newline-after": null,
+		"@stylistic/function-parentheses-space-inside": null,
+		"@stylistic/no-eol-whitespace": null,
+		"no-descending-specificity": null,
+		"comment-empty-line-before": null,
+		"value-keyword-case": null,
+		"@stylistic/max-line-length": 120
+	},
+	"overrides": [
+		{
+			"files": [ "*.scss", "**/*.scss" ],
+			"extends": "@wordpress/stylelint-config/scss-stylistic"
+		},
+		{
+			"files": [ "*.css", "**/*.css" ],
+			"extends": "@wordpress/stylelint-config/stylistic"
+		}
+	]
+}
