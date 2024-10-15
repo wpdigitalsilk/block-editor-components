@@ -29,8 +29,8 @@ const IconPanelContent = ({ icon, width, height, panelTitle, isExpanded, onSelec
 				});
 				setIcons(response?.icons || []);
 			} catch (error) {
-				console.log('Error fetching icons');
-				console.warn(error);
+				console.log('Error fetching icons'); // eslint-disable-line
+				console.warn(error); // eslint-disable-line
 			}
 		};
 

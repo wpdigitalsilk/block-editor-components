@@ -1,58 +1,52 @@
 /**
- * Link component that can be used inside other Gutenberg blocks for setting up URLs.
+ * A React functional component to handle link creation and editing with rich text capabilities.
  *
- * The link should not be visible if the block is not focused. This will maintain nicer
- * visuals in the block editor as a whole.
+ * @param {object} props The properties passed to this component.
+ * @param {string} props.value The displayed text of the link.
+ * @param {string} props.url The URL to which the link points.
+ * @param {string} props.type The type of the link for categorization or custom handling.
+ * @param {boolean} props.opensInNewTab Flag to determine if the link should open in a new tab.
+ * @param {string} props.kind The kind of link used for suggestion filtering.
+ * @param {string} props.placeholder Placeholder text for the link input.
+ * @param {boolean} props.isControl Flag to determine if the link is a control element.
+ * @param {string} props.controlLabel The label description for the control link type.
+ * @param {string} props.className Additional class names for custom styling.
+ * @param {Function} props.onLinkChange Callback function to handle link changes.
+ * @param {Function} props.onTextChange Callback function to handle text changes.
+ * @param {Function} props.onLinkRemove Callback function to handle link removal.
+ * @param {object} props.rest Additional properties to be passed down to child components.
  *
- * @param {...object} props								All properties passed to the component.
- * @param {string} props.value 							The text to show inside the link
- * @param {string} props.type 							Post or Page, used to autosuggest content for URL
- * @param {boolean} props.opensInNewTab 				Should the link open in a new tab?
- * @param {string} props.url 							The actual link to be set as href
- * @param {Function} props.onLinkChange 				Callback when the URL is changed
- * @param {Function} props.onLinkRemove 				Callback when the URL is changed
- * @param {Function} props.onTextChange 				Callback when the link's text is changed
- * @param {string} props.kind 							Page or Post
- * @param {string} props.placeholder 					Text visible before actual value is inserted
- * @param {string} props.className 					    html class to be applied to the anchor element
- *
- * @returns {*} The rendered component.
+ * @returns {JSX.Element} The rendered React component for creating and editing a link.
  */
-export function Link({ value, type, opensInNewTab, url, onLinkChange, onTextChange, onLinkRemove, kind, placeholder, className, isControl, controlLabel, ...rest }: object[]): any;
+export function Link({ value, url, type, opensInNewTab, kind, placeholder, isControl, controlLabel, className, onLinkChange, onTextChange, onLinkRemove, ...rest }: {
+    value: string;
+    url: string;
+    type: string;
+    opensInNewTab: boolean;
+    kind: string;
+    placeholder: string;
+    isControl: boolean;
+    controlLabel: string;
+    className: string;
+    onLinkChange: Function;
+    onTextChange: Function;
+    onLinkRemove: Function;
+    rest: object;
+}): JSX.Element;
 export namespace Link {
-    namespace defaultProps {
-        let value: string;
-        let url: string;
-        let className: string;
-        let onLinkRemove: undefined;
-        let type: string;
-        let kind: string;
-        let placeholder: string;
-        let isControl: boolean;
-        let controlLabel: string;
-    }
     namespace propTypes {
-        let value_1: PropTypes.Requireable<string>;
-        export { value_1 as value };
-        let url_1: PropTypes.Requireable<string>;
-        export { url_1 as url };
-        export let onLinkChange: PropTypes.Validator<(...args: any[]) => any>;
-        let onLinkRemove_1: PropTypes.Requireable<(...args: any[]) => any>;
-        export { onLinkRemove_1 as onLinkRemove };
-        export let onTextChange: PropTypes.Validator<(...args: any[]) => any>;
-        export let opensInNewTab: PropTypes.Validator<boolean>;
-        let type_1: PropTypes.Requireable<string>;
-        export { type_1 as type };
-        let kind_1: PropTypes.Requireable<string>;
-        export { kind_1 as kind };
-        let className_1: PropTypes.Requireable<string>;
-        export { className_1 as className };
-        let placeholder_1: PropTypes.Requireable<string>;
-        export { placeholder_1 as placeholder };
-        let isControl_1: PropTypes.Requireable<boolean>;
-        export { isControl_1 as isControl };
-        let controlLabel_1: PropTypes.Requireable<string>;
-        export { controlLabel_1 as controlLabel };
+        let value: PropTypes.Requireable<string>;
+        let url: PropTypes.Requireable<string>;
+        let onLinkChange: PropTypes.Validator<(...args: any[]) => any>;
+        let onLinkRemove: PropTypes.Requireable<(...args: any[]) => any>;
+        let onTextChange: PropTypes.Validator<(...args: any[]) => any>;
+        let opensInNewTab: PropTypes.Validator<boolean>;
+        let type: PropTypes.Requireable<string>;
+        let kind: PropTypes.Requireable<string>;
+        let className: PropTypes.Requireable<string>;
+        let placeholder: PropTypes.Requireable<string>;
+        let isControl: PropTypes.Requireable<boolean>;
+        let controlLabel: PropTypes.Requireable<string>;
     }
 }
 import PropTypes from 'prop-types';

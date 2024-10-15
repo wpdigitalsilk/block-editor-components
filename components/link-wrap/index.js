@@ -6,10 +6,9 @@ import PropTypes from 'prop-types';
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useRef } from '@wordpress/element';
 import { Popover, Icon, Tooltip } from '@wordpress/components';
-import { __experimentalLinkControl as LinkControl, RichText } from '@wordpress/block-editor';
+import { __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
 
 /**
  * Internal Dependencies
@@ -48,18 +47,32 @@ function getSuggestionsQuery(type, kind) {
 }
 
 /**
- * Link Wrap component that can be used inside other Gutenberg blocks for setting up URLs.
+ * LinkWrap is a React functional component that renders a link element
+ * (or other specified tag) with an optional popover for link control and management.
  *
+ * @param {object} props - Properties passed to the component.
+ * @param {string} props.linkText - The text to display for the link.
+ * @param {string} props.url - The URL the link should navigate to.
+ * @param {boolean} props.opensInNewTab - Determines if the link should open in a new tab.
+ * @param {string} props.type - The type of link (used to filter suggestions).
+ * @param {string} props.kind - The kind of link (used to filter suggestions).
+ * @param {string} props.tagName - The HTML tag to use for the link element.
+ * @param {Function} props.onLinkChange - Callback function to handle link changes.
+ * @param {Function} props.onLinkRemove - Callback function to handle link removal.
+ * @param {JSX.Element} props.children - Child elements to be rendered inside the link.
+ * @param {object} props.rest - Additional properties to be spread onto the link element.
+ *
+ * @returns {JSX.Element} The rendered React component for creating and editing a link.
  */
 export const LinkWrap = ({
-	type,
-	linkText,
-	url,
-	opensInNewTab,
-	tagName,
+	linkText = '',
+	url = '',
+	opensInNewTab = false,
+	type = '',
+	kind = '',
+	tagName = 'a',
 	onLinkChange,
 	onLinkRemove,
-	kind,
 	children,
 	...rest
 }) => {
@@ -93,7 +106,7 @@ export const LinkWrap = ({
 				{children}
 
 				{!isValidLink && (
-					<Tooltip text={__('URL has not been set')}>
+					<Tooltip text="URL has not been set">
 						<span className="invalid-link">
 							<Icon icon="warning" />
 						</span>
@@ -115,7 +128,7 @@ export const LinkWrap = ({
 						settings={[
 							{
 								id: 'opensInNewTab',
-								title: __('Open in new tab'),
+								title: 'Open in new tab',
 							},
 						]}
 					/>
@@ -125,22 +138,13 @@ export const LinkWrap = ({
 	);
 };
 
-LinkWrap.defaultProps = {
-	linkText: '',
-	url: '',
-	onLinkRemove: undefined,
-	type: '',
-	kind: '',
-	tagName: 'a',
-};
-
 LinkWrap.propTypes = {
 	linkText: PropTypes.string,
 	url: PropTypes.string,
-	onLinkChange: PropTypes.func.isRequired,
-	onLinkRemove: PropTypes.func,
 	opensInNewTab: PropTypes.bool.isRequired,
 	type: PropTypes.string,
 	kind: PropTypes.string,
 	tagName: PropTypes.string,
+	onLinkChange: PropTypes.func.isRequired,
+	onLinkRemove: PropTypes.func,
 };

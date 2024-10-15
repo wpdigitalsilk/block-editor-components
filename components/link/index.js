@@ -1,13 +1,11 @@
 /**
  * External dependencies
  */
-import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useRef } from '@wordpress/element';
 import { Popover, Icon, Tooltip } from '@wordpress/components';
 import { __experimentalLinkControl as LinkControl, RichText } from '@wordpress/block-editor';
@@ -15,7 +13,6 @@ import { __experimentalLinkControl as LinkControl, RichText } from '@wordpress/b
 /**
  * Internal Dependencies
  */
-import { StyledComponentContext } from '../../contexts';
 import { getOutsideClickRef } from '../../selectors';
 
 /**
@@ -49,72 +46,39 @@ function getSuggestionsQuery(type, kind) {
 	}
 }
 
-const StylesRichTextLink = styled(RichText)`
-	--color--warning: #f00;
-
-	/* Reset margins for this block alone. */
-	--global--spacing-vertical: 0;
-	--global--spacing-vertical: 0;
-
-	color: var(--wp--style--color--link);
-	position: relative;
-	display: block;
-	align-items: center;
-	gap: 0.5em;
-	text-decoration: underline;
-
-	/* This holds the text URL input */
-	& > div {
-		text-decoration: underline;
-	}
-
-	.dashicon {
-		text-decoration: none;
-		font-size: 1em;
-		width: 1.5em;
-		height: 1.5em;
-		border-radius: 50%;
-		background: transparent;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: var(--color--warning);
-	}
-`;
-
 /**
- * Link component that can be used inside other Gutenberg blocks for setting up URLs.
+ * A React functional component to handle link creation and editing with rich text capabilities.
  *
- * The link should not be visible if the block is not focused. This will maintain nicer
- * visuals in the block editor as a whole.
+ * @param {object} props The properties passed to this component.
+ * @param {string} props.value The displayed text of the link.
+ * @param {string} props.url The URL to which the link points.
+ * @param {string} props.type The type of the link for categorization or custom handling.
+ * @param {boolean} props.opensInNewTab Flag to determine if the link should open in a new tab.
+ * @param {string} props.kind The kind of link used for suggestion filtering.
+ * @param {string} props.placeholder Placeholder text for the link input.
+ * @param {boolean} props.isControl Flag to determine if the link is a control element.
+ * @param {string} props.controlLabel The label description for the control link type.
+ * @param {string} props.className Additional class names for custom styling.
+ * @param {Function} props.onLinkChange Callback function to handle link changes.
+ * @param {Function} props.onTextChange Callback function to handle text changes.
+ * @param {Function} props.onLinkRemove Callback function to handle link removal.
+ * @param {object} props.rest Additional properties to be passed down to child components.
  *
- * @param {...object} props								All properties passed to the component.
- * @param {string} props.value 							The text to show inside the link
- * @param {string} props.type 							Post or Page, used to autosuggest content for URL
- * @param {boolean} props.opensInNewTab 				Should the link open in a new tab?
- * @param {string} props.url 							The actual link to be set as href
- * @param {Function} props.onLinkChange 				Callback when the URL is changed
- * @param {Function} props.onLinkRemove 				Callback when the URL is changed
- * @param {Function} props.onTextChange 				Callback when the link's text is changed
- * @param {string} props.kind 							Page or Post
- * @param {string} props.placeholder 					Text visible before actual value is inserted
- * @param {string} props.className 					    html class to be applied to the anchor element
- *
- * @returns {*} The rendered component.
+ * @returns {JSX.Element} The rendered React component for creating and editing a link.
  */
 const Link = ({
-	value,
-	type,
-	opensInNewTab,
-	url,
+	value = '',
+	url = '',
+	type = '',
+	opensInNewTab = false,
+	kind = '',
+	placeholder = 'Link text...',
+	isControl = false,
+	controlLabel = 'Link Text',
+	className = '',
 	onLinkChange,
 	onTextChange,
 	onLinkRemove,
-	kind,
-	placeholder,
-	className,
-	isControl,
-	controlLabel,
 	...rest
 }) => {
 	const [isPopoverVisible, setIsPopoverVisible] = useState(false);
@@ -141,9 +105,9 @@ const Link = ({
 	}, [url, value]);
 
 	return (
-		<StyledComponentContext cacheKey="ds-link-component">
+		<>
 			{isControl && <p className="ds-link__label-desc">{controlLabel}</p>}
-			<StylesRichTextLink
+			<RichText
 				tagName="a"
 				className={`ds-link__label ${className} ${isControl ? 'contol-label' : ''}`}
 				value={value}
@@ -157,7 +121,7 @@ const Link = ({
 			/>
 
 			{!isValidLink && (
-				<Tooltip text={__('URL or Text has not been set')}>
+				<Tooltip text="URL or Text has not been set">
 					<span>
 						<Icon icon="warning" />
 					</span>
@@ -178,26 +142,14 @@ const Link = ({
 						settings={[
 							{
 								id: 'opensInNewTab',
-								title: __('Open in new tab'),
+								title: 'Open in new tab',
 							},
 						]}
 					/>
 				</Popover>
 			)}
-		</StyledComponentContext>
+		</>
 	);
-};
-
-Link.defaultProps = {
-	value: '',
-	url: '',
-	className: '',
-	onLinkRemove: undefined,
-	type: '',
-	kind: '',
-	placeholder: __('Link text...'),
-	isControl: false,
-	controlLabel: __('Link Text'),
 };
 
 Link.propTypes = {

@@ -7,23 +7,20 @@ import { Button, ToolbarButton } from '@wordpress/components';
 import { plusCircle, close } from '@wordpress/icons';
 
 /**
- * A component for rendering and managing a dynamic list of items. Each item provides controls
- * for adding, modifying, and removing entries. The appearance and behavior of the list can be
- * customized via props.
+ * The Repeater component dynamically manages a list of items, allowing the addition and removal of items. Provides callbacks for handling changes to the list.
  *
- * @param {object} props - Properties for configuring the Repeater component.
- * @param {React.ReactNode} props.children - Function to render the children components with provided callbacks for managing items.
- * @param {Function} props.onChange - Callback function to execute when there is a change in the list of items.
- * @param {Array} [props.value=[]] - Current list of items.
- * @param {Array} [props.defaultValue=[]] - Default list of items to populate initially.
- * @param {string} [props.addButtonLabel='Add Item'] - Label for the button to add new items.
- * @param {string} [props.removeButtonLabel='Remove Item'] - Label for the button to remove items.
- * @param {number} [props.minItems=1] - Minimum number of items allowed in the list.
- * @param {number} [props.maxItems] - Maximum number of items allowed in the list.
- * @param {number} [props.initialItems=1] - Number of items to initially populate the list with.
- * @param {string} [props.removeLayout='vertical'] - Layout direction for the remove button (e.g., "vertical" or "horizontal").
- * @param {boolean} [props.showBlockControls=true] - Flag to show or hide the block controls for managing items.
- * @returns {JSX.Element} The Repeater component.
+ * @param {object} props - The component properties.
+ * @param {Function} props.children - A render function for the repeater items. Receives item data, remove component, set item callback, remove item callback, item id, and key as arguments.
+ * @param {Function} props.onChange - A callback function to handle changes to the value array.
+ * @param {Array} [props.value=[]] - The current value array representing the list of items.
+ * @param {Array} [props.defaultValue=[]] - The default value array that provides the structure for new items.
+ * @param {string} [props.addButtonLabel='Add Item'] - Label for the add item button.
+ * @param {string} [props.removeButtonLabel='Remove Item'] - Label for the remove item button.
+ * @param {number} [props.minItems=1] - The minimum number of items that must be maintained in the list.
+ * @param {number} [props.maxItems] - The maximum number of items allowed in the list.
+ * @param {number} [props.initialItems=1] - The number of items to be initially added to the list.
+ * @param {string} [props.removeLayout='vertical'] - The layout for the remove button (e.g., 'vertical', 'horizontal').
+ * @param {boolean} [props.showBlockControls=true] - If true, displays block controls for adding an item.
  */
 export const Repeater = ({
 	children,
@@ -39,7 +36,10 @@ export const Repeater = ({
 	showBlockControls = true,
 }) => {
 	/**
-	 * Add Initial Items
+	 * Adds a specified number of initial items based on the default value.
+	 *
+	 * @param {number} count - The number of initial items to add.
+	 * @return {void} This method does not return a value.
 	 */
 	function addInitialItems(count) {
 		const defaultValueCopy = Array.isArray(defaultValue) ? [...defaultValue] : [];
@@ -63,7 +63,7 @@ export const Repeater = ({
 				addInitialItems(numberofItemsToAdd);
 			}
 		}
-	}, [initialItems]);
+	}, [initialItems]); // eslint-disable-line
 
 	/**
 	 * Add Item
@@ -134,7 +134,8 @@ export const Repeater = ({
 							) : null;
 
 						return (
-							<React.Fragment key={key}>
+							// eslint-ignore-next-line
+							<React.Fragment key={item?.uuid || key}>
 								{children(
 									item,
 									removeComponent,
@@ -145,7 +146,7 @@ export const Repeater = ({
 								)}
 							</React.Fragment>
 						);
-				  })
+					})
 				: null}
 
 			{(!maxItems || value.length < maxItems) && (

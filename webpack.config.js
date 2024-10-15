@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/extensions
-const config = require('digitalsilk-toolkit/config/webpack.config.js');
+const config = require('digitalsilk-builder/config/webpack.config.js');
 
 const webpack = require('webpack');
 

@@ -1,5 +1,5 @@
 export function Repeater({ children, onChange, value, defaultValue, addButtonLabel, removeButtonLabel, minItems, maxItems, initialItems, removeLayout, showBlockControls, }: {
-    children: React.ReactNode;
+    children: Function;
     onChange: Function;
     value?: any[] | undefined;
     defaultValue?: any[] | undefined;
@@ -10,7 +10,7 @@ export function Repeater({ children, onChange, value, defaultValue, addButtonLab
     initialItems?: number | undefined;
     removeLayout?: string | undefined;
     showBlockControls?: boolean | undefined;
-}): JSX.Element;
+}): React.JSX.Element;
 export namespace Repeater {
     namespace propTypes {
         let children: PropTypes.Validator<(...args: any[]) => any>;
