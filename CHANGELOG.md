@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.4.2
+
+### Patch Changes
+
+-   update link wrap component
+
 ## 0.4.1
 
 ### Patch Changes

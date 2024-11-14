@@ -1,15 +1,16 @@
-export function LinkWrap({ linkText, url, opensInNewTab, type, kind, tagName, onLinkChange, onLinkRemove, children, ...rest }: {
+export function LinkWrap({ linkText, url, opensInNewTab, type, kind, tagName, showLinkControl, onLinkChange, onLinkRemove, children, ...rest }: {
     linkText: string;
     url: string;
     opensInNewTab: boolean;
     type: string;
     kind: string;
     tagName: string;
+    showLinkControl: boolean;
     onLinkChange: Function;
     onLinkRemove: Function;
-    children: JSX.Element;
-    rest: object;
-}): JSX.Element;
+    children: React.ReactNode;
+    rest?: object | undefined;
+}): import("react").JSX.Element;
 export namespace LinkWrap {
     namespace propTypes {
         let linkText: PropTypes.Requireable<string>;
@@ -18,6 +19,7 @@ export namespace LinkWrap {
         let type: PropTypes.Requireable<string>;
         let kind: PropTypes.Requireable<string>;
         let tagName: PropTypes.Requireable<string>;
+        let showLinkControl: PropTypes.Requireable<boolean>;
         let onLinkChange: PropTypes.Validator<(...args: any[]) => any>;
         let onLinkRemove: PropTypes.Requireable<(...args: any[]) => any>;
     }
