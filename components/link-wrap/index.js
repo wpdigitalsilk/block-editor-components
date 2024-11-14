@@ -47,22 +47,20 @@ function getSuggestionsQuery(type, kind) {
 }
 
 /**
- * LinkWrap is a React functional component that renders a link element
- * (or other specified tag) with an optional popover for link control and management.
+ * Component wrapper for a link content block.
  *
- * @param {object} props - Properties passed to the component.
- * @param {string} props.linkText - The text to display for the link.
- * @param {string} props.url - The URL the link should navigate to.
- * @param {boolean} props.opensInNewTab - Determines if the link should open in a new tab.
- * @param {string} props.type - The type of link (used to filter suggestions).
- * @param {string} props.kind - The kind of link (used to filter suggestions).
- * @param {string} props.tagName - The HTML tag to use for the link element.
+ * @param {object} props - The properties object.
+ * @param {string} props.linkText - The text displayed for the link.
+ * @param {string} props.url - The URL that the link points to.
+ * @param {boolean} props.opensInNewTab - Specifies if the link should open in a new tab.
+ * @param {string} props.type - The type of link.
+ * @param {string} props.kind - The kind of link.
+ * @param {string} props.tagName - The tag name to use for the wrapper element.
+ * @param {boolean} props.showLinkControl - Flag to show/hide link controls.
  * @param {Function} props.onLinkChange - Callback function to handle link changes.
  * @param {Function} props.onLinkRemove - Callback function to handle link removal.
- * @param {JSX.Element} props.children - Child elements to be rendered inside the link.
- * @param {object} props.rest - Additional properties to be spread onto the link element.
- *
- * @returns {JSX.Element} The rendered React component for creating and editing a link.
+ * @param {React.ReactNode} props.children - Child components or elements.
+ * @param {object} [props.rest] - Additional props passed to the component.
  */
 export const LinkWrap = ({
 	linkText = '',
@@ -70,7 +68,8 @@ export const LinkWrap = ({
 	opensInNewTab = false,
 	type = '',
 	kind = '',
-	tagName = 'a',
+	tagName = 'span',
+	showLinkControl = true,
 	onLinkChange,
 	onLinkRemove,
 	children,
@@ -78,7 +77,11 @@ export const LinkWrap = ({
 }) => {
 	const [isPopoverVisible, setIsPopoverVisible] = useState(false);
 	const [isValidLink, setIsValidLink] = useState(false);
-	const openPopover = () => setIsPopoverVisible(true);
+	const openPopover = () => {
+		if (showLinkControl) {
+			setIsPopoverVisible(true);
+		}
+	};
 	const closePopover = () => setIsPopoverVisible(false);
 
 	const linkRef = useRef();
@@ -145,6 +148,7 @@ LinkWrap.propTypes = {
 	type: PropTypes.string,
 	kind: PropTypes.string,
 	tagName: PropTypes.string,
+	showLinkControl: PropTypes.bool,
 	onLinkChange: PropTypes.func.isRequired,
 	onLinkRemove: PropTypes.func,
 };
