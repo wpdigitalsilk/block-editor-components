@@ -1,24 +1,25 @@
-import { Spinner, Placeholder } from '@wordpress/components';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import { Spinner, Placeholder } from '@wordpress/components';
 import { getMedia } from '../../selectors';
 
 /**
- * Component that renders an image.
+ * Image component to display an image with various properties and states.
  *
- * @param {object} props - Properties passed to the component.
- * @param {number} props.id - The ID of the image.
- * @param {string} [props.imageSize='full'] - The size of the image to be displayed.
- * @param {object} [props.focalPoint={x: 0.5, y: 0.5}] - Focal point coordinates for the image.
- * @param {boolean} [props.isBackground=false] - Whether the image is used as a background.
- * @param {string} [props.className] - Additional CSS class names for the image.
- * @param {object} [props.rest] - Additional properties to be passed to the component.
- *
- * @returns {JSX.Element} The image component.
+ * @param {object} params The parameters for the image component.
+ * @param {string} params.id The ID of the image.
+ * @param {string} [params.imageSize='full'] The size of the image. Default is 'full'.
+ * @param {string} [params.aspectRatio=''] The aspect ratio of the image.
+ * @param {object} [params.focalPoint={ x: 0.5, y: 0.5 }] The focal point for the image.
+ * @param {boolean} [params.isBackground=false] Flag if the image is a background image. Default is false.
+ * @param {string} [params.className=''] The CSS class for custom styling.
+ * @param {object} [params.rest] Additional properties passed to the image element.
+ * @returns {JSX.Element} The JSX code to render the image component.
  */
 export const Image = ({
 	id,
 	imageSize = 'full',
+	aspectRatio = '',
 	focalPoint = {
 		x: 0.5,
 		y: 0.5,
@@ -46,19 +47,29 @@ export const Image = ({
 		};
 	}
 
+	let aspectRatioClassName = '';
+	if (aspectRatio) {
+		aspectRatioClassName = `has-aspect-ratio-${aspectRatio}`;
+	}
+
 	return (
 		<>
 			{isBackground ? (
 				<div className="ds-media is-background">
 					{!hasImage ? (
 						<Placeholder
-							className={classnames(className, 'ds-media__image', 'ds-media-placeholder')}
+							className={classnames(
+								className,
+								'ds-media__image',
+								'ds-media-placeholder',
+								aspectRatioClassName,
+							)}
 							withIllustration
 						/>
 					) : (
 						<img
 							src={imageUrl}
-							className={classnames(className, 'ds-media__image')}
+							className={classnames(className, 'ds-media__image', aspectRatioClassName)}
 							alt={altText}
 							{...rest}
 						/>
@@ -68,13 +79,22 @@ export const Image = ({
 				<>
 					{!hasImage ? (
 						<Placeholder
-							className={classnames(className, 'ds-media__image', 'ds-media-placeholder')}
+							className={classnames(
+								className,
+								'ds-media__image',
+								'ds-media-placeholder',
+								aspectRatioClassName,
+							)}
 							withIllustration
 						/>
 					) : isResolvingMedia ? (
 						<Spinner />
 					) : (
-						<img src={imageUrl} className={classnames(className, 'ds-media__image')} alt={altText} />
+						<img
+							src={imageUrl}
+							className={classnames(className, 'ds-media__image', aspectRatioClassName)}
+							alt={altText}
+						/>
 					)}
 				</>
 			)}
@@ -85,6 +105,7 @@ export const Image = ({
 Image.propTypes = {
 	id: PropTypes.number.isRequired,
 	imageSize: PropTypes.string,
+	aspectRatio: PropTypes.string,
 	focalPoint: PropTypes.shape({
 		x: PropTypes.number,
 		y: PropTypes.number,

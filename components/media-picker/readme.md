@@ -24,6 +24,7 @@ const YourComponent = (props) => {
 			onSelect={handleMediaSelect}
 			media={mediaData}
 			displayFocalPicker={true}
+			allowAspectRatioSwitch={true}
 			allowMediaTypeSwitch={false}
 			controlPanelLabel="Media Settings"
 			multiple={false}
@@ -72,6 +73,10 @@ An object representing the initial media data. It should have the following stru
 
 A boolean indicating whether to display the focal point picker. Defaults to `false`.
 
+### `allowAspectRatioSwitch`
+
+A boolean indicating whether to display the aspect ratio picker. Defaults to `false`.
+
 ### `allowMediaTypeSwitch`
 
 A boolean indicating whether to allow switching between image and video types. Defaults to `false`.
@@ -103,6 +108,7 @@ A boolean indicating whether the media is used as a background. Defaults to `fal
 	onSelect={handleMediaSelect}
 	media={mediaData}
 	displayFocalPicker={true}
+	allowAspectRatioSwitch={true}
 	allowMediaTypeSwitch={false}
 	controlPanelLabel="Custom Settings"
 	multiple={true}
@@ -116,28 +122,29 @@ A boolean indicating whether the media is used as a background. Defaults to `fal
 
 ```js
 "attributes": {
-	"mediaData": {
-	"type": "object",
-		"default": {
-			"id": 0,
-			"mediaType": "image",
-			"lazyLoad": true,
-			"srcset": true,
-			"imageSize": "full",
-			"videoSource": "internal",
-			"videoUrl": "",
-			"videoControls": {
-				"autoplay": false,
-				"isMuted": true,
-				"showControls": true,
-				"posterId": 0,
-				"posterSize": "full"
-			},
-			"focalPoint": {
-				"x": 0.5,
-				"y": 0.5
-			}
-		}
-	}
+	"media": {
+        "type": "object",
+        "default": {
+            "id": 0,
+            "mediaType": "image",
+            "lazyLoad": true,
+            "srcset": true,
+            "imageSize": "medium",
+            "videoSource": "internal",
+            "videoUrl": "",
+            "aspectRatio": "",
+            "videoControls": {
+            "autoplay": false,
+                "isMuted": true,
+                "showControls": true,
+                "posterId": 0,
+                "posterSize": "full"
+            },
+            "focalPoint": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    }
 }
 ```

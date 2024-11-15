@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.4.3
+
+### Patch Changes
+
+-   Update media to add aspect control
+
 ## 0.4.2
 
 ### Patch Changes

@@ -16,6 +16,7 @@ import {
 	TextControl,
 	ToolbarButton,
 	ToolbarGroup,
+	SelectControl,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
@@ -59,6 +60,7 @@ export const MediaPanelContent = (props) => {
 	const {
 		media = {},
 		displayFocalPicker = false,
+		allowAspectRatioSwitch = false,
 		allowMediaTypeSwitch = false,
 		controlPanelLabel = 'Media Settings',
 		multiple = false,
@@ -69,6 +71,7 @@ export const MediaPanelContent = (props) => {
 		id = 0,
 		mediaType = 'image',
 		imageSize = 'full',
+		aspectRatio = '',
 		lazyLoad = true,
 		srcset = true,
 		videoSource = 'internal',
@@ -159,6 +162,28 @@ export const MediaPanelContent = (props) => {
 							</ToggleGroupControl>
 						)}
 					</>
+				)}
+
+				{allowAspectRatioSwitch && (
+					<SelectControl
+						label="Aspect Ratio"
+						value={aspectRatio}
+						onChange={(newAspect) => {
+							handleMediaChange({ aspectRatio: newAspect });
+						}}
+						options={[
+							{ value: '', label: 'Default' },
+							{ value: '1-1', label: 'Square - 1/1' },
+							{ value: '3-2', label: 'Classic - 3/2' },
+							{ value: '2-3', label: 'Classic Portrait - 2/3' },
+							{ value: '4-3', label: 'Standard - 4/3' },
+							{ value: '3-4', label: 'Standard Portrait - 3/4' },
+							{ value: '16-9', label: 'Wide - 16/9' },
+							{ value: '9-16', label: 'Wide Portrait - 9/16' },
+							{ value: '21-9', label: 'Ultra Wide - 21/9' },
+							{ value: '9-21', label: 'Ultra Wide Portrait - 9/21' },
+						]}
+					/>
 				)}
 
 				{hasMedia ? (
@@ -386,6 +411,7 @@ const defaultMediaProps = {
 		lazyLoad: true,
 		srcset: true,
 		imageSize: 'full',
+		aspectRatio: '',
 		videoSource: 'internal',
 		videoUrl: '',
 		focalPoint: {
@@ -402,6 +428,7 @@ const defaultMediaProps = {
 	},
 	displayFocalPicker: false,
 	allowMediaTypeSwitch: false,
+	allowAspectRatioSwitch: false,
 	controlPanelLabel: 'Media Settings',
 	multiple: false,
 	showBlockControls: true,
@@ -443,6 +470,7 @@ MediaPicker.propTypes = {
 	media: PropTypes.object,
 	displayFocalPicker: PropTypes.bool,
 	allowMediaTypeSwitch: PropTypes.bool,
+	allowAspectRatioSwitch: PropTypes.bool,
 	controlPanelLabel: PropTypes.string,
 	multiple: PropTypes.bool,
 	isControl: PropTypes.bool,

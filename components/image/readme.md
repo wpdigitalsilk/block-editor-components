@@ -51,6 +51,12 @@ It should have the following structure:
 
 A boolean indicating whether the image is used as a background. Defaults to `false`.
 
+### `aspectRatio`
+
+A string indicating the image aspect ratio. Defaults to `''`.
+
+Supported aspect ratios are: `1-1`, `3-2`, `2-3`, `4-3`, `3-4`, `16-9`, `9-16`, `21-9`, `9-21`
+
 ### `className`
 
 A string to pass the additional class name. Defaults to an empty string.
@@ -63,6 +69,7 @@ A string to pass the additional class name. Defaults to an empty string.
     imageSize="full"
     focalPoint={{ x: 0.5, y: 0.5 }}
     isBackground={false}
+    aspectRatio="16-9"
 />
 ```
 
@@ -77,6 +84,10 @@ A string to pass the additional class name. Defaults to an empty string.
     "imageSize": {
         "type": "string",
         "default": "full"
+    },
+    "aspectRatio": {
+        "type": "string",
+        "default": ""
     },
     "focalPoint": {
         "type": "object",
