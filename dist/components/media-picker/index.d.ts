@@ -14,6 +14,7 @@ export namespace MediaPicker {
         let media: PropTypes.Requireable<object>;
         let displayFocalPicker: PropTypes.Requireable<boolean>;
         let allowMediaTypeSwitch: PropTypes.Requireable<boolean>;
+        let allowAspectRatioSwitch: PropTypes.Requireable<boolean>;
         let controlPanelLabel: PropTypes.Requireable<string>;
         let multiple: PropTypes.Requireable<boolean>;
         let isControl: PropTypes.Requireable<boolean>;

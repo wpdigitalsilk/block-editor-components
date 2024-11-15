@@ -32,6 +32,12 @@ const YourComponent = (props) => {
 
 The Attachment ID. 
 
+### `aspectRatio`
+
+A string indicating the image aspect ratio. Defaults to `''`.
+
+Supported aspect ratios are: `1-1`, `3-2`, `2-3`, `4-3`, `3-4`, `16-9`, `9-16`, `21-9`, `9-21`
+
 ### `videoSource`
 
 A string representing the source of the video. Defaults to `'internal'`.
@@ -39,7 +45,6 @@ A string representing the source of the video. Defaults to `'internal'`.
 ### `videoUrl`
 
 A string representing the URL of the video (used for external videos).
-
 
 ### `videoControls`
 
@@ -102,6 +107,7 @@ A boolean indicating whether the video is rendered as a preview. Defaults to `fa
         posterId: 2,
         posterSize: 'full',
     }}
+	aspectRatio="16-9"
     isBackground={false}
     isPreview={false}
 />
@@ -121,6 +127,7 @@ A boolean indicating whether the video is rendered as a preview. Defaults to `fa
         posterId: 2,
         posterSize: 'full',
     }}
+    aspectRatio="16-9"
     isBackground={false}
     isPreview={false}
 />
@@ -151,6 +158,10 @@ A boolean indicating whether the video is rendered as a preview. Defaults to `fa
             "posterId": 0,
             "posterSize": 'full'
         }
-    }
+    },
+    "aspectRatio": {
+        "type": "string",
+        "default": ""
+    },
 }
 ```

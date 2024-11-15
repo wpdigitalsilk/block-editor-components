@@ -30,23 +30,24 @@ An object representing the media data. It should have the following structure:
 
 ```js
 {
-  id: 0,
-  mediaType: 'image',
-  lazyLoad: true,
-  imageSize: 'full',
-  videoSource: 'internal',
-  videoUrl: '',
-  focalPoint: {
-    x: 0.5,
-    y: 0.5,
-  },
-  videoControls: {
-    autoplay: false,
-    isMuted: true,
-    showControls: true,
-    posterId: 0,
-    posterSize: 'full',
-  },
+    id: 0,
+    mediaType: 'image',
+    lazyLoad: true,
+    imageSize: 'full',
+    aspectRatio: '',
+    videoSource: 'internal',
+    videoUrl: '',
+    focalPoint: {
+        x: 0.5,
+        y: 0.5,
+    },
+    videoControls: {
+        autoplay: false,
+        isMuted: true,
+        showControls: true,
+        posterId: 0,
+        posterSize: 'full',
+    },
 }
 ```
 
@@ -76,28 +77,29 @@ See [`<MediaPicker />`](../media-picker/readme.md) component for more details, t
 
 ```js
 "attributes": {
-  "mediaData": {
-    "type": "object",
-    "default": {
-      "id": 0,
-      "mediaType": "image",
-      "lazyLoad": true,
-      "srcset": true,
-      "imageSize": "full",
-      "videoSource": "internal",
-      "videoUrl": "",
-      "videoControls": {
-        "autoplay": false,
-        "isMuted": true,
-        "showControls": true,
-        "posterId": 0,
-        "posterSize": "full"
-      },
-      "focalPoint": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    }
-  },
+    "mediaData": {
+        "type": "object",
+        "default": {
+            "id": 0,
+            "mediaType": "image",
+            "lazyLoad": true,
+            "srcset": true,
+            "imageSize": "full",
+            "aspectRatio": "",
+            "videoSource": "internal",
+            "videoUrl": "",
+            "videoControls": {
+                "autoplay": false,
+                "isMuted": true,
+                "showControls": true,
+                "posterId": 0,
+                "posterSize": "full"
+            },
+            "focalPoint": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    },
 }
 ```

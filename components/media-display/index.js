@@ -8,6 +8,7 @@ const defaultMedia = {
 	lazyLoad: true,
 	srcset: true,
 	imageSize: 'full',
+	aspectRatio: '',
 	videoSource: 'internal',
 	videoUrl: '',
 	focalPoint: {
@@ -41,12 +42,19 @@ export const MediaDisplay = ({ media = {}, isBackground = false, ...rest }) => {
 		videoControls: { ...defaultMedia.videoControls, ...media.videoControls },
 	};
 
-	const { id, mediaType, imageSize, videoSource, videoUrl, focalPoint, videoControls } = mergedMedia;
+	const { id, mediaType, imageSize, aspectRatio, videoSource, videoUrl, focalPoint, videoControls } = mergedMedia;
 
 	return (
 		<>
 			{mediaType === 'image' && (
-				<Image id={id} imageSize={imageSize} focalPoint={focalPoint} isBackground={isBackground} {...rest} />
+				<Image
+					id={id}
+					imageSize={imageSize}
+					focalPoint={focalPoint}
+					isBackground={isBackground}
+					aspectRatio={aspectRatio}
+					{...rest}
+				/>
 			)}
 
 			{mediaType === 'video' && (
@@ -56,6 +64,7 @@ export const MediaDisplay = ({ media = {}, isBackground = false, ...rest }) => {
 					videoUrl={videoUrl}
 					videoControls={videoControls}
 					isBackground={isBackground}
+					aspectRatio={aspectRatio}
 					{...rest}
 				/>
 			)}

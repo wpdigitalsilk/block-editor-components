@@ -1,14 +1,16 @@
-export function Video({ id, videoSource, videoUrl, videoControls, isBackground, isPreview, }: {
-    id: number;
-    videoSource: string;
-    videoUrl: string;
-    videoControls: object;
-    isBackground: boolean;
-    isPreview: boolean;
+export function Video({ id, aspectRatio, videoSource, videoUrl, videoControls, isBackground, isPreview, }: {
+    id?: number | undefined;
+    aspectRatio?: string | undefined;
+    videoSource?: string | undefined;
+    videoUrl?: string | undefined;
+    videoControls?: object | undefined;
+    isBackground?: boolean | undefined;
+    isPreview?: boolean | undefined;
 }): JSX.Element;
 export namespace Video {
     namespace propTypes {
         let id: PropTypes.Requireable<number>;
+        let aspectRatio: PropTypes.Requireable<string>;
         let isBackground: PropTypes.Requireable<boolean>;
         let videoSource: PropTypes.Requireable<string>;
         let videoUrl: PropTypes.Requireable<string>;
