@@ -239,7 +239,7 @@ export const MediaPanelContent = (props) => {
 									__nextHasNoMargin
 									label="Image Border Radius"
 									value={borderRadius}
-									onChangeImage={(newSize) => handleMediaChange({ borderRadius: newSize })}
+									onChange={(newSize) => handleMediaChange({ borderRadius: newSize })}
 									min={0}
 									max={100}
 								/>
