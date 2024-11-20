@@ -51,7 +51,6 @@ export const Image = ({
 
 	if (borderRadius && borderRadius > 0) {
 		rest.style = {
-			...rest.style,
 			'--border-radius': `${borderRadius}px`,
 		};
 	}
@@ -103,6 +102,7 @@ export const Image = ({
 							src={imageUrl}
 							className={classnames(className, 'ds-media__image', aspectRatioClassName)}
 							alt={altText}
+							{...rest}
 						/>
 					)}
 				</>
