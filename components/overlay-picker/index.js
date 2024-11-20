@@ -75,6 +75,7 @@ const OverlayPanelContent = ({ overlay, onSelect }) => {
 					/>
 
 					<ToggleGroupControl
+						__nextHasNoMarginBottom
 						label="Overlay Type"
 						value={overlayType}
 						isBlock

@@ -48,6 +48,7 @@ An object representing the media data. It should have the following structure:
         posterId: 0,
         posterSize: 'full',
     },
+	borderRadius: 0,
 }
 ```
 
@@ -98,7 +99,8 @@ See [`<MediaPicker />`](../media-picker/readme.md) component for more details, t
             "focalPoint": {
                 "x": 0.5,
                 "y": 0.5
-            }
+            },
+			"borderRadius": 0
         }
     },
 }
