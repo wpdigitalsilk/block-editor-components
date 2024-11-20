@@ -54,7 +54,6 @@ export const MediaDisplay = ({ media = {}, isBackground = false, ...rest }) => {
 					focalPoint={focalPoint}
 					isBackground={isBackground}
 					aspectRatio={aspectRatio}
-					borderRadius={borderRadius}
 					{...rest}
 				/>
 			)}
