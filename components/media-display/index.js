@@ -22,6 +22,7 @@ const defaultMedia = {
 		posterId: 0,
 		posterSize: 'full',
 	},
+	borderRadius: 0,
 };
 
 /**
@@ -53,6 +54,7 @@ export const MediaDisplay = ({ media = {}, isBackground = false, ...rest }) => {
 					focalPoint={focalPoint}
 					isBackground={isBackground}
 					aspectRatio={aspectRatio}
+					borderRadius={borderRadius}
 					{...rest}
 				/>
 			)}

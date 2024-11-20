@@ -17,6 +17,7 @@ import {
 	ToolbarButton,
 	ToolbarGroup,
 	SelectControl,
+	RangeControl,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
@@ -81,6 +82,7 @@ export const MediaPanelContent = (props) => {
 			y: 0.5,
 		},
 		videoControls = {},
+		borderRadius = 0,
 	} = media;
 
 	const { autoplay = false, isMuted = true, showControls = true, posterId = 0, posterSize = 'full' } = videoControls;
@@ -141,6 +143,7 @@ export const MediaPanelContent = (props) => {
 				{allowMediaTypeSwitch && (
 					<>
 						<ToggleGroupControl
+							__nextHasNoMarginBottom
 							label="Media Type"
 							value={mediaType}
 							isBlock
@@ -152,6 +155,7 @@ export const MediaPanelContent = (props) => {
 
 						{mediaType === 'video' && (
 							<ToggleGroupControl
+								__nextHasNoMarginBottom
 								label="Video Source"
 								value={videoSource}
 								isBlock
@@ -166,6 +170,7 @@ export const MediaPanelContent = (props) => {
 
 				{allowAspectRatioSwitch && (
 					<SelectControl
+						__nextHasNoMarginBottom
 						label="Aspect Ratio"
 						value={aspectRatio}
 						onChange={(newAspect) => {
@@ -228,6 +233,15 @@ export const MediaPanelContent = (props) => {
 									onChangeImage={(newSize) => handleMediaChange({ imageSize: newSize })}
 									slug={imageSize}
 									imageSizeOptions={availableImageSizes}
+								/>
+
+								<RangeControl
+									__nextHasNoMargin
+									label="Image Border Radius"
+									value={borderRadius}
+									onChangeImage={(newSize) => handleMediaChange({ borderRadius: newSize })}
+									min={0}
+									max={100}
 								/>
 							</>
 						)}
@@ -425,6 +439,7 @@ const defaultMediaProps = {
 			posterId: 0,
 			posterSize: 'full',
 		},
+		borderRadius: 0,
 	},
 	displayFocalPicker: false,
 	allowMediaTypeSwitch: false,

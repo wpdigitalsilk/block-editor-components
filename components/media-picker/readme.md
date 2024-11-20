@@ -66,6 +66,7 @@ An object representing the initial media data. It should have the following stru
 		posterId: 0,
 		posterSize: 'full',
 	},
+	borderRadius: 0,
 }
 ```
 
@@ -123,28 +124,29 @@ A boolean indicating whether the media is used as a background. Defaults to `fal
 ```js
 "attributes": {
 	"media": {
-        "type": "object",
-        "default": {
-            "id": 0,
-            "mediaType": "image",
-            "lazyLoad": true,
-            "srcset": true,
-            "imageSize": "medium",
-            "videoSource": "internal",
-            "videoUrl": "",
-            "aspectRatio": "",
-            "videoControls": {
-            "autoplay": false,
-                "isMuted": true,
-                "showControls": true,
-                "posterId": 0,
-                "posterSize": "full"
-            },
-            "focalPoint": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        }
-    }
+		"type": "object",
+		"default": {
+			"id": 0,
+			"mediaType": "image",
+			"lazyLoad": true,
+			"srcset": true,
+			"imageSize": "medium",
+			"videoSource": "internal",
+			"videoUrl": "",
+			"aspectRatio": "",
+			"videoControls": {
+				"autoplay": false,
+				"isMuted": true,
+				"showControls": true,
+				"posterId": 0,
+				"posterSize": "full"
+			},
+			"focalPoint": {
+				"x": 0.5,
+				"y": 0.5
+			},
+			"borderRadius": 0
+		}
+	}
 }
 ```
