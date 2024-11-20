@@ -43,7 +43,17 @@ export const MediaDisplay = ({ media = {}, isBackground = false, ...rest }) => {
 		videoControls: { ...defaultMedia.videoControls, ...media.videoControls },
 	};
 
-	const { id, mediaType, imageSize, aspectRatio, videoSource, videoUrl, focalPoint, videoControls } = mergedMedia;
+	const {
+		id,
+		borderRadius = 0,
+		mediaType,
+		imageSize,
+		aspectRatio,
+		videoSource,
+		videoUrl,
+		focalPoint,
+		videoControls,
+	} = mergedMedia;
 
 	return (
 		<>
@@ -54,6 +64,7 @@ export const MediaDisplay = ({ media = {}, isBackground = false, ...rest }) => {
 					focalPoint={focalPoint}
 					isBackground={isBackground}
 					aspectRatio={aspectRatio}
+					borderRadius={borderRadius}
 					{...rest}
 				/>
 			)}
