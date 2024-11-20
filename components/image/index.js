@@ -13,6 +13,7 @@ import { getMedia } from '../../selectors';
  * @param {object} [params.focalPoint={ x: 0.5, y: 0.5 }] The focal point for the image.
  * @param {boolean} [params.isBackground=false] Flag if the image is a background image. Default is false.
  * @param {string} [params.className=''] The CSS class for custom styling.
+ * @param {number} [params.borderRadius] The CSS class for custom styling.
  * @param {object} [params.rest] Additional properties passed to the image element.
  * @returns {JSX.Element} The JSX code to render the image component.
  */
@@ -26,6 +27,7 @@ export const Image = ({
 	},
 	isBackground = false,
 	className = '',
+	borderRadius = 0,
 	...rest
 }) => {
 	const hasImage = !!id;
@@ -44,6 +46,13 @@ export const Image = ({
 		rest.style = {
 			...rest.style,
 			...focalPointStyle,
+		};
+	}
+
+	if (borderRadius && borderRadius > 0) {
+		rest.style = {
+			...rest.style,
+			'--border-radius': `${borderRadius}px`,
 		};
 	}
 
@@ -112,4 +121,5 @@ Image.propTypes = {
 	}),
 	isBackground: PropTypes.bool,
 	className: PropTypes.string,
+	borderRadius: PropTypes.number,
 };

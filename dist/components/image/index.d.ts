@@ -1,10 +1,11 @@
-export function Image({ id, imageSize, aspectRatio, focalPoint, isBackground, className, ...rest }: {
+export function Image({ id, imageSize, aspectRatio, focalPoint, isBackground, className, borderRadius, ...rest }: {
     id: string;
     imageSize?: string | undefined;
     aspectRatio?: string | undefined;
     focalPoint?: object | undefined;
     isBackground?: boolean | undefined;
     className?: string | undefined;
+    borderRadius?: number | undefined;
     rest?: object | undefined;
 }): JSX.Element;
 export namespace Image {
@@ -18,6 +19,7 @@ export namespace Image {
         }>>;
         let isBackground: PropTypes.Requireable<boolean>;
         let className: PropTypes.Requireable<string>;
+        let borderRadius: PropTypes.Requireable<number>;
     }
 }
 import PropTypes from 'prop-types';
