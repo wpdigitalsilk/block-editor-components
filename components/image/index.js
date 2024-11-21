@@ -57,7 +57,7 @@ export const Image = ({
 
 	let aspectRatioClassName = '';
 	if (aspectRatio) {
-		aspectRatioClassName = `has-aspect-ratio-${aspectRatio}`;
+		aspectRatioClassName = `has-aspect-ratio has-aspect-ratio-${aspectRatio}`;
 	}
 
 	return (
