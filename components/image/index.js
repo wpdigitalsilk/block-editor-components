@@ -73,6 +73,7 @@ export const Image = ({
 								aspectRatioClassName,
 							)}
 							withIllustration
+							{...rest}
 						/>
 					) : (
 						<img
@@ -94,6 +95,7 @@ export const Image = ({
 								aspectRatioClassName,
 							)}
 							withIllustration
+							{...rest}
 						/>
 					) : isResolvingMedia ? (
 						<Spinner />
