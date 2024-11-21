@@ -191,6 +191,17 @@ export const MediaPanelContent = (props) => {
 					/>
 				)}
 
+				{mediaType === 'image' && (
+					<RangeControl
+						__nextHasNoMargin
+						label="Image Border Radius"
+						value={borderRadius}
+						onChange={(newSize) => handleMediaChange({ borderRadius: newSize })}
+						min={0}
+						max={100}
+					/>
+				)}
+
 				{hasMedia ? (
 					<>
 						{mediaType === 'image' && (
@@ -233,15 +244,6 @@ export const MediaPanelContent = (props) => {
 									onChangeImage={(newSize) => handleMediaChange({ imageSize: newSize })}
 									slug={imageSize}
 									imageSizeOptions={availableImageSizes}
-								/>
-
-								<RangeControl
-									__nextHasNoMargin
-									label="Image Border Radius"
-									value={borderRadius}
-									onChange={(newSize) => handleMediaChange({ borderRadius: newSize })}
-									min={0}
-									max={100}
 								/>
 							</>
 						)}
