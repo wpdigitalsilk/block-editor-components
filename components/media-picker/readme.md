@@ -76,7 +76,7 @@ A boolean indicating whether to display the focal point picker. Defaults to `fal
 
 ### `allowAspectRatioSwitch`
 
-A boolean indicating whether to display the aspect ratio picker. Defaults to `false`.
+A boolean indicating whether to display the aspect ratio picker. Defaults to `true`.
 
 ### `allowMediaTypeSwitch`
 

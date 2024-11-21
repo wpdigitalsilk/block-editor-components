@@ -61,7 +61,7 @@ export const MediaPanelContent = (props) => {
 	const {
 		media = {},
 		displayFocalPicker = false,
-		allowAspectRatioSwitch = false,
+		allowAspectRatioSwitch = true,
 		allowMediaTypeSwitch = false,
 		controlPanelLabel = 'Media Settings',
 		multiple = false,
