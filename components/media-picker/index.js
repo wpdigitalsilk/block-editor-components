@@ -66,6 +66,7 @@ export const MediaPanelContent = (props) => {
 		controlPanelLabel = 'Media Settings',
 		multiple = false,
 		showBlockControls = true,
+		isBackground = false,
 		onSelect,
 	} = props;
 	const {
@@ -191,7 +192,7 @@ export const MediaPanelContent = (props) => {
 					/>
 				)}
 
-				{mediaType === 'image' && (
+				{mediaType === 'image' && !isBackground && (
 					<RangeControl
 						__nextHasNoMargin
 						label="Image Border Radius"
