@@ -15,18 +15,19 @@ const defaultVideoControls = {
 };
 
 /**
- * Renders a Video component with various configurations for internal and external video sources.
+ * Video component configuration.
  *
- * @param {object} props - The properties object.
- * @param {number} [props.id=0] - The ID of the video.
- * @param {string} [props.aspectRatio=''] - The aspect ratio of the video.
- * @param {string} [props.videoSource='internal'] - The source of the video, either 'internal' or 'external'.
- * @param {string} [props.videoUrl=''] - The URL of the video.
- * @param {object} [props.videoControls={}] - The control options for the video such as mute and poster settings.
- * @param {boolean} [props.isBackground=false] - Flag indicating if the video is used as background.
- * @param {boolean} [props.isPreview=false] - Flag indicating if the video is in preview mode.
- *
- * @returns {JSX.Element} The rendered Video component.
+ * @param {object} config Configuration for the video component.
+ * @param {number} [config.id=0] Unique identifier for the video.
+ * @param {string} [config.aspectRatio=''] Aspect ratio of the video.
+ * @param {string} [config.videoSource='internal'] The source of the video; can be 'internal' or 'external'.
+ * @param {string} [config.videoUrl=''] URL of the video, applicable when video is sourced externally.
+ * @param {object} [config.videoControls={}] Configuration object for video controls such as muting and visibility of controls.
+ * @param {boolean} [config.isBackground=false] Determines if the video is used as a background.
+ * @param {boolean} [config.isPreview=false] Indicates if the video is in preview mode.
+ * @param {number} [config.borderRadius=0] Border radius of the video in pixels.
+ * @param {object} config.rest Additional properties to be passed to the video element.
+ * @returns {JSX.Element} The rendered video component.
  */
 export const Video = ({
 	id = 0,
@@ -36,6 +37,8 @@ export const Video = ({
 	videoControls = {},
 	isBackground = false,
 	isPreview = false,
+	borderRadius = 0,
+	...rest
 }) => {
 	const mergedVideoControls = {
 		...defaultVideoControls,
@@ -90,18 +93,24 @@ export const Video = ({
 		aspectRatioClassName = `has-aspect-ratio-${aspectRatio}`;
 	}
 
+	if (borderRadius && borderRadius > 0) {
+		rest.style = {
+			'--border-radius': `${borderRadius}px`,
+		};
+	}
+
 	return (
 		<>
 			{isBackground ? (
 				<div className={classnames('ds-media is-background', aspectRatioClassName)}>
 					{!hasMedia ? (
-						<Placeholder className="ds-media__image ds-media-placeholder" withIllustration />
+						<Placeholder className="ds-media__image ds-media-placeholder" withIllustration {...rest} />
 					) : mediaResolving ? (
 						<Spinner />
 					) : (
 						<>
 							{videoSource === 'internal' && (
-								<div className={classnames('ds-media__video', aspectRatioClassName)}>
+								<div className={classnames('ds-media__video', aspectRatioClassName)} {...rest}>
 									<video
 										muted={isMuted}
 										controls={isPreview ? true : showControls}
@@ -120,6 +129,7 @@ export const Video = ({
 										<div
 											className={classnames('ds-media__video', aspectRatioClassName)}
 											dangerouslySetInnerHTML={{ __html: embedPreview.html }}
+											{...rest}
 										/>
 									)}
 								</>
@@ -133,13 +143,14 @@ export const Video = ({
 						<Placeholder
 							className={classnames('ds-media__image ds-media-placeholder', aspectRatioClassName)}
 							withIllustration
+							{...rest}
 						/>
 					) : mediaResolving ? (
 						<Spinner />
 					) : (
 						<>
 							{videoSource === 'internal' && (
-								<div className={classnames('ds-media__video', aspectRatioClassName)}>
+								<div className={classnames('ds-media__video', aspectRatioClassName)} {...rest}>
 									<video
 										muted={isMuted}
 										controls={isPreview ? true : showControls}
@@ -158,6 +169,7 @@ export const Video = ({
 										<div
 											className={classnames('ds-media__video', aspectRatioClassName)}
 											dangerouslySetInnerHTML={{ __html: embedPreview.html }}
+											{...rest}
 										/>
 									)}
 								</>
@@ -178,4 +190,5 @@ Video.propTypes = {
 	videoUrl: PropTypes.string,
 	videoControls: PropTypes.object,
 	isPreview: PropTypes.bool,
+	borderRadius: PropTypes.number,
 };
