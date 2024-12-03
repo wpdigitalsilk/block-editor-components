@@ -192,10 +192,10 @@ export const MediaPanelContent = (props) => {
 					/>
 				)}
 
-				{mediaType === 'image' && !isBackground && (
+				{!isBackground && (
 					<RangeControl
 						__nextHasNoMargin
-						label="Image Border Radius"
+						label="Media Border Radius"
 						value={borderRadius}
 						onChange={(newSize) => handleMediaChange({ borderRadius: newSize })}
 						min={0}
@@ -340,7 +340,6 @@ export const MediaPanelContent = (props) => {
 													videoControls={videoControls}
 													isPreview
 												/>
-												{/* <Image id={posterId} imageSize={posterSize} /> */}
 												<ImageSizeControl
 													imageSizeHelp="Please select the poster image size"
 													isResizable={false}

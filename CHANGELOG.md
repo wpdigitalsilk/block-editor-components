@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.5.7
+
+### Patch Changes
+
+-   video border radius support
+
 ## 0.5.6
 
 ### Patch Changes
