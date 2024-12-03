@@ -77,6 +77,7 @@ export const MediaDisplay = ({ media = {}, isBackground = false, ...rest }) => {
 					videoControls={videoControls}
 					isBackground={isBackground}
 					aspectRatio={aspectRatio}
+					borderRadius={borderRadius}
 					{...rest}
 				/>
 			)}
