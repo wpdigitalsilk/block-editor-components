@@ -1,5 +1,11 @@
 # @digitalsilk/block-editor-components
 
+## 0.5.9
+
+### Patch Changes
+
+-   allow video source switch
+
 ## 0.5.8
 
 ### Patch Changes

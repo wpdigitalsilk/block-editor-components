@@ -63,6 +63,7 @@ export const MediaPanelContent = (props) => {
 		displayFocalPicker = false,
 		allowAspectRatioSwitch = true,
 		allowMediaTypeSwitch = false,
+		allowVideoSourceSwitch = true,
 		controlPanelLabel = 'Media Settings',
 		multiple = false,
 		showBlockControls = true,
@@ -153,20 +154,20 @@ export const MediaPanelContent = (props) => {
 							<ToggleGroupControlOption value="image" label="Image" />
 							<ToggleGroupControlOption value="video" label="Video" />
 						</ToggleGroupControl>
-
-						{mediaType === 'video' && (
-							<ToggleGroupControl
-								__nextHasNoMarginBottom
-								label="Video Source"
-								value={videoSource}
-								isBlock
-								onChange={(value) => handleMediaChange({ videoSource: value })}
-							>
-								<ToggleGroupControlOption value="internal" label="Internal" />
-								<ToggleGroupControlOption value="external" label="External" />
-							</ToggleGroupControl>
-						)}
 					</>
+				)}
+
+				{mediaType === 'video' && allowVideoSourceSwitch && (
+					<ToggleGroupControl
+						__nextHasNoMarginBottom
+						label="Video Source"
+						value={videoSource}
+						isBlock
+						onChange={(value) => handleMediaChange({ videoSource: value })}
+					>
+						<ToggleGroupControlOption value="internal" label="Internal" />
+						<ToggleGroupControlOption value="external" label="External" />
+					</ToggleGroupControl>
 				)}
 
 				{allowAspectRatioSwitch && (
@@ -487,6 +488,7 @@ MediaPicker.propTypes = {
 	media: PropTypes.object,
 	displayFocalPicker: PropTypes.bool,
 	allowMediaTypeSwitch: PropTypes.bool,
+	allowVideoSourceSwitch: PropTypes.bool,
 	allowAspectRatioSwitch: PropTypes.bool,
 	controlPanelLabel: PropTypes.string,
 	multiple: PropTypes.bool,
